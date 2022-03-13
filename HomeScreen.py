@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog
-
-import a as a
+import os
 from PIL import ImageTk, Image
 
 # creating window master :: all methods in one place
@@ -126,11 +125,12 @@ for d in a1_desc_checks:
     arm_wrist_screen_A1.append(d)
 arm_wrist_screen_A1.append(text_step_instruction)
 arm_wrist_screen_A1.append(answer_box)
-a1_step_images = ['C:/Users/siahmasf/Documents/Spring 2022/Ergonomics Project (CSSE371)/step1a-rula -images/rula-step1a-1.png',
-                 'C:/Users/siahmasf/Documents/Spring 2022/Ergonomics Project (CSSE371)/step1a-rula -images/rula-step1a-2.png',
-                 'C:/Users/siahmasf/Documents/Spring 2022/Ergonomics Project (CSSE371)/step1a-rula -images/rula-step1a-3.png',
-                 'C:/Users/siahmasf/Documents/Spring 2022/Ergonomics Project (CSSE371)/step1a-rula -images/rula-step1a-4.png',
-                 'C:/Users/siahmasf/Documents/Spring 2022/Ergonomics Project (CSSE371)/step1a-rula -images/rula-step1a-5.png']
+fileDir = os.path.dirname(os.path.realpath(__file__))
+a1_step_images = [os.path.join(fileDir, './step1a-rula -images/rula-step1a-1.png'),
+                  os.path.join(fileDir, './step1a-rula -images/rula-step1a-2.png'),
+                  os.path.join(fileDir, './step1a-rula -images/rula-step1a-3.png'),
+                  os.path.join(fileDir, './step1a-rula -images/rula-step1a-4.png'),
+                  os.path.join(fileDir, './step1a-rula -images/rula-step1a-5.png')]
 a1_continue_button = tk.Button(master, text='Continue', command=lambda: [clear_screen(),
                                                                         attach_to_main(arm_wrist_screen_A2, 'Step 2A'),
                                                                         create_image_checks(a2_step_images),
@@ -143,9 +143,9 @@ a2_desc_checks = create_description_checks(a2_step_options)
 arm_wrist_screen_A2.append(selection_step_instruction)
 arm_wrist_screen_A2.append(text_step_instruction)
 arm_wrist_screen_A2.append(answer_box)
-a2_step_images = ['C:/Users/siahmasf/Documents/Spring 2022/Ergonomics Project (CSSE371)/step2a-rula-images/rula-step2a-1.png',
-                 'C:/Users/siahmasf/Documents/Spring 2022/Ergonomics Project (CSSE371)/step2a-rula-images/rula-step2a-2.png',
-                 'C:/Users/siahmasf/Documents/Spring 2022/Ergonomics Project (CSSE371)/step2a-rula-images/rula-step2a-3.png']
+a2_step_images = [os.path.join(fileDir, './step2a-rula-images/rula-step2a-1.png'),
+                  os.path.join(fileDir, './step2a-rula-images/rula-step2a-2.png'),
+                  os.path.join(fileDir, './step2a-rula-images/rula-step2a-3.png')]
 a2_continue_button = tk.Button(master, text='Continue', command=lambda: [clear_screen(),
                                                                          attach_to_main(arm_wrist_screen_A3, 'Step 3A'),
                                                                          create_image_checks(a3_step_images),
@@ -158,10 +158,10 @@ a3_step_options = ['Adjust if wrist is bent from midline: (+1)']
 a3_desc_options = create_description_checks(a3_step_options)
 arm_wrist_screen_A3.append(text_step_instruction)
 arm_wrist_screen_A3.append(answer_box)
-a3_step_images = ['C:/Users/siahmasf/Documents/Spring 2022/Ergonomics Project (CSSE371)/step3a-rula-images/rula-step3a-1.png',
-                  'C:/Users/siahmasf/Documents/Spring 2022/Ergonomics Project (CSSE371)/step3a-rula-images/rula-step3a-2.png',
-                  'C:/Users/siahmasf/Documents/Spring 2022/Ergonomics Project (CSSE371)/step3a-rula-images/rula-step3a-3.png',
-                  'C:/Users/siahmasf/Documents/Spring 2022/Ergonomics Project (CSSE371)/step3a-rula-images/rula-step3a-4.png']
+a3_step_images = [os.path.join(fileDir, './step3a-rula-images/rula-step3a-1.png'),
+                  os.path.join(fileDir, './step3a-rula-images/rula-step3a-2.png'),
+                  os.path.join(fileDir, './step3a-rula-images/rula-step3a-3.png'),
+                  os.path.join(fileDir, './step3a-rula-images/rula-step3a-4.png')]
 a3_continue_button = tk.Button(master, text='Continue',
                                command=lambda: [clear_screen(),
                                                 attach_to_main(arm_wrist_screen_A4, 'Step 4A'),
