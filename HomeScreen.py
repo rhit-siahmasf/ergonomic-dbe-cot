@@ -173,6 +173,8 @@ a_step_four_title = tk.Label(master, text='Step 4: Wrist twist.', font=('Arial',
 arm_wrist_screen_A4.append(a_step_four_title)
 a4_step_options = ['If wrist is twisted in mid-range: (+1)', 'If wrist is at or near end of range: (+2)']
 a4_desc_checks = create_description_checks(a4_step_options)
+for w in a4_desc_checks:
+    arm_wrist_screen_A4.append(w)
 # Step A5
 a_step_five_title = tk.Label(master, text='Step 5: Score from table A', font=('Arial', 14))
 arm_wrist_screen_A5.append(a_step_five_title)
@@ -185,6 +187,7 @@ a6_desc_checks = create_description_checks(a6_step_options)
 arm_wrist_screen_A6.append(a6_desc_checks[0])
 a6_continue_button = tk.Button(master, text='Continue',
                                command=lambda: [clear_screen(), attach_to_main(arm_wrist_screen_A7, "Step 7A")])
+arm_wrist_screen_A6.append(a6_continue_button)
 # Step A7
 a_step_seven_title = tk.Label(master, text='Step 7: Add force/load', font=('Arial', 14))
 arm_wrist_screen_A7.append(a_step_seven_title)
@@ -193,10 +196,13 @@ a7_step_options = ['If load < 4.4 lbs (intermittent): (+0)', 'If load 4.4 to 22 
 a7_desc_checks = create_description_checks(a7_step_options)
 for fl in a7_desc_checks:
     arm_wrist_screen_A7.append(fl)
+a7_continue_button = tk.Button(master, text='Continue',
+                               command=lambda: [clear_screen(), attach_to_main(leg_trunk_screen_A1, 'Step 9B')])
+arm_wrist_screen_A7.append(a7_continue_button)
 
 # NECK, LEG, & TRUNK screens
 b_trunk_title = tk.Label(master, text='B. NECK, TRUNK, AND LEG'
-                                      '` ANALYSIS', font=('Arial', 18))
+                                      ' ANALYSIS', font=('Arial', 18))
 #       attach to all appropriate step screens
 for assess in second_assessments:
     assess.append(b_trunk_title)
