@@ -9,6 +9,8 @@ from Tools.scripts import highlight
 master = tk.Tk()
 master.geometry('700x500')
 frame = tk.Frame(master, background='white')
+# relative file path
+fileDir = os.path.dirname(os.path.realpath(__file__))
 frame.pack()
 arm_wrist_screen_A1 = []
 arm_wrist_screen_A2 = []
@@ -27,6 +29,7 @@ leg_trunk_screen_A5 = []
 leg_trunk_screen_A6 = []
 second_assessments = [leg_trunk_screen_A1, leg_trunk_screen_A2, leg_trunk_screen_A3, leg_trunk_screen_A4,
                       leg_trunk_screen_A5, leg_trunk_screen_A6]
+conclusion_screen = []
 
 
 def check_fields(my_fields):
@@ -75,6 +78,8 @@ def upload_file():
     attach_image_main(easel)
     for a in first_assessments:
         a.append(easel)
+    for b in second_assessments:
+        b.append(easel)
 
 
 def create_description_checks(options):
@@ -125,7 +130,6 @@ for d in a1_desc_checks:
     arm_wrist_screen_A1.append(d)
 arm_wrist_screen_A1.append(text_step_instruction)
 arm_wrist_screen_A1.append(answer_box)
-fileDir = os.path.dirname(os.path.realpath(__file__))
 a1_step_images = [os.path.join(fileDir, './step1a-rula -images/rula-step1a-1.png'),
                   os.path.join(fileDir, './step1a-rula -images/rula-step1a-2.png'),
                   os.path.join(fileDir, './step1a-rula -images/rula-step1a-3.png'),
@@ -160,8 +164,7 @@ arm_wrist_screen_A3.append(text_step_instruction)
 arm_wrist_screen_A3.append(answer_box)
 a3_step_images = [os.path.join(fileDir, './step3a-rula-images/rula-step3a-1.png'),
                   os.path.join(fileDir, './step3a-rula-images/rula-step3a-2.png'),
-                  os.path.join(fileDir, './step3a-rula-images/rula-step3a-3.png'),
-                  os.path.join(fileDir, './step3a-rula-images/rula-step3a-4.png')]
+                  os.path.join(fileDir, './step3a-rula-images/rula-step3a-3.png')]
 a3_continue_button = tk.Button(master, text='Continue',
                                command=lambda: [clear_screen(),
                                                 attach_to_main(arm_wrist_screen_A4, 'Step 4A'),
@@ -197,7 +200,9 @@ a7_desc_checks = create_description_checks(a7_step_options)
 for fl in a7_desc_checks:
     arm_wrist_screen_A7.append(fl)
 a7_continue_button = tk.Button(master, text='Continue',
-                               command=lambda: [clear_screen(), attach_to_main(leg_trunk_screen_A1, 'Step 9B')])
+                               command=lambda: [clear_screen(), attach_to_main(leg_trunk_screen_A1, 'Step 9B'),
+                                                create_image_checks(b9_step_images),
+                                                attach_to_main([b9_continue_button], "Continue")])
 arm_wrist_screen_A7.append(a7_continue_button)
 
 # NECK, LEG, & TRUNK screens
@@ -206,15 +211,75 @@ b_trunk_title = tk.Label(master, text='B. NECK, TRUNK, AND LEG'
 #       attach to all appropriate step screens
 for assess in second_assessments:
     assess.append(b_trunk_title)
-# Step A1
-b_step_one_title = tk.Label(master, text='Step 9: Locate Neck Position.', font=('Arial', 14))
+# Step B9 -----------------------------------------------------------------------------------------------
+b_step_nine_title = tk.Label(master, text='Step 9: Locate Neck Position.', font=('Arial', 14))
+leg_trunk_screen_A1.append(b_step_nine_title)
 b1_step_options = ['Adjust if neck is twisted: (+1)', 'Adjust if neck is side bending: (+1)']
 b1_desc_checks = create_description_checks(b1_step_options)
 for d in b1_desc_checks:
     leg_trunk_screen_A1.append(d)
+b9_step_images = [os.path.join(fileDir, './step9b-rula-images/rula-step9b-1.png'),
+                  os.path.join(fileDir, './step9b-rula-images/rula-step9b-2.png'),
+                  os.path.join(fileDir, './step9b-rula-images/rula-step9b-3.png'),
+                  os.path.join(fileDir, './step9b-rula-images/rula-step9b-4.png')]
 leg_trunk_screen_A1.append(text_step_instruction)
 leg_trunk_screen_A1.append(answer_box)
-
+b9_continue_button = tk.Button(master, text='Continue',
+                               command=lambda: [clear_screen(), attach_to_main(leg_trunk_screen_A2, 'Step 10B'),
+                                                create_image_checks(b10_step_images)])
+leg_trunk_screen_A1.append(b9_continue_button)
+# Step B10 -----------------------------------------------------------------------------------------------
+b_step_ten_title = tk.Label(master, text='Step 10: Locate Trunk Position.', font=('Arial', 14))
+leg_trunk_screen_A2.append(b_step_ten_title)
+b2_step_options = ['Adjust if trunk is twisted: (+1)', 'Adjust if trunk is side bending: (+1)']
+b2_desc_checks = create_description_checks(b2_step_options)
+for t in b2_desc_checks:
+    leg_trunk_screen_A2.append(t)
+b10_step_images = [os.path.join(fileDir, './step10b-rula-images/rula-step10b-1.png'),
+                   os.path.join(fileDir, './step10b-rula-images/rula-step10b-2.png'),
+                   os.path.join(fileDir, './step10b-rula-images/rula-step10b-3.png'),
+                   os.path.join(fileDir, './step10b-rula-images/rula-step10b-4.png')]
+leg_trunk_screen_A2.append(text_step_instruction)
+leg_trunk_screen_A2.append(answer_box)
+b10_continue_button = tk.Button(master, text='Continue',
+                                command=lambda: [clear_screen(), attach_to_main(leg_trunk_screen_A3, 'Step 11B'),
+                                                 attach_to_main(leg_trunk_screen_A4, 'Step 12B'),
+                                                 attach_to_main(leg_trunk_screen_A5, 'Step 13B')])
+leg_trunk_screen_A2.append(b10_continue_button)
+# Step B11 -----------------------------------------------------------------------------------------------
+b_step_eleven_title = tk.Label(master, text='Step 11: Legs.', font=('Arial', 14))
+leg_trunk_screen_A3.append(b_step_eleven_title)
+b3_step_options = ['If legs and feet are supported: (+1)', 'If NOT supported: (+2)']
+b3_desc_checks = create_description_checks(b3_step_options)
+for y in b3_desc_checks:
+    leg_trunk_screen_A3.append(y)
+# Step B12 -----------------------------------------------------------------------------------------------
+b_step_twelve_title = tk.Label(master, text='Step 12: Posture Score from Table', font=('Arial', 14))
+leg_trunk_screen_A4.append(b_step_twelve_title)
+# Step B13 -----------------------------------------------------------------------------------------------
+b_step_thirt_title = tk.Label(master, text='Step 13: Add Muscle Score', font=('Arial', 14))
+leg_trunk_screen_A5.append(b_step_thirt_title)
+b5_step_options = ['Action repeated occurs 4x/minute? '
+                   'OR is posture mainly static (i.e held >10 minutes)? (+1)']
+b5_desc_checks = create_description_checks(b5_step_options)
+for c in b5_desc_checks:
+    leg_trunk_screen_A5.append(c)
+b13_continue_button = tk.Button(master, text='Continue',
+                                command=lambda: [clear_screen(), attach_to_main(leg_trunk_screen_A6, 'Step 14B')])
+leg_trunk_screen_A5.append(b13_continue_button)
+# Step B14 -----------------------------------------------------------------------------------------------
+b_step_fourteen_title = tk.Label(master, text='Step 14: Add Force / Load Score', font=('Arial', 14))
+leg_trunk_screen_A6.append(b_step_fourteen_title)
+b6_step_options = ['If load < 4.4 lbs (intermittent): (+0)', 'If load 4.4 to 22 lbs (intermittent): (+1)',
+                   'If load 4.4 to 22 lbs (static or repeated): (+2)', 'If more than 22lbs OR repeated or shocks: (+3)']
+b6_desc_checks = create_description_checks(b6_step_options)
+for b in b6_desc_checks:
+    leg_trunk_screen_A6.append(b)
+leg_trunk_screen_A6.append(text_step_instruction)
+leg_trunk_screen_A6.append(answer_box)
+b14_continue_button = tk.Button(master, text='Continue',
+                                command=lambda: [clear_screen(), attach_to_main(conclusion_screen, 'Final Screen')])
+leg_trunk_screen_A6.append(b14_continue_button)
 #----------------------------------------------------------------------------------------------------------------------
 # widgets for image selection
 back_button = tk.Button(master, text='BACK', highlightbackground='green',
