@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
 import os
+import ScreenManager
 from PIL import ImageTk, Image
 
 # creating window master :: all methods in one place
@@ -119,22 +120,28 @@ a_arm_title = tk.Label(master, text='A. ARM & WRIST ANALYSIS', font=('Arial', 18
 for assess in first_assessments:
     assess.append(a_arm_title)
 # Step A1
-a_step_one_title = tk.Label(master, text='Step 1: Locate upper arm position.', font=('Arial', 14))
-arm_wrist_screen_A1.append(a_step_one_title)
-#            options to select
-arm_wrist_screen_A1.append(selection_step_instruction)
-a1_step_options = ['Shoulder raised? (+1)', 'Upper arm abducted? (+1)',
-                  'Arm supported? (i.e. person leaning?) (-1)']
-a1_desc_checks = create_description_checks(a1_step_options)
-for d in a1_desc_checks:
-    arm_wrist_screen_A1.append(d)
-arm_wrist_screen_A1.append(text_step_instruction)
-arm_wrist_screen_A1.append(answer_box)
 a1_step_images = [os.path.join(fileDir, './step1a-rula -images/rula-step1a-1.png'),
                   os.path.join(fileDir, './step1a-rula -images/rula-step1a-2.png'),
                   os.path.join(fileDir, './step1a-rula -images/rula-step1a-3.png'),
                   os.path.join(fileDir, './step1a-rula -images/rula-step1a-4.png'),
                   os.path.join(fileDir, './step1a-rula -images/rula-step1a-5.png')]
+a1_step_options = ['Shoulder raised? (+1)', 'Upper arm abducted? (+1)',
+                   'Arm supported? (i.e. person leaning?) (-1)']
+a1_step_screen = ScreenManager(master, a_arm_title, 'Step 1: Locate upper arm position.', a1_step_images,
+                               [clear_screen()], a1_step_options)
+a1_title = a1_step_screen.sub_title
+a1_images = a1_step_screen.images
+a1_continue_button = a1_step_screen.continue_button
+a1_selectable_options = a1_step_screen.selectable_options
+arm_wrist_screen_A1.append(a1_title)
+arm_wrist_screen_A1.append(a1_continue_button)
+arm_wrist_screen_A1.append(a1_selectable_options)
+a1_desc_checks = create_description_checks(a1_step_options)
+for d in a1_desc_checks:
+    arm_wrist_screen_A1.append(d)
+arm_wrist_screen_A1.append(text_step_instruction)
+arm_wrist_screen_A1.append(answer_box)
+
 a1_continue_button = tk.Button(master, text='Continue', command=lambda: [clear_screen(),
                                                                         attach_to_main(arm_wrist_screen_A2, 'Step 2A'),
                                                                         create_image_checks(a2_step_images),
