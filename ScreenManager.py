@@ -5,13 +5,13 @@ from PIL import ImageTk, Image
 
 
 class ScreenManager:
-    def __init__(self, master, title, sub_title, image, button_commands, options, item_list):
+    def __init__(self, master, title, sub_title, should_clear, image, button_commands, options, item_list):
         self.master = master
         self.screen_items = item_list
         self.title = title
         self.sub_title = self.create_title(sub_title)
         self.images = self.create_image_checks(image)
-        self.continue_button = self.create_continue_button(button_commands)
+        self.continue_button = self.create_continue_button(button_commands, should_clear)
         self.selectable_options = self.create_description_checks(options)
 
     def create_title(self, title):
@@ -19,8 +19,9 @@ class ScreenManager:
         self.screen_items.append(label_title)
         return label_title
 
-    def create_continue_button(self, button_commands):
-        cont_btn = tk.Button(self.master, text='Continue', command=lambda: button_commands)
+    def create_continue_button(self, btn_params, should_clear):
+        cont_btn = tk.Button(self.master, text='Continue',
+                             command=lambda: self.attach_new_screen_to_main(btn_params, should_clear))
         self.screen_items.append(cont_btn)
         return cont_btn
 
@@ -45,3 +46,12 @@ class ScreenManager:
             desc_vars.append(chk_button)
             self.screen_items.append(chk_button)
         return desc_vars
+
+    def attach_new_screen_to_main(self, widgets, should_clear):
+        print(should_clear)
+        if should_clear:
+            for w in self.master.winfo_children():
+                w.pack_forget()
+
+        for w in widgets:
+            w.pack()
