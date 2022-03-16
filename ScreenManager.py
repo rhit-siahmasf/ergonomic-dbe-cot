@@ -47,15 +47,10 @@ class ScreenManager:
             self.screen_items.append(chk_button)
         return desc_vars
 
-    def attach_new_screen_to_main(self, widgets, should_clear):
-        print(should_clear)
+    def attach_new_screen_to_main(self, widgets, should_clear, gridding):
         if should_clear:
             for w in self.master.winfo_children():
-                w.pack_forget()
+                w.grid_remove()
 
-        for w in widgets:
-            w.pack()
-
-    def create_layout(self, layout):
-        for row in layout:
-            print(row)
+        for wid in widgets:
+            wid.grid()

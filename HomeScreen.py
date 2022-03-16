@@ -13,7 +13,6 @@ frame = tk.Frame(master, background='white')
 # relative file path
 fileDir = os.path.dirname(os.path.realpath(__file__))
 # util class
-frame.pack()
 arm_wrist_screen_A1 = []
 arm_wrist_screen_A2 = []
 arm_wrist_screen_A3 = []
@@ -36,12 +35,12 @@ conclusion_screen = []
 
 def clear_screen():
     for w in master.winfo_children():
-        w.pack_forget()
+        w.grid_remove()
 
 
-def attach_to_main(widgets, name):
+def attach_to_main(widgets, gridding):
     for w in widgets:
-        w.pack()
+        w.grid()
 
 
 def set_selection():
