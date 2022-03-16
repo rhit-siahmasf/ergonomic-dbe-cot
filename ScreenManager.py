@@ -55,3 +55,7 @@ class ScreenManager:
 
         for w in widgets:
             w.pack()
+
+    def create_layout(self, layout):
+        for row in layout:
+            print(row)
