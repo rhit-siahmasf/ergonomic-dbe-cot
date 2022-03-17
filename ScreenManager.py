@@ -34,7 +34,8 @@ class ScreenManager:
 
 
 class CheckButtonWidget:
-    def __init__(self, var_type, text, row, column):
+    def __init__(self, master, var_type, text, row, column):
+        self.master = master
         self.var_type = var_type
         self.text = text
         self.row = row
@@ -45,7 +46,8 @@ class CheckButtonWidget:
 
 
 class TitleWidget:
-    def __init__(self, title, row, column, font, f_size):
+    def __init__(self, master, title, row, column, font, f_size):
+        self.master = master
         self.title = title
         self.row = row
         self.column = column
@@ -57,7 +59,8 @@ class TitleWidget:
 
 
 class ImageWidget:
-    def __init__(self, img, var_type, row, column):
+    def __init__(self, master, img, var_type, row, column):
+        self.master = master
         self.image = self.create_image(img)
         self.var_type = var_type
         self.row = row

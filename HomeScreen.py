@@ -1,4 +1,5 @@
 import tkinter as tk
+from distutils import command
 from tkinter import filedialog
 import os
 import ScreenManager as sm
@@ -103,7 +104,7 @@ a1_step_images = []
 a1_column_vals = [1, 2, 3, 1, 2]
 for i in range(len(a1_img_paths)):
     row = i % 2
-    my_image = sm.ImageWidget(a1_img_paths[i], img_type, row, a1_column_vals[i])
+    my_image = sm.ImageWidget(master, a1_img_paths[i], img_type, row, a1_column_vals[i])
     a1_step_images.append(my_image)
 # -------------------- OPTIONS A1 --------------------------------------------------
 a1_options = ['Shoulder raised? (+1)', 'Upper arm abducted? (+1)',
@@ -117,105 +118,180 @@ a1_title = sm.TitleWidget(master, 'Step 1: Locate upper arm position.', 1, 1, de
 # --------------------- SCREEN MANAGER A1 ---------------------------------------------------
 a1_step_screen = sm.ScreenManager(master, a_arm_title, a1_title, a1_step_images, a1_step_options, all_others)
 a1_continue_button = tk.Button(master, text='Continue',
-                               command=lambda: a1_step_screen.attach_to_main(True))
+                               command=lambda: a2_step_screen.attach_to_main(True))
 # Step 2A -------------------------------------------------------------------------------------------------------------
 # -------------------- IMAGES A2 --------------------------------------------------
 a2_img_paths = [os.path.join(fileDir, './step2a-rula-images/rula-step2a-1.png'),
                 os.path.join(fileDir, './step2a-rula-images/rula-step2a-2.png'),
                 os.path.join(fileDir, './step2a-rula-images/rula-step2a-3.png')]
+print(os.path.join(fileDir, './step2a-rula-images/rula-step2a-4.png'))
 a2_step_images = []
 a2_column_vals = [1, 2, 3]
 for i in range(len(a2_img_paths)):
-    row = i % 2
-    my_image = sm.ImageWidget(a2_img_paths[i], img_type, row, a2_column_vals[i])
+    my_image = sm.ImageWidget(master, a2_img_paths[i], img_type, 0, a2_column_vals[i])
     a2_step_images.append(my_image)
 # -------------------- OPTIONS A2 --------------------------------------------------
-a2_options = ['Adjust if arm is worrking across midline or outside of body: (+1)']
+a2_options = ['Adjust if arm is working across midline or outside of body: (+1)']
 a2_step_options = []
 for s in range(len(a2_options)):
-    my_step = sm.CheckButtonWidget(option_type, a1_options[s], 3, 1)
+    my_step = sm.CheckButtonWidget(master, option_type, a2_options[s], 3, 1)
     a2_step_options.append(my_step)
 # --------------------- TITLE A2 ---------------------------------------------------
-a2_title = sm.TitleWidget('Step 2: Locate lower arm position.', 1, 1, default_font, default_font_size)
-# --------------------- SCREEN MANAGER A1 ---------------------------------------------------
+a2_title = sm.TitleWidget(master, 'Step 2: Locate lower arm position.', 1, 1, default_font, default_font_size)
+# --------------------- SCREEN MANAGER A2 ---------------------------------------------------
 a2_step_screen = sm.ScreenManager(master, a_arm_title, a2_title, a2_step_images, a2_step_options, all_others)
 a2_continue_button = tk.Button(master, text='Continue',
-                               command=lambda: a2_step_screen.attach_to_main(True))
+                               command=lambda: a3_step_screen.attach_to_main(True))
 # Step 3A -------------------------------------------------------------------------------------------------------------
-a3_step_images = [os.path.join(fileDir, './step3a-rula-images/rula-step3a-1.png'),
-                  os.path.join(fileDir, './step3a-rula-images/rula-step3a-2.png'),
-                  os.path.join(fileDir, './step3a-rula-images/rula-step3a-3.png')]
-a3_step_options = ['Adjust if wrist is bent from midline: (+1)']
-a3_step_screen = sm.ScreenManager(master, a_arm_title, 'Step 3: Locate wrist position.', should_clear,
-                                  a3_step_images, arm_wrist_screen_A4, a3_step_options, arm_wrist_screen_A3)
-arm_wrist_screen_A3.append(selection_step_instruction)
-arm_wrist_screen_A3.append(text_step_instruction)
-arm_wrist_screen_A3.append(answer_box)
+# -------------------- IMAGES A3 --------------------------------------------------
+a3_img_paths = [os.path.join(fileDir, './step3a-rula-images/rula-step3a-1.png'),
+                os.path.join(fileDir, './step3a-rula-images/rula-step3a-2.png'),
+                os.path.join(fileDir, './step3a-rula-images/rula-step3a-3.png')]
+a3_step_images = []
+a3_column_vals = [1, 2, 3]
+for i in range(len(a3_img_paths)):
+    my_image = sm.ImageWidget(master, a3_img_paths[i], img_type, 0, a3_column_vals[i])
+    a3_step_images.append(my_image)
+# -------------------- OPTIONS A3 --------------------------------------------------
+a3_options = ['Adjust if wrist is bent from midline: (+1)']
+a3_step_options = []
+for s in range(len(a3_options)):
+    my_step = sm.CheckButtonWidget(master, option_type, a3_options[s], 3, 1)
+    a3_step_options.append(my_step)
+# --------------------- TITLE A3 ---------------------------------------------------
+a3_title = sm.TitleWidget(master, 'Step 3: Locate wrist position.', 1, 1, default_font, default_font_size)
+# --------------------- SCREEN MANAGER A3 ---------------------------------------------------
+a3_step_screen = sm.ScreenManager(a_arm_title, a3_title, a3_step_images, a3_step_options, all_others)
+a3_continue_button = tk.Button(master, text='Continue',
+                               command=lambda: a4_step_screen.attach_to_main(True))
 #   The following steps are on ONE screen
 # Step A4 -------------------------------------------------------------------------------------------------------------
-a4_step_options = ['If wrist is twisted in mid-range: (+1)', 'If wrist is at or near end of range: (+2)']
-a4_step_screen = sm.ScreenManager(master, a_arm_title, 'Step 4: Wrist twist.', should_not_clear,
-                                  [], arm_wrist_screen_A5, a4_step_options, arm_wrist_screen_A4)
+a4_options = ['If wrist is twisted in mid-range: (+1)', 'If wrist is at or near end of range: (+2)']
+a4_step_options = []
+for a in range(len(a4_options)):
+    my_step = sm.CheckButtonWidget(master, option_type, a4_options[a], 2, 1)
+    a4_step_options.append(my_step)
+# --------------------- TITLE A4 ---------------------------------------------------
+a4_title = sm.TitleWidget(master, 'Step 4: Wrist twist.', 1, 1, default_font, default_font_size)
+# --------------------- SCREEN MANAGER A4 ---------------------------------------------------
+a4_step_screen = sm.ScreenManager(a_arm_title, a4_title, [], a4_step_options, [])
+a4_continue_button = tk.Button(master, text='Continue',
+                               command=lambda: a5_step_screen.attach_to_main(False))
 # Step A5
-a5_step_screen = sm.ScreenManager(master, '', 'Step 5: Score from table A', should_not_clear,
-                                  [], arm_wrist_screen_A6, [], arm_wrist_screen_A5)
+# --------------------- TITLE A5---------------------------------------------------
+a5_title = sm.TitleWidget(master, 'Step 5: Score from table A', 3, 1, default_font, default_font_size)
+# --------------------- SCREEN MANAGER A5 ---------------------------------------------------
+a5_step_screen = sm.ScreenManager('', a5_title, [], [], [], [])
+a5_continue_button = tk.Button(master, text='Continue', command=lambda: a6_step_screen.attach_to_main(False))
 # Step A6
-a6_step_options = ['Action repeated occurs 4x/minute? '
-                   'OR is posture mainly static (i.e held >10 minutes)? (+1)']
-a6_step_screen = sm.ScreenManager(master, '', 'Step 6: Muscle use', should_clear,
-                                  [], arm_wrist_screen_A7, a6_step_options, arm_wrist_screen_A6)
+a6_option = [sm.CheckButtonWidget(master, option_type, 'Action repeated occurs 4x/minute? '
+                                                       'OR is posture mainly static (i.e held >10 minutes)? (+1)', 5,
+                                  1)]
+# --------------------- TITLE A6 ---------------------------------------------------
+a6_title = sm.TitleWidget(master, 'Step 6: Muscle Use', 4, 1, default_font, default_font_size)
+# --------------------- SCREEN MANAGER A6 ---------------------------------------------------
+a6_step_screen = sm.ScreenManager('', a6_title, [], a6_option, [])
+a6_continue_button = tk.Button(master, text='Continue', command=lambda: a7_step_screen.attach_to_main(True))
 # Step A7 -------------------------------------------------------------------------------------------------------------
-a7_step_options = ['If load < 4.4 lbs (intermittent): (+0)', 'If load 4.4 to 22 lbs (intermittent): (+1)',
-                   'If load 4.4 to 22 lbs (static or repeated): (+2)', 'If more than 22lbs OR repeated or shocks: (+3)']
-a7_step_screen = sm.ScreenManager(master, a_arm_title, 'Step 7: Add force/load', should_clear,
-                                  [], leg_trunk_screen_B1, a7_step_options, arm_wrist_screen_A7)
+a7_options = ['If load < 4.4 lbs (intermittent): (+0)', 'If load 4.4 to 22 lbs (intermittent): (+1)',
+              'If load 4.4 to 22 lbs (static or repeated): (+2)', 'If more than 22lbs OR repeated or shocks: (+3)']
+a7_step_options = []
+for s in range(len(a7_options)):
+    my_step = sm.CheckButtonWidget(master, option_type, a7_options[s], 3, 1)
+    a7_step_options.append(my_step)
+a7_title = sm.TitleWidget(master, 'Step 7: Add Force / Load.', 1, 1, default_font, default_font_size)
+a7_step_screen = sm.ScreenManager(a_arm_title, a7_title, [], a7_step_options, all_others)
+a3_continue_button = tk.Button(master, text='Continue',
+                               command=lambda: b1_step_screen.attach_to_main(True))
 
 # NECK, LEG, & TRUNK screens
 b_trunk_title = tk.Label(master, text='B. NECK, TRUNK, AND LEG ANALYSIS', font=('Arial', 18))
 #       attach to all appropriate step screens
-for assess in second_assessments:
-    assess.append(b_trunk_title)
 # Step B1 -----------------------------------------------------------------------------------------------
-b1_step_images = [os.path.join(fileDir, './step9b-rula-images/rula-step9b-1.png'),
-                  os.path.join(fileDir, './step9b-rula-images/rula-step9b-2.png'),
-                  os.path.join(fileDir, './step9b-rula-images/rula-step9b-3.png'),
-                  os.path.join(fileDir, './step9b-rula-images/rula-step9b-4.png')]
-b1_step_options = ['Adjust if neck is twisted: (+1)', 'Adjust if neck is side bending: (+1)']
-b1_step_screen = sm.ScreenManager(master, b_trunk_title, 'Step 9: Locate Neck Position.', should_clear,
-                                  b1_step_images, leg_trunk_screen_B2, b1_step_options, leg_trunk_screen_B1)
-leg_trunk_screen_B1.append(selection_step_instruction)
-leg_trunk_screen_B1.append(text_step_instruction)
-leg_trunk_screen_B1.append(answer_box)
+# -------------------- IMAGES B1 --------------------------------------------------
+b1_img_paths = [os.path.join(fileDir, './step9b-rula-images/rula-step9b-1.png'),
+                os.path.join(fileDir, './step9b-rula-images/rula-step9b-2.png'),
+                os.path.join(fileDir, './step9b-rula-images/rula-step9b-3.png'),
+                os.path.join(fileDir, './step9b-rula-images/rula-step9b-4.png')]
+b1_step_images = []
+b1_column_vals = [1, 2, 3, 1]
+for i in range(len(b1_img_paths)):
+    my_image = sm.ImageWidget(master, b1_img_paths[i], img_type, 0, b1_column_vals[i])
+    b1_step_images.append(my_image)
+# -------------------- OPTIONS B1 --------------------------------------------------
+b1_options = ['Adjust if neck is twisted: (+1)', 'Adjust if neck is side bending: (+1)']
+b1_step_options = []
+for a in range(len(b1_options)):
+    my_step = sm.CheckButtonWidget(master, option_type, b1_options[a], 1, 2)
+    b1_step_options.append(my_step)
+# --------------------- TITLE B1 ---------------------------------------------------
+b1_title = sm.TitleWidget(master, 'Step 9: Locate Neck Position.', 1, 1, default_font, default_font_size)
+# --------------------- SCREEN MANAGER B1 ---------------------------------------------------
+b1_step_screen = sm.ScreenManager(b_trunk_title, b1_title, b1_step_images, b1_step_options, all_others)
+b1_continue_button = tk.Button(master, text='Continue',
+                               command=lambda: b2_step_screen.attach_to_main(True))
 # Step B2 -----------------------------------------------------------------------------------------------
-b2_step_images = [os.path.join(fileDir, './step10b-rula-images/rula-step10b-1.png'),
-                  os.path.join(fileDir, './step10b-rula-images/rula-step10b-2.png'),
-                  os.path.join(fileDir, './step10b-rula-images/rula-step10b-3.png'),
-                  os.path.join(fileDir, './step10b-rula-images/rula-step10b-4.png')]
-b2_step_options = ['Adjust if trunk is twisted: (+1)', 'Adjust if trunk is side bending: (+1)']
-b2_step_screen = sm.ScreenManager(master, b_trunk_title, 'Step 10: Locate Trunk Position.', should_clear,
-                                  b2_step_images, leg_trunk_screen_B3, b2_step_options, leg_trunk_screen_B2)
-leg_trunk_screen_B2.append(text_step_instruction)
-leg_trunk_screen_B2.append(answer_box)
+# -------------------- IMAGES B2 --------------------------------------------------
+b2_img_paths = [os.path.join(fileDir, './step10b-rula-images/rula-step10b-1.png'),
+                os.path.join(fileDir, './step10b-rula-images/rula-step10b-2.png'),
+                os.path.join(fileDir, './step10b-rula-images/rula-step10b-3.png'),
+                os.path.join(fileDir, './step10b-rula-images/rula-step10b-4.png')]
+b2_step_images = []
+b2_column_vals = [1, 2, 3, 1]
+for i in range(len(b2_img_paths)):
+    my_image = sm.ImageWidget(master, b2_img_paths[i], img_type, 0, b2_column_vals[i])
+    b2_step_images.append(my_image)
+# -------------------- OPTIONS B1 --------------------------------------------------
+b2_options = ['Adjust if trunk is twisted: (+1)', 'Adjust if trunk is side bending: (+1)']
+b2_step_options = []
+for a in range(len(b2_options)):
+    my_step = sm.CheckButtonWidget(master, option_type, b2_options[a], 1, 2)
+    b2_step_options.append(my_step)
+# --------------------- TITLE B2 ---------------------------------------------------
+b2_title = sm.TitleWidget(master, 'Step 10: Locate Trunk Position.', 1, 1, default_font, default_font_size)
+# --------------------- SCREEN MANAGER B2 ---------------------------------------------------
+b2_step_screen = sm.ScreenManager(b_trunk_title, b2_title, b2_step_images, b2_step_options, all_others)
+b2_continue_button = tk.Button(master, text='Continue',
+                               command=lambda: b3_step_screen.attach_to_main(True))
 #   The following steps are on ONE screen
 # Step B3 -----------------------------------------------------------------------------------------------
-b3_step_options = ['If legs and feet are supported: (+1)', 'If NOT supported: (+2)']
-b3_step_screen = sm.ScreenManager(master, b_trunk_title, 'Step 11: Legs.', should_not_clear,
-                                  [], leg_trunk_screen_B4, b3_step_options, leg_trunk_screen_B3)
+b3_options = ['If legs and feet are supported: (+1)', 'If NOT supported: (+2)']
+b3_step_options = []
+for a in range(len(b3_options)):
+    my_step = sm.CheckButtonWidget(master, option_type, b3_options[a], 2, 1)
+    b3_step_options.append(my_step)
+b3_title = sm.TitleWidget(master, 'Step 11: Legs.', 1, 1, default_font, default_font_size)
+# --------------------- SCREEN MANAGER B3 ---------------------------------------------------
+b3_step_screen = sm.ScreenManager(b_trunk_title, b3_title, [], b3_step_options, [])
+b3_continue_button = tk.Button(master, text='Continue',
+                               command=lambda: b4_step_screen.attach_to_main(False))
 # Step B4
-b4_step_screen = sm.ScreenManager(master, '', 'Step 12: Posture Score from Table.', should_not_clear,
-                                  [], leg_trunk_screen_B5, b3_step_options, leg_trunk_screen_B4)
+b4_title = sm.TitleWidget(master, 'Step 12: Posture Score from Table.', 3, 1, default_font, default_font_size)
+# --------------------- SCREEN MANAGER B4 ---------------------------------------------------
+b4_step_screen = sm.ScreenManager('', b4_title, [], [], [], [])
+b4_continue_button = tk.Button(master, text='Continue', command=lambda: b5_step_screen.attach_to_main(False))
 # Step B5
-b5_step_options = ['Action repeated occurs 4x/minute? '
-                   'OR is posture mainly static (i.e held >10 minutes)? (+1)']
-b5_step_screen = sm.ScreenManager(master, '', 'Step 13: Add Muscle Score.', should_clear,
-                                  [], leg_trunk_screen_B6, b5_step_options, leg_trunk_screen_B5)
+b5_option = [sm.CheckButtonWidget(master, option_type, 'Action repeated occurs 4x/minute? '
+                                                       'OR is posture mainly static (i.e held >10 minutes)? (+1)', 4,
+                                  1)]
+b5_title = sm.TitleWidget(master, 'Step 13: Add Muscle Score.', 4, 1, default_font, default_font_size)
+# --------------------- SCREEN MANAGER B5 ---------------------------------------------------
+b5_step_screen = sm.ScreenManager('', b5_title, [], b5_option, [])
+b5_continue_button = tk.Button(master, text='Continue', command=lambda: b6_step_screen.attach_to_main(True))
 # Step B14 -----------------------------------------------------------------------------------------------
-b6_step_options = ['If load < 4.4 lbs (intermittent): (+0)', 'If load 4.4 to 22 lbs (intermittent): (+1)',
-                   'If load 4.4 to 22 lbs (static or repeated): (+2)', 'If more than 22lbs OR repeated or shocks: (+3)']
-b6_step_screen = sm.ScreenManager(master, b_trunk_title, 'Step 14: Add Force / Load Score', should_clear,
-                                  [], conclusion_screen, b6_step_options, leg_trunk_screen_B6)
-leg_trunk_screen_B6.append(text_step_instruction)
-leg_trunk_screen_B6.append(answer_box)
+# -------------------- OPTIONS B6 --------------------------------------------------
+b6_options = ['If load < 4.4 lbs (intermittent): (+0)', 'If load 4.4 to 22 lbs (intermittent): (+1)',
+              'If load 4.4 to 22 lbs (static or repeated): (+2)', 'If more than 22lbs OR repeated or shocks: (+3)']
+b6_step_options = []
+for s in range(len(b6_options)):
+    my_step = sm.CheckButtonWidget(master, option_type, b6_options[s], 3, 1)
+    b6_step_options.append(my_step)
+# --------------------- TITLE B6 ---------------------------------------------------
+b6_title = sm.TitleWidget(master, 'Step 14: Add Force / Load Score', 1, 1, default_font, default_font_size)
+# --------------------- SCREEN MANAGER B6 ---------------------------------------------------
+b6_step_screen = sm.ScreenManager(b_trunk_title, b6_title, [], b6_step_options, all_others)
+b6_continue_button = tk.Button(master, text='Continue',
+                               command=lambda: b1_step_screen.attach_to_main(True))
 # ----------------------------------------------------------------------------------------------------------------------
 # widgets for image selection
 back_button = tk.Button(master, text='BACK', highlightbackground='green',
@@ -224,9 +300,8 @@ back_button = tk.Button(master, text='BACK', highlightbackground='green',
 upload_your_file_label = tk.Label(master, text='Please upload an image to begin assessment.', font=('Arial', 18))
 file_button_uploader = tk.Button(master, text='Upload', highlightbackground='#000fff000',
                                  command=lambda: [upload_file()])
-continue_button = tk.Button(master, text='Contiue',
-                            command=lambda: [clear_screen(),
-                                             attach_to_main(arm_wrist_screen_A1, "Screen A1")])
+continue_button = tk.Button(master, text='Continue',
+                            command=lambda: a1_step_screen.attach_to_main(True))
 image_selection = [back_button, upload_your_file_label, file_button_uploader, continue_button]
 
 # widgets for selection screen
