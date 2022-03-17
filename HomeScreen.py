@@ -13,14 +13,12 @@ frame = tk.Frame(master, background='white')
 # relative file path
 fileDir = os.path.dirname(os.path.realpath(__file__))
 # util class
-arm_wrist_screen_A1 = []
-arm_wrist_screen_A2 = []
 arm_wrist_screen_A3 = []
 arm_wrist_screen_A4 = []
 arm_wrist_screen_A5 = []
 arm_wrist_screen_A6 = []
 arm_wrist_screen_A7 = []
-first_assessments = [arm_wrist_screen_A1, arm_wrist_screen_A2, arm_wrist_screen_A3, arm_wrist_screen_A4,
+first_assessments = [arm_wrist_screen_A3, arm_wrist_screen_A4,
                      arm_wrist_screen_A5, arm_wrist_screen_A7]
 leg_trunk_screen_B1 = []
 leg_trunk_screen_B2 = []
@@ -38,7 +36,7 @@ def clear_screen():
         w.grid_remove()
 
 
-def attach_to_main(widgets, gridding):
+def attach_to_main(widgets):
     for w in widgets:
         w.grid()
 
@@ -59,13 +57,13 @@ def set_selection():
 def upload_file():
     global easel
     filename = filedialog.askopenfilename()
-#    print('FileName:' + filename)
+    #    print('FileName:' + filename)
     img = Image.open(filename)
     img = img.resize((175, 175), Image.ANTIALIAS)
     img = ImageTk.PhotoImage(img)
     easel = tk.Label(master, image=img)
     easel.image = img
-#   attach_image_main(easel)
+    #   attach_image_main(easel)
     for a in first_assessments:
         a.append(easel)
     for b in second_assessments:
@@ -78,41 +76,71 @@ task_name = tk.StringVar()
 date_of_observation = tk.StringVar()
 type_of_assessment = tk.StringVar()
 answer = tk.StringVar()
+img_type = tk.IntVar()
+option_type = tk.StringVar()
 should_clear = True
 should_not_clear = False
+default_font = 'Arial'
+default_font_size = 14
 selection_step_instruction = tk.Label(master, text='Select the necessary adjustment.', font=('Arial', 12))
 text_step_instruction = tk.Label(master, text='Explain your adjustment selection. '
                                               'Reference the SPECIFIC part of the body.', font=('Arial', 12))
 answer_box = tk.Entry(master, textvariable=answer)
-
+all_others = [selection_step_instruction, text_step_instruction, answer_box]
 # ARM & WRIST screens
 a_arm_title = tk.Label(master, text='A. ARM & WRIST ANALYSIS', font=('Arial', 18))
 #       attach to all appropriate step screens
 for assess in first_assessments:
     assess.append(a_arm_title)
 # Step A1 -------------------------------------------------------------------------------------------------------------
-a1_step_images = [os.path.join(fileDir, './step1a-rula -images/rula-step1a-1.png'),
-                  os.path.join(fileDir, './step1a-rula -images/rula-step1a-2.png'),
-                  os.path.join(fileDir, './step1a-rula -images/rula-step1a-3.png'),
-                  os.path.join(fileDir, './step1a-rula -images/rula-step1a-4.png'),
-                  os.path.join(fileDir, './step1a-rula -images/rula-step1a-5.png')]
-a1_step_options = ['Shoulder raised? (+1)', 'Upper arm abducted? (+1)',
-                   'Arm supported? (i.e. person leaning?) (-1)']
-a1_step_screen = sm.ScreenManager(master, a_arm_title, 'Step 1: Locate upper arm position.', should_clear,
-                                  a1_step_images, arm_wrist_screen_A2, a1_step_options, arm_wrist_screen_A1)
-arm_wrist_screen_A1.append(selection_step_instruction)
-arm_wrist_screen_A1.append(text_step_instruction)
-arm_wrist_screen_A1.append(answer_box)
+# -------------------- IMAGES A1 --------------------------------------------------
+a1_img_paths = [os.path.join(fileDir, './step1a-rula -images/rula-step1a-1.png'),
+                os.path.join(fileDir, './step1a-rula -images/rula-step1a-2.png'),
+                os.path.join(fileDir, './step1a-rula -images/rula-step1a-3.png'),
+                os.path.join(fileDir, './step1a-rula -images/rula-step1a-4.png'),
+                os.path.join(fileDir, './step1a-rula -images/rula-step1a-5.png')]
+a1_step_images = []
+a1_column_vals = [1, 2, 3, 1, 2]
+for i in range(len(a1_img_paths)):
+    row = i % 2
+    my_image = sm.ImageWidget(a1_img_paths[i], img_type, row, a1_column_vals[i])
+    a1_step_images.append(my_image)
+# -------------------- OPTIONS A1 --------------------------------------------------
+a1_options = ['Shoulder raised? (+1)', 'Upper arm abducted? (+1)',
+              'Arm supported? (i.e. person leaning?) (-1)']
+a1_step_options = []
+for s in range(len(a1_options)):
+    my_step = sm.CheckButtonWidget(master, option_type, a1_options[s], 3, 1)
+    a1_step_options.append(my_step)
+# --------------------- TITLE A1 ---------------------------------------------------
+a1_title = sm.TitleWidget(master, 'Step 1: Locate upper arm position.', 1, 1, default_font, default_font_size)
+# --------------------- SCREEN MANAGER A1 ---------------------------------------------------
+a1_step_screen = sm.ScreenManager(master, a_arm_title, a1_title, a1_step_images, a1_step_options, all_others)
+a1_continue_button = tk.Button(master, text='Continue',
+                               command=lambda: a1_step_screen.attach_to_main(True))
 # Step 2A -------------------------------------------------------------------------------------------------------------
-a2_step_images = [os.path.join(fileDir, './step2a-rula-images/rula-step2a-1.png'),
-                  os.path.join(fileDir, './step2a-rula-images/rula-step2a-2.png'),
-                  os.path.join(fileDir, './step2a-rula-images/rula-step2a-3.png')]
-a2_step_options = ['Adjust if arm is worrking across midline or outside of body: (+1)']
-a2_step_screen = sm.ScreenManager(master, a_arm_title, 'Step 2: Locate lower arm position.', should_clear,
-                                  a2_step_images, arm_wrist_screen_A3, a2_step_options, arm_wrist_screen_A2)
-arm_wrist_screen_A2.append(selection_step_instruction)
-arm_wrist_screen_A2.append(text_step_instruction)
-arm_wrist_screen_A2.append(answer_box)
+# -------------------- IMAGES A2 --------------------------------------------------
+a2_img_paths = [os.path.join(fileDir, './step2a-rula-images/rula-step2a-1.png'),
+                os.path.join(fileDir, './step2a-rula-images/rula-step2a-2.png'),
+                os.path.join(fileDir, './step2a-rula-images/rula-step2a-3.png')]
+a2_step_images = []
+a2_column_vals = [1, 2, 3]
+for i in range(len(a2_img_paths)):
+    row = i % 2
+    my_image = sm.ImageWidget(a2_img_paths[i], img_type, row, a2_column_vals[i])
+    a2_step_images.append(my_image)
+# -------------------- OPTIONS A2 --------------------------------------------------
+a2_options = ['Adjust if arm is worrking across midline or outside of body: (+1)']
+a2_step_options = []
+for s in range(len(a2_options)):
+    my_step = sm.CheckButtonWidget(option_type, a1_options[s], 3, 1)
+    a2_step_options.append(my_step)
+# --------------------- TITLE A2 ---------------------------------------------------
+a2_title = sm.TitleWidget('Step 2: Locate lower arm position.', 1, 1, default_font, default_font_size)
+# --------------------- SCREEN MANAGER A1 ---------------------------------------------------
+a2_step_screen = sm.ScreenManager(master, a_arm_title, a2_title, a2_step_images, a2_step_options, all_others)
+a2_continue_button = tk.Button(master, text='Continue',
+                               command=lambda: a2_step_screen.attach_to_main(True))
 # Step 3A -------------------------------------------------------------------------------------------------------------
 a3_step_images = [os.path.join(fileDir, './step3a-rula-images/rula-step3a-1.png'),
                   os.path.join(fileDir, './step3a-rula-images/rula-step3a-2.png'),
@@ -188,7 +216,7 @@ b6_step_screen = sm.ScreenManager(master, b_trunk_title, 'Step 14: Add Force / L
                                   [], conclusion_screen, b6_step_options, leg_trunk_screen_B6)
 leg_trunk_screen_B6.append(text_step_instruction)
 leg_trunk_screen_B6.append(answer_box)
-#----------------------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------------------
 # widgets for image selection
 back_button = tk.Button(master, text='BACK', highlightbackground='green',
                         command=lambda: [clear_screen(),
@@ -200,7 +228,6 @@ continue_button = tk.Button(master, text='Contiue',
                             command=lambda: [clear_screen(),
                                              attach_to_main(arm_wrist_screen_A1, "Screen A1")])
 image_selection = [back_button, upload_your_file_label, file_button_uploader, continue_button]
-
 
 # widgets for selection screen
 option = tk.IntVar()
