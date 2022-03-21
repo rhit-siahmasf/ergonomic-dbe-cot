@@ -20,14 +20,14 @@ class ScreenManager:
             for w in self.master.winfo_children():
                 w.grid_remove()
 
-        self.title.grid(row=self.title.row, column=self.title.column)
-        self.sub_title.grid(row=self.sub_title.row, column=self.sub_title.column)
+        self.title.title.grid(row=self.title.row, column=self.title.column)
+        self.sub_title.title.grid(row=self.sub_title.row, column=self.sub_title.column)
 
         for img in self.images:
-            img.grid(row=self.img.row, column=self.img.column)
+            img.image.grid(row=img.row, column=img.column)
 
         for adj in self.adjustment_checks:
-            adj.grid(row=self.adj.row, column=self.adj.column)
+            adj.button.grid(row=adj.row, column=adj.column)
 
         for ot in self.other_items:
             ot.grid()
@@ -40,29 +40,42 @@ class CheckButtonWidget:
         self.text = text
         self.row = row
         self.column = column
+        self.button = self.create_check_button()
 
     def create_check_button(self):
         return tk.Checkbutton(self.master, text=self.text, variable=self.var_type)
+
+    def get_row(self):
+        return self.row
+
+    def get_column(self):
+        return self.column
 
 
 class TitleWidget:
     def __init__(self, master, title, row, column, font, f_size):
         self.master = master
-        self.title = title
-        self.row = row
-        self.column = column
         self.font = font
         self.f_size = f_size
+        self.title = self.create_title(title)
+        self.row = row
+        self.column = column
 
-    def create_title(self):
-        return tk.Label(self.master, text=self.title, font=(self.font, self.f_size))
+    def create_title(self, title):
+        return tk.Label(self.master, text=title, font=(self.font, self.f_size))
+
+    def get_row(self):
+        return self.row
+
+    def get_column(self):
+        return self.column
 
 
 class ImageWidget:
     def __init__(self, master, img, var_type, row, column):
         self.master = master
-        self.image = self.create_image(img)
         self.var_type = var_type
+        self.image = self.create_image(img)
         self.row = row
         self.column = column
 
@@ -72,5 +85,10 @@ class ImageWidget:
         pic = pic.resize((50, 50), Image.ANTIALIAS)
         final_pic = ImageTk.PhotoImage(pic)
         final_pic.image = pic
-        return tk.Checkbutton(self.master, image=pic, variable=self.var_type)
+        return tk.Checkbutton(self.master, image=final_pic, variable=self.var_type)
 
+    def get_row(self):
+        return self.row
+
+    def get_column(self):
+        return self.column
