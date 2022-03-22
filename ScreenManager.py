@@ -17,27 +17,30 @@ class ScreenManager:
         self.prev_screen_manager = prev
         self.next_screen_manager = nxt
 
-    def go_back_prev_page(self):
-        for w in self.master.winfo_children:
-            w.destroy()
+    def clear_screen(self):
+        for w in self.master.winfo_children():
+            w.grid_remove()
 
+    def go_back_prev_page(self):
+        self.clear_screen()
         self.prev_screen_manager.display_page()
 
     def continue_next_page(self):
-        for w in self.master.winfo_children:
-            w.destroy()
-
+        self.clear_screen()
         self.next_screen_manager.display_page()
 
-    def display_page(self):
+    def display_page(self, should_clear):
+        if should_clear:
+            self.clear_screen()
+
         self.title.title.grid(row=self.title.row, column=self.title.column, sticky=self.title.stick)
-        self.sub_title.title.grid(row=self.sub_title.row, column=self.sub_title.column)
+        self.sub_title.title.grid(row=self.sub_title.row, column=self.sub_title.column, sticky=self.sub_title.stick)
 
         #for img in self.images:
          #   img.image.grid(row=img.row, column=img.column)
 
         for adj in self.adjustment_checks:
-            adj.button.grid(row=adj.row, column=adj.column)
+            adj.button.grid(row=adj.row, column=adj.column, sticky=adj.stick)
 
         for ot in self.other_items:
             ot.grid()
@@ -92,7 +95,7 @@ class ImageWidget:
         self.row = row
         self.column = column
         self.stick = stik
-        crt = self.create_image(img)
+        crt = img
         self.image = crt
 
     def create_image(self, img):
