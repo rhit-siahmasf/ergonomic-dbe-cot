@@ -9,8 +9,8 @@ from Tools.scripts import highlight
 
 master = tk.Tk()
 master.geometry('700x500')
-master.columnconfigure(0, weight=4)
-master.columnconfigure(1, weight=1)
+master.columnconfigure(0, weight=42)
+master.columnconfigure(1, weight=2)
 master.rowconfigure(0, weight=1)
 master.rowconfigure(1, weight=1)
 master.rowconfigure(2, weight=1)
@@ -71,13 +71,15 @@ should_clear = True
 should_not_clear = False
 default_font = 'Arial'
 default_font_size = 14
-selection_step_instruction = tk.Label(master, text='Select the necessary adjustment.', font=('Arial', 12))
-text_step_instruction = tk.Label(master, text='Explain your adjustment selection. '
-                                              'Reference the SPECIFIC part of the body.', font=('Arial', 12))
-answer_box = tk.Entry(master, textvariable=answer)
-all_others = [selection_step_instruction, text_step_instruction, answer_box]
+selection_step_instruction = sm.LabelWidget(master, 'Select the necessary adjustment.', 2, 1, default_font,
+                                            default_font_size, tk.NW)
+text_step_instruction = sm.LabelWidget(master, 'Explain your adjustment selection. '
+                                               'Reference the SPECIFIC part of the body.', 3, 1, default_font,
+                                       default_font_size, tk.NW)
+answer_box = sm.EntryWidget(master, answer, 3, 1, tk.SW)
+instrc_items = [selection_step_instruction, text_step_instruction]
 # ARM & WRIST screens
-a_arm_title = sm.TitleWidget(master, 'A. ARM & WRIST ANALYSIS', 0, 0, default_font, 18, tk.W)
+a_arm_title = sm.LabelWidget(master, 'A. ARM & WRIST ANALYSIS', 0, 0, default_font, 18, tk.W)
 # NECK, LEG, & TRUNK screens
 # b_trunk_title = sm.TitleWidget(master, 'B. NECK, TRUNK, AND LEG ANALYSIS', 0, 0, default_font, 18, tk.W)
 # # Step B6 -----------------------------------------------------------------------------------------------
@@ -221,14 +223,14 @@ a1_step_images = [sm.ImageWidget(master, os.path.join(fileDir, './step1a-rula -i
                   sm.ImageWidget(master, os.path.join(fileDir, './step1a-rula -images/rula-step1a-5.png'),
                                  img_type, 1, 1, tk.NSEW)]
 # -------------------- OPTIONS A1 --------------------------------------------------
-a1_step_options = [sm.CheckButtonWidget(master, option_type, 'Shoulder raised? (+1)', 2, 1, tk.W),
-                   sm.CheckButtonWidget(master, option_type, 'Upper arm abducted? (+1)', 2, 1, tk.SW),
-                   sm.CheckButtonWidget(master, option_type, 'Arm supported? (i.e. person leaning?) (-1)', 3, 1, tk.NW)]
+a1_step_options = [sm.ComboBoxWidget(master, option_type,
+                                     ['Shoulder raised? (+1)', 'Upper arm abducted? (+1)',
+                                      'Arm supported? (i.e. person leaning?) (-1)'], 2, 1, tk.W)]
 # --------------------- TITLE A1 ---------------------------------------------------
-a1_title = sm.TitleWidget(master, 'Step 1: Locate upper arm position.', 0, 0, default_font, default_font_size, tk.SW)
+a1_title = sm.LabelWidget(master, 'Step 1: Locate upper arm position.', 0, 0, default_font, default_font_size, tk.SW)
 # --------------------- SCREEN MANAGER A1 ---------------------------------------------------
 a1_step_screen = sm.ScreenManager(master, a_arm_title, a1_title, a1_step_images,
-                                  a1_step_options, all_others, None, None)
+                                  a1_step_options, instrc_items, answer_box, None, None)
 # widgets for image selection
 back_button = tk.Button(master, text='BACK', highlightbackground='green',
                         command=lambda: [clear_screen(),

@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 from tkinter import filedialog
 import os
 import PIL
@@ -7,13 +8,14 @@ from PIL import ImageTk, Image
 
 # images = list of ImageWidget objects
 class ScreenManager:
-    def __init__(self, master, title, sub_title, imgs, selects, others, prev, nxt):
+    def __init__(self, master, title, sub_title, imgs, selects, descriptions, entries, prev, nxt):
         self.master = master
         self.title = title
         self.sub_title = sub_title
       #  self.images = imgs
         self.adjustment_checks = selects
-        self.other_items = others
+        self.instr_items = descriptions
+        self.entry = entries
         self.prev_screen_manager = prev
         self.next_screen_manager = nxt
 
@@ -33,8 +35,9 @@ class ScreenManager:
         if should_clear:
             self.clear_screen()
 
-        self.title.title.grid(row=self.title.row, column=self.title.column, sticky=self.title.stick)
-        self.sub_title.title.grid(row=self.sub_title.row, column=self.sub_title.column, sticky=self.sub_title.stick)
+        self.title.label.grid(row=self.title.row, column=self.title.column, sticky=self.title.stick)
+        self.sub_title.label.grid(row=self.sub_title.row, column=self.sub_title.column, sticky=self.sub_title.stick)
+        self.entry.wid.grid(row=self.entry.row, column=self.entry.column, sticky=self.entry.stick)
 
         #for img in self.images:
          #   img.image.grid(row=img.row, column=img.column)
@@ -42,15 +45,17 @@ class ScreenManager:
         for adj in self.adjustment_checks:
             adj.button.grid(row=adj.row, column=adj.column, sticky=adj.stick)
 
-        for ot in self.other_items:
-            ot.grid()
+        for d in self.instr_items:
+            d.label.grid(row=d.row, column=d.column, sticky=d.stick)
 
 
-class CheckButtonWidget:
-    def __init__(self, master, var_type, text, row, column, stik):
+
+
+class ComboBoxWidget:
+    def __init__(self, master, var_type, texts, row, column, stik):
         self.master = master
         self.var_type = var_type
-        self.text = text
+        self.values = texts
         self.row = row
         self.column = column
         self.stick = stik
@@ -58,7 +63,8 @@ class CheckButtonWidget:
         self.button = btn
 
     def create_check_button(self):
-        return tk.Checkbutton(self.master, text=self.text, variable=self.var_type)
+        return ttk.Combobox(self.master, values=self.values)
+        #return tk.Checkbutton(self.master, text=self.text, variable=self.var_type)
 
     def get_row(self):
         return self.row
@@ -67,7 +73,7 @@ class CheckButtonWidget:
         return self.column
 
 
-class TitleWidget:
+class LabelWidget:
     def __init__(self, master, title, row, column, font, f_size, stik):
         self.master = master
         self.font = font
@@ -75,10 +81,10 @@ class TitleWidget:
         self.stick = stik
         self.row = row
         self.column = column
-        me = self.create_title(title)
-        self.title = me
+        me = self.create_label(title)
+        self.label = me
 
-    def create_title(self, title):
+    def create_label(self, title):
         return tk.Label(self.master, text=title, font=(self.font, self.f_size))
 
     def get_row(self):
@@ -110,3 +116,18 @@ class ImageWidget:
 
     def get_column(self):
         return self.column
+
+
+class EntryWidget:
+    def __init__(self, master, var_type, row, column, stik):
+        self.master = master
+        self.var_type = var_type
+        self.row = row
+        self.column = column
+        self.stick = stik
+        entry = self.create_entry()
+        self.wid = entry
+
+    def create_entry(self):
+        return tk.Entry(self.master, textvariable=self.var_type)
+
