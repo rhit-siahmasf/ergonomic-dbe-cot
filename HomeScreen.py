@@ -8,7 +8,7 @@ from PIL import ImageTk, Image
 from Tools.scripts import highlight
 
 master = tk.Tk()
-master.geometry('1000x450')
+master.geometry('1000x750')
 master.columnconfigure(0, weight=4)
 master.columnconfigure(1, weight=2)
 master.rowconfigure(0, weight=2)
@@ -16,11 +16,12 @@ master.rowconfigure(1, weight=2)
 master.rowconfigure(2, weight=2)
 master.rowconfigure(3, weight=2)
 master.rowconfigure(4, weight=2)
-
+my_image = None
 frame = tk.Frame(master, background='white')
 # relative file path
 fileDir = os.path.dirname(os.path.realpath(__file__))
 # util class
+forward_list = []
 conclusion_screen = []
 
 
@@ -48,15 +49,9 @@ def set_selection():
 
 
 def upload_file():
-    global easel
-    filename = filedialog.askopenfilename()
-    #    print('FileName:' + filename)
-    img = Image.open(filename)
-    img = img.resize((175, 175), Image.ANTIALIAS)
-    img = ImageTk.PhotoImage(img)
-    easel = tk.Label(master, image=img)
-    easel.image = img
-    #   attach_image_main(easel)
+    global my_image
+    name = filedialog.askopenfilename()
+    my_image = sm.ImageWidget(master, name, '', 1, 0, 0, tk.NSEW)
 
 
 # creating window objects for certain "interesting" steps
@@ -232,18 +227,22 @@ a1_step_options = [sm.ComboBoxWidget(master, option_type,
                                      ['A', 'B', 'C', 'D', 'E'], 2, 1, 40, tk.W)]
 # --------------------- TITLE A1 ---------------------------------------------------
 a1_title = sm.LabelWidget(master, 'Step 1: Locate upper arm position.', 0, 0, default_font, 18, tk.W)
-# --------------------- SCREEN MANAGER A1 ---------------------------------------------------
-a1_step_screen = sm.ScreenManager(master, a_arm_title, a1_title, a1_step_images,
-                                  a1_step_options, instrc_items, answer_box, None, None)
+
+def create_all_screens():
+    global a1_step_screen
+    a1_step_screen = sm.ScreenManager(master, a_arm_title, a1_title, a1_step_images,
+                                      a1_step_options, instrc_items, answer_box, my_image, None, None)
+
+
 # widgets for image selection
 back_button = tk.Button(master, text='BACK', highlightbackground='green',
                         command=lambda: [clear_screen(),
                                          attach_to_main(selection_screen, "Selection Screen")])
 upload_your_file_label = tk.Label(master, text='Please upload an image to begin assessment.', font=('Arial', 18))
 file_button_uploader = tk.Button(master, text='Upload', highlightbackground='#000fff000',
-                                 command=lambda: [upload_file()])
+                                 command=upload_file)
 continue_button = tk.Button(master, text='Continue',
-                            command=lambda: a1_step_screen.display_page(True))
+                            command=lambda: [create_all_screens(), a1_step_screen.display_page(True)])
 image_selection = [back_button, upload_your_file_label, file_button_uploader, continue_button]
 
 # widgets for selection screen

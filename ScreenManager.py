@@ -7,12 +7,14 @@ from PIL import ImageTk, Image
 
 fileDir = os.path.dirname(os.path.realpath(__file__))
 
+
 # images = list of ImageWidget objects
 class ScreenManager:
-    def __init__(self, master, title, sub_title, imgs, selects, descriptions, entries, prev, nxt):
+    def __init__(self, master, title, sub_title, imgs, selects, descriptions, entries, mine, prev, nxt):
         self.master = master
         self.title = title
         self.sub_title = sub_title
+        self.my_image = mine
         self.images = imgs
         self.adjustment_checks = selects
         self.instr_items = descriptions
@@ -45,12 +47,23 @@ class ScreenManager:
             img.label.grid(row=img.row, column=img.column, sticky=img.stick)
 
         for adj in self.adjustment_checks:
-            adj.button.grid(row=adj.row, column=adj.column, sticky=adj.stick)
+            adj.button.grid(row=adj.row, column=adj.column, sticky=adj.stick, pady=20)
 
         for d in self.instr_items:
-            d.label.grid(row=d.row, column=d.column, sticky=d.stick)
+            d.label.grid(row=d.row, column=d.column, sticky=d.stick, pady=20)
 
+        self.my_image.recreate_image()
+        self.my_image.label.grid(row=self.my_image.row, column=self.my_image.column,
+                                 sticky=self.my_image.stick)
+        self.attach_buttons()
 
+    def attach_buttons(self):
+        cont_btn = tk.Button(self.master, text='NEXT', bg='#458B00',
+                             command=self.continue_next_page)
+        back_button = tk.Button(self.master, text='BACK', bg='#8B2323',
+                                command=self.go_back_prev_page)
+        back_button.grid(row=4, column=0, sticky=tk.W, padx=15, ipadx=15)
+        cont_btn.grid(row=4, column=1, sticky=tk.E, padx=15, ipadx=15)
 
 
 class ComboBoxWidget:
@@ -114,14 +127,11 @@ class ImageWidget:
         self.image = ImageTk.PhotoImage(pic)
         self.label = tk.Label(self.master, text=self.txt, image=self.image, compound=self.compwd)
 
-    def get_row(self):
-        return self.row
-
-    def get_column(self):
-        return self.column
-
-    def get_image(self):
-        return
+    def recreate_image(self):
+        pic = Image.open(self.path)
+        pic = pic.resize((200, 200), Image.ANTIALIAS)
+        self.image = ImageTk.PhotoImage(pic)
+        self.label = tk.Label(self.master, image=self.image)
 
 
 class EntryWidget:
@@ -137,4 +147,3 @@ class EntryWidget:
 
     def create_entry(self):
         return tk.Entry(self.master, width=self.wdth, textvariable=self.var_type)
-
