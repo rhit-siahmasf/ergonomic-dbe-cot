@@ -8,14 +8,14 @@ from PIL import ImageTk, Image
 from Tools.scripts import highlight
 
 master = tk.Tk()
-master.geometry('700x500')
-master.columnconfigure(0, weight=42)
+master.geometry('1000x450')
+master.columnconfigure(0, weight=4)
 master.columnconfigure(1, weight=2)
-master.rowconfigure(0, weight=1)
-master.rowconfigure(1, weight=1)
-master.rowconfigure(2, weight=1)
-master.rowconfigure(3, weight=1)
-master.rowconfigure(4, weight=1)
+master.rowconfigure(0, weight=2)
+master.rowconfigure(1, weight=2)
+master.rowconfigure(2, weight=2)
+master.rowconfigure(3, weight=2)
+master.rowconfigure(4, weight=2)
 
 frame = tk.Frame(master, background='white')
 # relative file path
@@ -71,15 +71,17 @@ should_clear = True
 should_not_clear = False
 default_font = 'Arial'
 default_font_size = 14
+entry_height = 40
+entry_width = 30
 selection_step_instruction = sm.LabelWidget(master, 'Select the necessary adjustment.', 2, 1, default_font,
-                                            default_font_size, tk.NW)
+                                            12, tk.NW)
 text_step_instruction = sm.LabelWidget(master, 'Explain your adjustment selection. '
                                                'Reference the SPECIFIC part of the body.', 3, 1, default_font,
-                                       default_font_size, tk.NW)
-answer_box = sm.EntryWidget(master, answer, 3, 1, tk.SW)
+                                       12, tk.NW)
+answer_box = sm.EntryWidget(master, answer, 3, 1, entry_width, tk.EW)
 instrc_items = [selection_step_instruction, text_step_instruction]
 # ARM & WRIST screens
-a_arm_title = sm.LabelWidget(master, 'A. ARM & WRIST ANALYSIS', 0, 0, default_font, 18, tk.W)
+a_arm_title = sm.LabelWidget(master, 'A. ARM & WRIST ANALYSIS', 0, 0, default_font, 22, tk.NW)
 # NECK, LEG, & TRUNK screens
 # b_trunk_title = sm.TitleWidget(master, 'B. NECK, TRUNK, AND LEG ANALYSIS', 0, 0, default_font, 18, tk.W)
 # # Step B6 -----------------------------------------------------------------------------------------------
@@ -212,22 +214,24 @@ a_arm_title = sm.LabelWidget(master, 'A. ARM & WRIST ANALYSIS', 0, 0, default_fo
 #                                   all_others, None, a3_step_screen)
 # Step A1 -------------------------------------------------------------------------------------------------------------
 # -------------------- IMAGES A1 --------------------------------------------------
-a1_step_images = [sm.ImageWidget(master, os.path.join(fileDir, './step1a-rula -images/rula-step1a-1.png'),
-                                 img_type, 0, 1, tk.W),
-                  sm.ImageWidget(master, os.path.join(fileDir, './step1a-rula -images/rula-step1a-2.png'),
-                                 img_type, 0, 1, tk.NSEW),
-                  sm.ImageWidget(master, os.path.join(fileDir, './step1a-rula -images/rula-step1a-3.png'),
-                                 img_type, 0, 1, tk.E),
-                  sm.ImageWidget(master, os.path.join(fileDir, './step1a-rula -images/rula-step1a-4.png'),
-                                 img_type, 1, 1, tk.W),
-                  sm.ImageWidget(master, os.path.join(fileDir, './step1a-rula -images/rula-step1a-5.png'),
-                                 img_type, 1, 1, tk.NSEW)]
+a1_step_images = [sm.ImageWidget(master, './step1a-rula -images/rula-step1a-1.png',
+                                 'C', 0, 1, tk.RIGHT, tk.NSEW),
+                  sm.ImageWidget(master, './step1a-rula -images/rula-step1a-2.png',
+                                 'B', 0, 1, tk.RIGHT, tk.E),
+                  sm.ImageWidget(master, './step1a-rula -images/rula-step1a-3.png',
+                                 'A', 0, 1, tk.RIGHT, tk.W),
+                  sm.ImageWidget(master, './step1a-rula -images/rula-step1a-4.png',
+                                 'D', 1, 1, tk.RIGHT, tk.NSEW),
+                  sm.ImageWidget(master, './step1a-rula -images/rula-step1a-5.png',
+                                 'E', 1, 1, tk.RIGHT, tk.E)]
 # -------------------- OPTIONS A1 --------------------------------------------------
 a1_step_options = [sm.ComboBoxWidget(master, option_type,
                                      ['Shoulder raised? (+1)', 'Upper arm abducted? (+1)',
-                                      'Arm supported? (i.e. person leaning?) (-1)'], 2, 1, tk.W)]
+                                      'Arm supported? (i.e. person leaning?) (-1)'], 2, 1, 40, tk.SW),
+                   sm.ComboBoxWidget(master, option_type,
+                                     ['A', 'B', 'C', 'D', 'E'], 2, 1, 40, tk.W)]
 # --------------------- TITLE A1 ---------------------------------------------------
-a1_title = sm.LabelWidget(master, 'Step 1: Locate upper arm position.', 0, 0, default_font, default_font_size, tk.SW)
+a1_title = sm.LabelWidget(master, 'Step 1: Locate upper arm position.', 0, 0, default_font, 18, tk.W)
 # --------------------- SCREEN MANAGER A1 ---------------------------------------------------
 a1_step_screen = sm.ScreenManager(master, a_arm_title, a1_title, a1_step_images,
                                   a1_step_options, instrc_items, answer_box, None, None)
@@ -264,19 +268,16 @@ date.insert(0, 'mm/dd/yyyy')
 built = Image.open(os.path.join(fileDir, './other-images/depart-of-built.png'))
 built = built.resize((140, 100), Image.ANTIALIAS)
 final_pic = ImageTk.PhotoImage(built)
-final_pic.image = built
 built_btn = tk.Label(master, image=final_pic)
 
 coll = Image.open(os.path.join(fileDir, './other-images/College-of-tech.png'))
 coll = coll.resize((140, 100), Image.ANTIALIAS)
 final_pic2 = ImageTk.PhotoImage(coll)
-final_pic2.image = coll
 coll_btn = tk.Label(master, image=final_pic2)
 
 rose = Image.open(os.path.join(fileDir, './other-images/rose.png'))
 rose = rose.resize((85, 110), Image.ANTIALIAS)
 final_pic3 = ImageTk.PhotoImage(rose)
-final_pic3.image = rose
 rose_btn = tk.Label(master, image=final_pic3)
 
 reviewer_name_label.grid(row=1, column=0, sticky=tk.NW)

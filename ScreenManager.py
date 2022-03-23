@@ -5,6 +5,7 @@ import os
 import PIL
 from PIL import ImageTk, Image
 
+fileDir = os.path.dirname(os.path.realpath(__file__))
 
 # images = list of ImageWidget objects
 class ScreenManager:
@@ -12,7 +13,7 @@ class ScreenManager:
         self.master = master
         self.title = title
         self.sub_title = sub_title
-      #  self.images = imgs
+        self.images = imgs
         self.adjustment_checks = selects
         self.instr_items = descriptions
         self.entry = entries
@@ -39,8 +40,9 @@ class ScreenManager:
         self.sub_title.label.grid(row=self.sub_title.row, column=self.sub_title.column, sticky=self.sub_title.stick)
         self.entry.wid.grid(row=self.entry.row, column=self.entry.column, sticky=self.entry.stick)
 
-        #for img in self.images:
-         #   img.image.grid(row=img.row, column=img.column)
+        for img in self.images:
+            img.create_image()
+            img.label.grid(row=img.row, column=img.column, sticky=img.stick)
 
         for adj in self.adjustment_checks:
             adj.button.grid(row=adj.row, column=adj.column, sticky=adj.stick)
@@ -52,19 +54,19 @@ class ScreenManager:
 
 
 class ComboBoxWidget:
-    def __init__(self, master, var_type, texts, row, column, stik):
+    def __init__(self, master, var_type, texts, row, column, w, stik):
         self.master = master
         self.var_type = var_type
         self.values = texts
         self.row = row
         self.column = column
         self.stick = stik
+        self.wdth = w
         btn = self.create_check_button()
         self.button = btn
 
     def create_check_button(self):
-        return ttk.Combobox(self.master, values=self.values)
-        #return tk.Checkbutton(self.master, text=self.text, variable=self.var_type)
+        return ttk.Combobox(self.master, width=self.wdth, values=self.values, state="readonly")
 
     def get_row(self):
         return self.row
@@ -95,21 +97,22 @@ class LabelWidget:
 
 
 class ImageWidget:
-    def __init__(self, master, img, var_type, row, column, stik):
+    def __init__(self, master, img, label, row, column, comp, stik):
+        self.label = None
+        self.image = None
         self.master = master
-        self.var_type = var_type
         self.row = row
         self.column = column
         self.stick = stik
-        crt = img
-        self.image = crt
+        self.compwd = comp
+        self.txt = label
+        self.path = img
 
-    def create_image(self, img):
-        pic = Image.open(img)
-        pic = pic.resize((50, 50), Image.ANTIALIAS)
-        final_pic = ImageTk.PhotoImage(pic)
-        final_pic.image = pic
-        return tk.Checkbutton(self.master, image=final_pic, variable=self.var_type)
+    def create_image(self):
+        pic = Image.open(os.path.join(fileDir, self.path))
+        pic = pic.resize((100, 90), Image.ANTIALIAS)
+        self.image = ImageTk.PhotoImage(pic)
+        self.label = tk.Label(self.master, text=self.txt, image=self.image, compound=self.compwd)
 
     def get_row(self):
         return self.row
@@ -117,17 +120,21 @@ class ImageWidget:
     def get_column(self):
         return self.column
 
+    def get_image(self):
+        return
+
 
 class EntryWidget:
-    def __init__(self, master, var_type, row, column, stik):
+    def __init__(self, master, var_type, row, column, w, stik):
         self.master = master
         self.var_type = var_type
         self.row = row
         self.column = column
         self.stick = stik
+        self.wdth = w
         entry = self.create_entry()
         self.wid = entry
 
     def create_entry(self):
-        return tk.Entry(self.master, textvariable=self.var_type)
+        return tk.Entry(self.master, width=self.wdth, textvariable=self.var_type)
 
