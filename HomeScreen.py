@@ -67,16 +67,9 @@ should_not_clear = False
 default_font = 'Arial'
 default_font_size = 14
 entry_height = 40
-entry_width = 30
-selection_step_instruction = sm.LabelWidget(master, 'Select the necessary adjustment.', 2, 1, default_font,
-                                            12, tk.NW)
-text_step_instruction = sm.LabelWidget(master, 'Explain your adjustment selection. '
-                                               'Reference the SPECIFIC part of the body.', 3, 1, default_font,
-                                       12, tk.NW)
-answer_box = sm.EntryWidget(master, answer, 3, 1, entry_width, tk.EW)
-instrc_items = [selection_step_instruction, text_step_instruction]
+
+
 # ARM & WRIST screens
-a_arm_title = sm.LabelWidget(master, 'A. ARM & WRIST ANALYSIS', 0, 0, default_font, 22, tk.NW)
 
 
 # NECK, LEG, & TRUNK screens
@@ -145,128 +138,9 @@ a_arm_title = sm.LabelWidget(master, 'A. ARM & WRIST ANALYSIS', 0, 0, default_fo
 # b1_title = sm.LabelWidget(master, 'Step 9: Locate Neck Position.', 1, 1, default_font, default_font_size, tk.W)
 
 
-a1_step_images = [sm.ImageWidget(master, './step1a-rula -images/rula-step1a-1.png', 'C', 0, 1, tk.RIGHT, tk.NSEW),
-                  sm.ImageWidget(master, './step1a-rula -images/rula-step1a-2.png', 'B', 0, 1, tk.RIGHT, tk.E),
-                  sm.ImageWidget(master, './step1a-rula -images/rula-step1a-3.png', 'A', 0, 1, tk.RIGHT, tk.W),
-                  sm.ImageWidget(master, './step1a-rula -images/rula-step1a-4.png', 'D', 1, 1, tk.RIGHT, tk.NSEW),
-                  sm.ImageWidget(master, './step1a-rula -images/rula-step1a-5.png', 'E', 1, 1, tk.RIGHT, tk.E)]
-a1_step_options = [sm.ComboBoxWidget(master, option_type,
-                                     ['Shoulder raised? (+1)', 'Upper arm abducted? (+1)',
-                                      'Arm supported? (i.e. person leaning?) (-1)'], 2, 1, 40, tk.SW),
-                   sm.ComboBoxWidget(master, option_type, ['A', 'B', 'C', 'D', 'E'], 2, 1, 40, tk.W)]
-a1_title = sm.LabelWidget(master, 'Step 1: Locate upper arm position.', 0, 0, default_font, 18, tk.W)
-screen1 = sm.ScreenManager(master, a_arm_title, a1_title, a1_step_images,
-                             a1_step_options, instrc_items, answer_box, my_image, None, screen2)
-
-def create_screen_a1(has_occurred):
-    a1_screen.display_page(True)
-
-
-def create_screen_a2(has_occurred):
-    global screen1, screen3
-    if not has_occurred:
-        screen1 = create_screen_a1(True)
-        screen3 = create_screen_a3(False)
-    a2_step_images = [sm.ImageWidget(master, './step1a-rula -images/rula-step2a-1.png', 'A', 0, 1, tk.RIGHT, tk.NSEW),
-                      sm.ImageWidget(master, './step1a-rula -images/rula-step2a-2.png', 'B', 0, 1, tk.RIGHT, tk.E),
-                      sm.ImageWidget(master, './step1a-rula -images/rula-step2a-3.png', 'C', 0, 1, tk.RIGHT, tk.W)]
-    a2_title = sm.LabelWidget(master, 'Step 2: Locate lower arm position.', 0, 0, default_font, 18, tk.W)
-    a2_step_options = [sm.ComboBoxWidget(master, option_type,
-                                         ['Adjust if arm is working across midline or outside of body: (+1)'],
-                                         2, 1, 40, tk.SW),
-                       sm.ComboBoxWidget(master, option_type, ['A', 'B', 'C'], 2, 1, 40, tk.W)]
-    return sm.ScreenManager(master, a_arm_title, a2_title, a2_step_images,
-                            a2_step_options, instrc_items, answer_box, my_image, screen1, screen3)
-
-
-def create_screen_a3(has_occurred):
-    global screen4
-    if not has_occurred:
-        screen2 = create_screen_a2(True)
-        screen4 = create_screen_a4(False)
-    a3_step_images = [sm.ImageWidget(master, './step3a-rula-images/rula-step3a-1.png', 'A', 0, 1, tk.RIGHT, tk.NSEW),
-                      sm.ImageWidget(master, './step3a-rula-images/rula-step3a-2.png', 'B', 0, 1, tk.RIGHT, tk.E),
-
-                      sm.ImageWidget(master, './step3a-rula-images/rula-step3a-3.png', 'C', 0, 1, tk.RIGHT, tk.W)]
-    a3_step_options = [sm.ComboBoxWidget(master, option_type, ['Adjust if wrist is bent from midline: (+1)'],
-                                         2, 1, 40, tk.SW),
-                       sm.ComboBoxWidget(master, option_type, ['A', 'B', 'C'], 2, 1, 40, tk.W)]
-    a3_title = sm.LabelWidget(master, 'Step 3: Locate wrist position.', 0, 0, default_font, 18, tk.W)
-    return sm.ScreenManager(master, a_arm_title, a3_title, a3_step_images,
-                            a3_step_options, instrc_items, answer_box, my_image, screen2, screen4)
-
-
-def create_screen_a4(has_occurred):
-    global screen5
-    if not has_occurred:
-        screen3 = create_screen_a3(True)
-        screen5 = create_screen_a5(False)
-    a4_title = sm.LabelWidget(master, 'Step 4: Wrist twist.', 0, 0, default_font, 18, tk.W)
-    a4_step_options = [sm.ComboBoxWidget(master, option_type,
-                                         ['If wrist is twisted in mid-range: (+1)',
-                                          'If wrist is at or near end of range: (+2)'], 2, 1, 40, tk.SW)]
-    return sm.ScreenManager(master, a_arm_title, a4_title, [],
-                            a4_step_options, instrc_items, answer_box, my_image, screen3, screen5)
-
-
-def create_screen_a5(has_occurred):
-    # # Step A5
-    # # INSERT LABEL FOR SCORE VALUE HERE @ row=2, column=1
-    global screen6
-    if not has_occurred:
-        screen4 = create_screen_a4(True)
-        screen6 = create_screen_a6(False)
-    a5_title = sm.LabelWidget(master, 'Step 5: Score from table A', 1, 0, default_font, 18, tk.W)
-    return sm.ScreenManager(master, a_arm_title, a5_title, [],
-                            [], instrc_items, answer_box, my_image, screen4, screen6)
-
-
-def create_screen_a6(has_occurred):
-    global screen7
-    if not has_occurred:
-        screen5 = create_screen_a5(True)
-        screen7 = create_screen_a7(False)
-    a6_step_options = [sm.ComboBoxWidget(master, option_type,
-                                         ['Action repeated occurs 4x/minute?'
-                                          ' OR is posture mainly static (i.e held >10 minutes)? (+1)'],
-                                         2, 1, 40, tk.W)]
-    a6_title = sm.LabelWidget(master, 'Step 6: Muscle Use', 2, 0, default_font, 18, tk.W)
-    return sm.ScreenManager(master, a_arm_title, a6_title, [],
-                            a6_step_options, instrc_items, answer_box, my_image, screen5, screen7)
-
-
-def create_screen_a7(has_occurred):
-    if not has_occurred:
-        screen6 = create_screen_a6(True)
-        screenb1 = create_screen_b1()
-    a7_title = sm.LabelWidget(master, 'Step 7: Add Force / Load.', 0, 0, default_font, 18, tk.W)
-    a7_step_options = [sm.ComboBoxWidget(master, option_type,
-                                         ['If load < 4.4 lbs (intermittent): (+0)',
-                                          'If load 4.4 to 22 lbs (intermittent): (+1)',
-                                          'If load 4.4 to 22 lbs (static or repeated): (+2)',
-                                          'If more than 22lbs OR repeated or shocks: (+3)'], 2, 1, 40, tk.SW)]
-    return sm.ScreenManager(master, a_arm_title, a7_title, [],
-                            a7_step_options, instrc_items, answer_box, my_image, screen6, screenb1)
-
-
-def create_screen_b1():
-    return None
-
-
-def create_screen_b2():
-    return
-
-
-def create_screen_b3():
-    return
-
-
-def create_screen_b4():
-    return
-
-
-def create_screen_b5():
-    return
+def first_screen():
+    master.destroy()
+    import StepA1Screen
 
 
 # widgets for image selection
@@ -277,7 +151,7 @@ upload_your_file_label = tk.Label(master, text='Please upload an image to begin 
 file_button_uploader = tk.Button(master, text='Upload', highlightbackground='#000fff000',
                                  command=upload_file)
 continue_button = tk.Button(master, text='Continue',
-                            command=lambda: [create_screen_a1(False)])
+                            command=lambda: [first_screen()])
 image_selection = [back_button, upload_your_file_label, file_button_uploader, continue_button]
 
 # widgets for selection screen
@@ -328,6 +202,17 @@ begin_assessment_btn = tk.Button(master, text='START',
                                  command=lambda: [clear_screen(),
                                                   attach_to_main(selection_screen)])
 begin_assessment_btn.grid(row=2, column=0)
+
+
+def go_back_prev_page(self):
+    self.clear_screen()
+    self.prev_screen_manager.display_page()
+
+
+def continue_next_page(self):
+    self.clear_screen()
+    self.next_screen_manager.display_page()
+
 
 master.title('RULA / REBA Assessment')
 master.mainloop()

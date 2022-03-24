@@ -10,7 +10,7 @@ fileDir = os.path.dirname(os.path.realpath(__file__))
 
 # images = list of ImageWidget objects
 class ScreenManager:
-    def __init__(self, master, title, sub_title, imgs, selects, descriptions, entries, mine, prev, nxt):
+    def __init__(self, master, title, sub_title, imgs, selects, descriptions, entries, mine):
         self.master = master
         self.title = title
         self.sub_title = sub_title
@@ -19,24 +19,12 @@ class ScreenManager:
         self.adjustment_checks = selects
         self.instr_items = descriptions
         self.entry = entries
-        self.prev_screen_manager = prev
-        self.next_screen_manager = nxt
 
-    def clear_screen(self):
-        for w in self.master.winfo_children():
-            w.grid_remove()
+    # def clear_screen(self):
+    #     for w in self.master.winfo_children():
+    #         w.grid_remove()
 
-    def go_back_prev_page(self):
-        self.clear_screen()
-        self.prev_screen_manager.display_page()
-
-    def continue_next_page(self):
-        self.clear_screen()
-        self.next_screen_manager.display_page()
-
-    def display_page(self, should_clear):
-        if should_clear:
-            self.clear_screen()
+    def display_page(self):
 
         self.title.label.grid(row=self.title.row, column=self.title.column, sticky=self.title.stick)
         self.sub_title.label.grid(row=self.sub_title.row, column=self.sub_title.column, sticky=self.sub_title.stick)
@@ -52,18 +40,8 @@ class ScreenManager:
         for d in self.instr_items:
             d.label.grid(row=d.row, column=d.column, sticky=d.stick, pady=20)
 
-        self.my_image.recreate_image()
-        self.my_image.label.grid(row=self.my_image.row, column=self.my_image.column,
-                                 sticky=self.my_image.stick)
-        self.attach_buttons()
-
-    def attach_buttons(self):
-        cont_btn = tk.Button(self.master, text='NEXT', bg='#458B00',
-                             command=self.continue_next_page)
-        back_button = tk.Button(self.master, text='BACK', bg='#8B2323',
-                                command=self.go_back_prev_page)
-        back_button.grid(row=4, column=0, sticky=tk.W, padx=15, ipadx=15)
-        cont_btn.grid(row=4, column=1, sticky=tk.E, padx=15, ipadx=15)
+       # self.my_image.recreate_image()
+        #self.my_image.label.grid(row=self.my_image.row, column=self.my_image.column, sticky=self.my_image.stick)
 
 
 class ComboBoxWidget:
