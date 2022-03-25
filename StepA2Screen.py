@@ -20,6 +20,10 @@ entry_width = 30
 my_image = None
 
 
+def set_image(img):
+    global my_image
+    my_image = img
+
 
 def next_page():
     master.destroy()
@@ -31,35 +35,28 @@ def prev_page():
     import StepA1Screen
 
 
-def attach_buttons():
-    cont_btn = tk.Button(master, text='NEXT', bg='#458B00',
-                         command=next_page)
-    back_button = tk.Button(master, text='BACK', bg='#8B2323',
-                            command=prev_page)
-    back_button.grid(row=4, column=0, sticky=tk.W, padx=15, ipadx=15)
-    cont_btn.grid(row=4, column=1, sticky=tk.E, padx=15, ipadx=15)
-
-
-selection_step_instruction = sm.LabelWidget(master, 'Select the necessary adjustment.', 2, 1, default_font,
-                                            text_font_size, tk.NW)
-text_step_instruction = sm.LabelWidget(master, 'Explain your adjustment selection. '
-                                               'Reference the SPECIFIC part of the body.', 3, 1, default_font,
-                                       text_font_size, tk.NW)
-answer_box = sm.EntryWidget(master, answer, 3, 1, entry_width, tk.EW)
-instrc_items = [selection_step_instruction, text_step_instruction]
-
-a_arm_title = sm.LabelWidget(master, 'A. ARM & WRIST ANALYSIS', 0, 0, default_font, title_font_size, tk.NW)
-a2_step_images = [sm.ImageWidget(master, './step2a-rula-images/rula-step2a-1.png', 'A', 0, 1, tk.RIGHT, tk.NSEW),
-                  sm.ImageWidget(master, './step2a-rula-images/rula-step2a-2.png', 'B', 0, 1, tk.RIGHT, tk.E),
-                  sm.ImageWidget(master, './step2a-rula-images/rula-step2a-3.png', 'C', 0, 1, tk.RIGHT, tk.W)]
-a2_title = sm.LabelWidget(master, 'Step 2: Locate lower arm position.', 0, 0, default_font, default_font_size, tk.W)
+tk.Label(master, text='Select the necessary adjustment.',
+         font=(default_font, text_font_size)).grid(row=2, column=1, sticky=tk.NW)
+tk.Label(master, text='Explain your adjustment selection. Reference the SPECIFIC part of the body.',
+         font=(default_font, text_font_size)).grid(row=3, column=1, sticky=tk.NW)
+tk.Entry(master, textvariable=answer, width=entry_width).grid(row=3, column=1, sticky=tk.W)
+tk.Label(master, text='A. ARM & WRIST ANALYSIS',
+         font=(default_font, text_font_size)).grid(row=0, column=0, sticky=tk.NW)
+a2_step_images = [sm.ImageWidget(master, './step2a-rula-images/rula-step2a-3.png', '', 1, 1, tk.RIGHT, tk.W),
+                  sm.ImageWidget(master, './step2a-rula-images/rula-step2a-1.png', 'B', 0, 1, tk.RIGHT, tk.NSEW),
+                  sm.ImageWidget(master, './step2a-rula-images/rula-step2a-2.png', 'A', 0, 1, tk.RIGHT, tk.W)]
+for img_wig in a2_step_images:
+    img_wig.create_image()
+    img_wig.label.grid(row=img_wig.row, column=img_wig.column, sticky=img_wig.stick)
+tk.Label(master, text='Step 2: Locate lower arm position.',
+         font=(default_font, default_font_size)).grid(row=0, column=0, sticky=tk.W)
 a2_step_options = [sm.ComboBoxWidget(master, option_type,
                                      ['Adjust if arm is working across midline or outside of body: (+1)'],
                                      2, 1, 40, tk.SW),
                    sm.ComboBoxWidget(master, option_type, ['A', 'B', 'C'], 2, 1, 40, tk.W)]
-screen2 = sm.ScreenManager(master, a_arm_title, a2_title, a2_step_images,
-                           a2_step_options, instrc_items, answer_box, my_image)
-screen2.display_page()
-attach_buttons()
+for combo in a2_step_options:
+    combo.button.grid(row=combo.row, column=combo.column, sticky=combo.stick)
+tk.Button(master, text='NEXT', bg='#458B00', command=next_page).grid(row=4, column=1, sticky=tk.E, padx=15, ipadx=15)
+tk.Button(master, text='BACK', bg='#8B2323', command=prev_page).grid(row=4, column=0, sticky=tk.W, padx=15, ipadx=15)
 
 master.mainloop()

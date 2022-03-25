@@ -20,9 +20,9 @@ class ScreenManager:
         self.instr_items = descriptions
         self.entry = entries
 
-    # def clear_screen(self):
-    #     for w in self.master.winfo_children():
-    #         w.grid_remove()
+    def clear_screen(self):
+        for w in self.master.winfo_children():
+            w.grid_remove()
 
     def display_page(self):
 
@@ -40,8 +40,8 @@ class ScreenManager:
         for d in self.instr_items:
             d.label.grid(row=d.row, column=d.column, sticky=d.stick, pady=20)
 
-       # self.my_image.recreate_image()
-        #self.my_image.label.grid(row=self.my_image.row, column=self.my_image.column, sticky=self.my_image.stick)
+        # self.my_image.recreate_image()
+        # self.my_image.label.grid(row=self.my_image.row, column=self.my_image.column, sticky=self.my_image.stick)
 
 
 class ComboBoxWidget:
