@@ -1,4 +1,3 @@
-
 # tk.Label(master, text='Name of Reviewer: ', font=('Arial', 18)).grid(row=1, column=0, sticky=tk.NW)
 # tk.Entry(master, textvariable=student_name).grid(row=1, column=0, sticky=tk.N)
 # tk.Label(master, text='Task Name: ', font=('Arial', 18)).grid(row=2, column=0, sticky=tk.NW)
@@ -36,23 +35,54 @@ import tkinter as tk
 from tkinter import ttk
 import StepA1Screen as a1
 import StepA2Screen as a2
-# import StepA3Screen as a3
-# import StepA456Screen as a456
-# import StepA7Screen as a7
+import StepA3Screen as a3
+import StepA456Screen as a456
+import StepA7Screen as a7
+
 root = tk.Tk()
 root.title("RULA / REBA Assessment")
 tabControl = ttk.Notebook(root, width=1000, height=700)
 
 screen_a1 = a1.create_page(tabControl)
-# screen_a2 = a2.create_page(tabControl)
-# screen_a3 = a3.create_page(tabControl)
-# screen_a456 = a456.create_page(tabControl)
-# screen_a7 = a7.create_page(tabControl)
+screen_a2 = a2.create_page(tabControl)
+screen_a3 = a3.create_page(tabControl)
+screen_a456 = a456.create_page(tabControl)
+screen_a7 = a7.create_page(tabControl)
 
-tabControl.add(screen_a1, text='Step A1', sticky=tk.NSEW)
-# tabControl.add(screen_a2, text='Step A2')
-# tabControl.add(screen_a3, text='Step A3')
-# tabControl.add(screen_a456, text='Step A456')
-# tabControl.add(screen_a7, text='Step A7')
+tabControl.add(screen_a1, text='Step A1')
+tabControl.add(screen_a2, text='Step A2')
+tabControl.add(screen_a3, text='Step A3')
+tabControl.add(screen_a456, text='Step A456')
+tabControl.add(screen_a7, text='Step A7')
+
+tabControl.hide(screen_a2)
+tabControl.hide(screen_a3)
+tabControl.hide(screen_a456)
+tabControl.hide(screen_a7)
+
+tk.Button(screen_a1, text='NEXT', bg='#458B00',
+          command=lambda: [tabControl.hide(screen_a1),
+                           tabControl.select(screen_a2)]).grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+tk.Button(screen_a2, text='BACK', bg='#8B2323',
+          command=lambda: [tabControl.hide(screen_a2),
+                           tabControl.select(screen_a1)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
+tk.Button(screen_a2, text='NEXT', bg='#458B00',
+          command=lambda: [tabControl.hide(screen_a2),
+                           tabControl.select(screen_a3)]).grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+tk.Button(screen_a3, text='BACK', bg='#8B2323',
+          command=lambda: [tabControl.hide(screen_a3),
+                           tabControl.select(screen_a2)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
+tk.Button(screen_a3, text='NEXT', bg='#458B00',
+          command=lambda: [tabControl.hide(screen_a3),
+                           tabControl.select(screen_a456)]).grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+tk.Button(screen_a456, text='BACK', bg='#8B2323',
+          command=lambda: [tabControl.hide(screen_a456),
+                           tabControl.select(screen_a3)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
+tk.Button(screen_a456, text='NEXT', bg='#458B00',
+          command=lambda: [tabControl.hide(screen_a456),
+                           tabControl.select(screen_a7)]).grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+tk.Button(screen_a7, text='BACK', bg='#8B2323',
+          command=lambda: [tabControl.hide(screen_a7),
+                           tabControl.select(screen_a456)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
 tabControl.pack()
 root.mainloop()

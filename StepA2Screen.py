@@ -2,18 +2,23 @@ import tkinter as tk
 from tkinter import ttk
 import ScreenManager as sm
 
-option_type = tk.StringVar()
-answer = tk.StringVar()
-default_font = 'Arial'
-text_font_size = 12
-default_font_size = 18
-title_font_size = 22
-entry_width = 30
-my_image = None
 
+def create_page(master):
+    option_type = tk.StringVar()
+    answer = tk.StringVar()
+    default_font = 'Arial'
+    text_font_size = 12
+    default_font_size = 18
+    entry_width = 30
 
-def create_objects(master):
-    a2 = ttk.Frame(master)
+    a2 = ttk.Frame(master, width=1000, height=750)
+    a2.columnconfigure(0, weight=4)
+    a2.columnconfigure(1, weight=2)
+    a2.rowconfigure(0, weight=2)
+    a2.rowconfigure(1, weight=2)
+    a2.rowconfigure(2, weight=2)
+    a2.rowconfigure(3, weight=2)
+    a2.rowconfigure(4, weight=2)
     tk.Label(a2, text='Select the necessary adjustment.',
              font=(default_font, text_font_size)).grid(row=2, column=1, sticky=tk.NW)
     tk.Label(a2, text='Explain your adjustment selection. Reference the SPECIFIC part of the body.',
@@ -35,6 +40,8 @@ def create_objects(master):
                        sm.ComboBoxWidget(a2, option_type, ['A', 'B', 'C'], 2, 1, 40, tk.W)]
     for combo in a2_step_options:
         combo.button.grid(row=combo.row, column=combo.column, sticky=combo.stick)
-#    tk.Button(master, text='NEXT', bg='#458B00', command=next_page).grid(row=4, column=1, sticky=tk.E, padx=15, ipadx=15)
-#    tk.Button(master, text='BACK', bg='#8B2323', command=prev_page).grid(row=4, column=0, sticky=tk.W, padx=15, ipadx=15)
+
+    return a2
+
+
 

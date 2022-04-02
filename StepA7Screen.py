@@ -2,17 +2,23 @@ import tkinter as tk
 from tkinter import ttk
 import ScreenManager as sm
 
-option_type = tk.StringVar()
-answer = tk.StringVar()
-default_font = 'Arial'
-text_font_size = 12
-default_font_size = 18
-title_font_size = 22
-entry_width = 30
 
-
-def create_objects(master):
+def create_page(master):
+    option_type = tk.StringVar()
+    answer = tk.StringVar()
+    default_font = 'Arial'
+    text_font_size = 12
+    default_font_size = 18
+    title_font_size = 22
+    entry_width = 30
     a7 = ttk.Frame(master)
+    a7.columnconfigure(0, weight=4)
+    a7.columnconfigure(1, weight=2)
+    a7.rowconfigure(0, weight=2)
+    a7.rowconfigure(1, weight=2)
+    a7.rowconfigure(2, weight=2)
+    a7.rowconfigure(3, weight=2)
+    a7.rowconfigure(4, weight=2)
     tk.Label(a7, text='Select the necessary adjustment.',
              font=(default_font, text_font_size)).grid(row=2, column=1, sticky=tk.NW)
     tk.Label(a7, text='Explain your adjustment selection. Reference the SPECIFIC part of the body.',
@@ -27,6 +33,5 @@ def create_objects(master):
                                          'If load 4.4 to 22 lbs (intermittent): (+1)',
                                          'If load 4.4 to 22 lbs (static or repeated): (+2)',
                                          'If more than 22lbs OR repeated or shocks: (+3)'], 2, 1, 40, tk.SW)
-#    a7_step_options.button.grid(row=a7_step_options.row, column=a7_step_options.column, sticky=a7_step_options.stick)
-#    tk.Button(master, text='NEXT', bg='#458B00').grid(row=4, column=1, sticky=tk.E, padx=15, ipadx=15)
-#    tk.Button(master, text='BACK', bg='#8B2323', command=prev_page).grid(row=4, column=0, sticky=tk.W, padx=15, ipadx=15)
+    a7_step_options.button.grid(row=a7_step_options.row, column=a7_step_options.column, sticky=a7_step_options.stick)
+    return a7

@@ -43,9 +43,6 @@ def create_page(master):
         combo.button.grid(row=combo.row, column=combo.column, sticky=combo.stick)
     ttk.Label(a1, text='Step 1: Locate upper arm position.',
               font=(default_font, default_font_size)).grid(row=0, column=0, sticky=tk.S)
-    #    tk.Button(a1, text='NEXT', bg='#458B00', command=next_page).grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
-    #    tk.Button(a1, text='BACK', bg='#8B2323').grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
-
     return a1
 
 ## add margins to both ends of frame

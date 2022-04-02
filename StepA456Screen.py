@@ -2,17 +2,20 @@ import tkinter as tk
 from tkinter import ttk
 import ScreenManager as sm
 
-option_type = tk.StringVar()
-answer = tk.StringVar()
-default_font = 'Arial'
-text_font_size = 12
-default_font_size = 18
-title_font_size = 22
-entry_width = 30
 
-
-def create_objects(master):
+def create_page(master):
+    option_type = tk.StringVar()
+    default_font = 'Arial'
+    default_font_size = 18
+    title_font_size = 22
     a456 = ttk.Frame(master)
+    a456.columnconfigure(0, weight=4)
+    a456.columnconfigure(1, weight=2)
+    a456.rowconfigure(0, weight=2)
+    a456.rowconfigure(1, weight=2)
+    a456.rowconfigure(2, weight=2)
+    a456.rowconfigure(3, weight=2)
+    a456.rowconfigure(4, weight=2)
     tk.Label(a456, text='A. ARM & WRIST ANALYSIS',
              font=(default_font, title_font_size)).grid(row=0, column=0, sticky=tk.NW)
     tk.Label(a456, text='Step 4: Wrist twist.',
@@ -31,5 +34,4 @@ def create_objects(master):
     a6_step_options.button.grid(row=a6_step_options.row, column=a6_step_options.column, sticky=a6_step_options.stick)
     tk.Label(a456, text='Step 6: Muscle Use',
              font=(default_font, default_font_size)).grid(row=2, column=0, sticky=tk.W, padx=25)
-#    tk.Button(a456, text='NEXT', bg='#458B00', command=next_page).grid(row=4, column=1, sticky=tk.W, ipadx=15, padx=10)
-#    tk.Button(a456, text='BACK', bg='#8B2323', command=prev_page).grid(row=4, column=0, sticky=tk.E, ipadx=15, padx=10)
+    return a456
