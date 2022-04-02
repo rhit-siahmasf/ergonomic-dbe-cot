@@ -36,8 +36,9 @@ assessment_option.button.grid(row=assessment_option.row,
                               column=assessment_option.column, sticky=assessment_option.stick)
 tk.Label(master, text='Select an option to continue.',
          font=('Arial', default_font_size)).grid(row=0, column=0, sticky=tk.NSEW)
-tk.Button(master, text='NEXT', bg='#458B00', command=next_page).grid(row=4, column=1, sticky=tk.E, padx=15, ipadx=15)
-tk.Button(master, text='BACK', bg='#8B2323', command=prev_page).grid(row=4, column=0, sticky=tk.W, padx=15, ipadx=15)
+## move buttons to center (look at StepA1Screen)
+tk.Button(master, text='NEXT', bg='#458B00', command=next_page).grid(row=3, column=1, sticky=tk.W, padx=15, ipadx=15)
+tk.Button(master, text='BACK', bg='#8B2323', command=prev_page).grid(row=3, column=0, sticky=tk.E, padx=15, ipadx=15)
 
 master.title('RULA / REBA Assessment')
 master.mainloop()
