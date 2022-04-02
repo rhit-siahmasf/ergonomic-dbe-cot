@@ -1,11 +1,33 @@
+import os
 import tkinter as tk
 from tkinter import ttk
-from tkinter import filedialog
-import os
-import PIL
+# import StepA1Screen as a1
+# # import StepA2Screen as a2
+# # import StepA3Screen as a3
+# # import StepA456Screen as a456
+# # import StepA7Screen as a7
 from PIL import ImageTk, Image
 
 fileDir = os.path.dirname(os.path.realpath(__file__))
+
+# root = tk.Tk()
+# root.title("RULA / REBA Assessment")
+# tabControl = ttk.Notebook(root)
+#
+# screen_a1 = a1.ScreenA1().create_page(tabControl)
+# # screen_a2 = a2.create_page(tabControl)
+# # screen_a3 = a3.create_page(tabControl)
+# # screen_a456 = a456.create_page(tabControl)
+# # screen_a7 = a7.create_page(tabControl)
+#
+# tabControl.add(screen_a1, text='Step A1')
+# # tabControl.add(screen_a2, text='Step A2')
+# # tabControl.add(screen_a3, text='Step A3')
+# # tabControl.add(screen_a456, text='Step A456')
+# # tabControl.add(screen_a7, text='Step A7')
+# # tabControl.pack(expand=1, fill="both")
+#
+# root.mainloop()
 
 
 # images = list of ImageWidget objects
@@ -101,7 +123,7 @@ class ImageWidget:
 
     def create_image(self):
         pic = Image.open(os.path.join(fileDir, self.path))
-        pic = pic.resize((100, 90), Image.ANTIALIAS)
+        pic = pic.resize((150, 150), Image.ANTIALIAS)
         self.image = ImageTk.PhotoImage(pic)
         self.label = tk.Label(self.master, text=self.txt, image=self.image, compound=self.compwd)
 

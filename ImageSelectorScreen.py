@@ -36,15 +36,16 @@ def upload_image():
     name = filedialog.askopenfilename()
     my_image = sm.ImageWidget(master, name, '', 1, 0, 0, tk.NSEW)
 
+## move buttons to center
 
-tk.Button(master, text='BACK', bg='green',
-          command=prev_page).grid(row=4, column=0, sticky=tk.W, padx=15, ipadx=15)
+tk.Button(master, text='BACK', bg='#8B2323',
+          command=prev_page).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
 tk.Label(master, text='Please upload an image to begin assessment.',
          font=('Arial', default_font_size)).grid(row=0, column=0, sticky=tk.E)
 tk.Button(master, text='Upload', bg='#000fff000',
-          command=upload_image).grid(row=1, column=0, sticky=tk.E, padx=15, ipadx=15)
-tk.Button(master, text='NEXT', bg='#000fff000',
-          command=next_page).grid(row=4, column=1, sticky=tk.E, padx=15, ipadx=15)
+          command=upload_image).grid(row=1, column=0, sticky=tk.N, padx=15, ipadx=15)
+tk.Button(master, text='NEXT', bg='#458B00',
+          command=next_page).grid(row=4, column=0, sticky=tk.W, padx=15, ipadx=15)
 
 master.title('RULA / REBA Assessment')
 master.mainloop()
