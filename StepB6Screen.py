@@ -7,27 +7,26 @@ def create_page(master):
     option_type = tk.StringVar()
     answer = tk.StringVar()
     default_font = 'Arial'
-    text_font_size = 12
     default_font_size = 18
     title_font_size = 22
     entry_width = 30
-    a7 = ttk.Frame(master)
-    a7.columnconfigure(0, weight=4)
-    a7.columnconfigure(1, weight=2)
-    a7.rowconfigure(0, weight=2)
-    a7.rowconfigure(1, weight=2)
-    a7.rowconfigure(2, weight=2)
-    a7.rowconfigure(3, weight=2)
-    a7.rowconfigure(4, weight=2)
-    tk.Entry(a7, width=entry_width, textvariable=answer).grid(row=3, column=1, sticky=tk.EW)
-    tk.Label(a7, text='A. ARM & WRIST ANALYSIS',
+    b6 = ttk.Frame(master)
+    b6.columnconfigure(0, weight=4)
+    b6.columnconfigure(1, weight=2)
+    b6.rowconfigure(0, weight=2)
+    b6.rowconfigure(1, weight=2)
+    b6.rowconfigure(2, weight=2)
+    b6.rowconfigure(3, weight=2)
+    b6.rowconfigure(4, weight=2)
+    tk.Entry(b6, width=entry_width, textvariable=answer).grid(row=3, column=1, sticky=tk.EW)
+    tk.Label(b6, text='B. NECK, TRUNK, AND LEG ANALYSIS',
              font=(default_font, title_font_size)).grid(row=0, column=0, sticky=tk.NW)
-    tk.Label(a7, text='Step 7: Add Force / Load.',
+    tk.Label(b6, text='Step 14: Add Force / Load Score',
              font=(default_font, default_font_size)).grid(row=0, column=0, sticky=tk.W)
-    a7_step_options = sm.ComboBoxWidget(a7, option_type,
+    b6_step_options = sm.ComboBoxWidget(b6, option_type,
                                         ['If load < 4.4 lbs (intermittent): (+0)',
                                          'If load 4.4 to 22 lbs (intermittent): (+1)',
                                          'If load 4.4 to 22 lbs (static or repeated): (+2)',
                                          'If more than 22lbs OR repeated or shocks: (+3)'], 2, 1, 40, tk.SW)
-    a7_step_options.button.grid(row=a7_step_options.row, column=a7_step_options.column, sticky=a7_step_options.stick)
-    return a7
+    b6_step_options.button.grid(row=b6_step_options.row, column=b6_step_options.column, sticky=b6_step_options.stick)
+    return b6
