@@ -8,6 +8,7 @@ def create_page(master):
     default_font = 'Arial'
     text_font_size = 12
     default_font_size = 18
+    title_font_size = 22
     b1 = ttk.Frame(master, width=1000, height=750)
     b1.columnconfigure(0, weight=4)
     b1.columnconfigure(1, weight=2)
@@ -36,5 +37,6 @@ def create_page(master):
         img_wig.label.grid(row=img_wig.row, column=img_wig.column, sticky=img_wig.stick)
     ttk.Label(b1, text='Step 9: Locate Neck Position.',
               font=(default_font, default_font_size)).grid(row=0, column=0, sticky=tk.S)
-
+    ttk.Label(b1, text='B. NECK, TRUNK, AND LEG ANALYSIS',
+              font=(default_font, title_font_size)).grid(row=0, column=0, sticky=tk.NSEW)
     return b1
