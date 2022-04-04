@@ -49,16 +49,3 @@
 #                                   b2_step_options, all_others, None, b3_step_screen)
 # # Step B1 -----------------------------------------------------------------------------------------------
 # # -------------------- IMAGES B1 --------------------------------------------------
-# b1_step_images = [sm.ImageWidget(master, os.path.join(fileDir, './step9b-rula-images/rula-step9b-1.png'),
-#                                  img_type, 0, 1, tk.W),
-#                   sm.ImageWidget(master, os.path.join(fileDir, './step9b-rula-images/rula-step9b-2.png'),
-#                                  img_type, 0, 1, tk.NSEW),
-#                   sm.ImageWidget(master, os.path.join(fileDir, './step9b-rula-images/rula-step9b-3.png'),
-#                                  img_type, 0, 1, tk.E),
-#                   sm.ImageWidget(master, os.path.join(fileDir, './step9b-rula-images/rula-step9b-4.png'),
-#                                  img_type, 1, 1, tk.W)]
-# # -------------------- OPTIONS B1 --------------------------------------------------
-# b1_step_options = [sm.CheckButtonWidget(master, option_type, 'Adjust if neck is twisted: (+1)', 2, 1, tk.N),
-#                    sm.CheckButtonWidget(master, option_type, 'Adjust if neck is side bending: (+1)', 2, 1, tk.S)]
-# # --------------------- TITLE B1 ---------------------------------------------------
-# b1_title = sm.LabelWidget(master, 'Step 9: Locate Neck Position.', 1, 1, default_font, default_font_size, tk.W)
