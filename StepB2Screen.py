@@ -29,7 +29,7 @@ def create_page(master):
     b2_step_options = [sm.ComboBoxWidget(b2, option_type,
                                          ['Adjust if trunk is twisted: (+1)',
                                           'Adjust if trunk is side bending: (+1)'], 2, 1, 40, tk.SW),
-                       sm.ComboBoxWidget(b2, option_type, ['A', 'B', 'C', 'D', 'E'], 2, 1, 40, tk.W)]
+                       sm.ComboBoxWidget(b2, option_type, ['A', 'B', 'C', 'D'], 2, 1, 40, tk.W)]
     for combo in b2_step_options:
         combo.button.grid(row=combo.row, column=combo.column, sticky=combo.stick)
     for img_wig in b2_step_images:
