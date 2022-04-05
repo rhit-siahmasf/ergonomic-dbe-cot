@@ -15,6 +15,7 @@ import StepB1Screen as b1
 import StepB2Screen as b2
 import StepB345Screen as b345
 import StepB6Screen as b6
+import FinalScreen as fs
 
 root = tk.Tk()
 root.title("RULA / REBA Assessment")
@@ -33,6 +34,7 @@ screen_b1 = b1.create_page(tabControl)
 screen_b2 = b2.create_page(tabControl)
 screen_b345 = b345.create_page(tabControl)
 screen_b6 = b6.create_page(tabControl)
+screen_final = fs.create_page(tabControl)
 
 # add each ttk.Frame to the Notebook
 tabControl.add(start_up_screen, text='Begin Rula Reba')
@@ -47,6 +49,7 @@ tabControl.add(screen_b1, text='Step B1')
 tabControl.add(screen_b2, text='Step B2')
 tabControl.add(screen_b345, text='Step B345')
 tabControl.add(screen_b6, text='Step B6')
+tabControl.add(screen_final, text='Final Screen')
 
 # hide all screens except startup from user view
 tabControl.hide(selector_screen)
@@ -60,6 +63,7 @@ tabControl.hide(screen_b1)
 tabControl.hide(screen_b2)
 tabControl.hide(screen_b345)
 tabControl.hide(screen_b6)
+tabControl.hide(screen_final)
 
 # All next and back buttons hide AND select a screen based on the label of the button
 tk.Button(start_up_screen, text='NEXT', bg='#458B00',
