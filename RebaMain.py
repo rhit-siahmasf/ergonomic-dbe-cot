@@ -17,13 +17,13 @@ tabControl = ttk.Notebook(root, width=1000, height=700)
 
 # create a ttk.Frame for each screen
 selector_screen = select.create_page(tabControl)
-screen_a1 = a1.create_page(tabControl)
-screen_a2 = a2.create_page(tabControl)
-screen_a3 = a3.create_page(tabControl)
-screen_a45 = a45.create_page(tabControl)
-screen_b1 = b1.create_page(tabControl)
-screen_b2 = b2.create_page(tabControl)
-screen_b3 = b3.create_page(tabControl)
+screen_a1 = a1.create_page(tabControl).master
+screen_a2 = a2.create_page(tabControl).master
+screen_a3 = a3.create_page(tabControl).master
+screen_a45 = a45.create_page(tabControl).master
+screen_b1 = b1.create_page(tabControl).master
+screen_b2 = b2.create_page(tabControl).master
+screen_b3 = b3.create_page(tabControl).master
 
 # add each ttk.Frame to the Notebook
 tabControl.add(selector_screen, text='Select Assessment')

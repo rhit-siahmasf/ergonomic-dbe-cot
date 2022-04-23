@@ -25,15 +25,15 @@ tabControl = ttk.Notebook(root, width=1000, height=700)
 start_up_screen = sus.create_page(tabControl)
 selector_screen = select.create_page(tabControl)
 image_screen = image_select.create_page(tabControl)
-screen_a1 = a1.create_page(tabControl)
-screen_a2 = a2.create_page(tabControl)
-screen_a3 = a3.create_page(tabControl)
-screen_a456 = a456.create_page(tabControl)
-screen_a7 = a7.create_page(tabControl)
-screen_b1 = b1.create_page(tabControl)
-screen_b2 = b2.create_page(tabControl)
-screen_b345 = b345.create_page(tabControl)
-screen_b6 = b6.create_page(tabControl)
+screen_a1 = a1.create_page(tabControl).master
+screen_a2 = a2.create_page(tabControl).master
+screen_a3 = a3.create_page(tabControl).master
+screen_a456 = a456.create_page(tabControl).master
+screen_a7 = a7.create_page(tabControl).master
+screen_b1 = b1.create_page(tabControl).master
+screen_b2 = b2.create_page(tabControl).master
+screen_b345 = b345.create_page(tabControl).master
+screen_b6 = b6.create_page(tabControl).master
 screen_final = fs.create_page(tabControl)
 
 # add each ttk.Frame to the Notebook

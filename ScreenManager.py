@@ -20,8 +20,11 @@ class ScreenManager:
         self.adjustment_checks = adjustments
         self.user_entry = text_box
 
+    def get_tab_master(self):
+        return self.master
+
     def get_user_entry(self):
-        return self.user_entry.get();
+        return self.user_entry.get()
 
     def get_adjustment_checks(self):
         return self.adjustment_checks.current(0)

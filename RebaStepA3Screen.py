@@ -24,7 +24,8 @@ def create_page(master):
               font=(default_font, text_font_size)).grid(row=3, column=1, sticky=tk.NW)
     ttk.Label(a3, text='Select the necessary adjustment.',
               font=(default_font, text_font_size)).grid(row=2, column=1, sticky=tk.NW)
-    ttk.Entry(a3, width=entry_width, textvariable=answer).grid(row=3, column=1, sticky=tk.EW)
+    entry_box = ttk.Entry(a3, width=entry_width, textvariable=answer)
+    entry_box.grid(row=3, column=1, sticky=tk.EW)
     ttk.Label(a3, text='A. NECK, TRUNK, AND LEG ANALYSIS',
               font=(default_font, title_font_size)).grid(row=0, column=0, sticky=tk.NSEW)
     a1_step_images = [sm.ImageWidget(a3, './step3a-reba-images/reba-step3a-1.png', 'B', 0, 1, tk.BOTTOM, tk.NSEW),
@@ -37,9 +38,10 @@ def create_page(master):
     a1_step_options = [sm.ComboBoxWidget(a3, option_type, ['A', 'B', 'C', 'D'], 2, 1, 40, tk.W)]
     for combo in a1_step_options:
         combo.button.grid(row=combo.row, column=combo.column, sticky=combo.stick)
-    ttk.Label(a3, text='Step 3: Legs',
-              font=(default_font, default_font_size)).grid(row=0, column=0, sticky=tk.S)
-    return a3
+    sub_title = ttk.Label(a3, text='Step 3: Legs', font=(default_font, default_font_size))
+    sub_title.grid(row=0, column=0, sticky=tk.S)
+    a3_manager = sm.ScreenManager(a3, sub_title, a1_step_options[0], None, entry_box)
+    return a3_manager
 
 ## add margins to both ends of frame
 ## make tk.Entry two/three lines (height)

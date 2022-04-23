@@ -32,6 +32,7 @@ def create_page(master):
                                          ' OR is posture mainly static (i.e held >10 minutes)? (+1)'],
                                         2, 0, 90, tk.S)
     a6_step_options.button.grid(row=a6_step_options.row, column=a6_step_options.column, sticky=a6_step_options.stick)
-    tk.Label(a456, text='Step 6: Muscle Use',
-             font=(default_font, default_font_size)).grid(row=2, column=0, sticky=tk.W, padx=25)
-    return a456
+    sub_title = tk.Label(a456, text='Step 6: Muscle Use', font=(default_font, default_font_size))
+    sub_title.grid(row=2, column=0, sticky=tk.W, padx=25)
+    a456_manager = sm.ScreenManager(a456, sub_title, a4_step_option, a6_step_options, None)
+    return a456_manager

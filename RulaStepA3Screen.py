@@ -23,7 +23,8 @@ def create_page(master):
              font=(default_font, text_font_size)).grid(row=2, column=1, sticky=tk.NW)
     tk.Label(a3, text='Explain your adjustment selection. Reference the SPECIFIC part of the body.',
              font=(default_font, text_font_size)).grid(row=3, column=1, sticky=tk.NW)
-    tk.Entry(a3, textvariable=answer, width=entry_width).grid(row=3, column=1, sticky=tk.EW)
+    entry_box = tk.Entry(a3, textvariable=answer, width=entry_width)
+    entry_box.grid(row=3, column=1, sticky=tk.EW)
     tk.Label(a3, text='A. ARM & WRIST ANALYSIS',
              font=(default_font, title_font_size)).grid(row=0, column=0, sticky=tk.NW)
     a3_step_images = [sm.ImageWidget(a3, './step3a-rula-images/rula-step3a-2.png', 'B', 0, 1, tk.RIGHT, tk.NSEW),
@@ -37,7 +38,7 @@ def create_page(master):
                        sm.ComboBoxWidget(a3, option_type, ['A', 'B', 'C'], 2, 1, 40, tk.W)]
     for combo in a3_step_options:
         combo.button.grid(row=combo.row, column=combo.column, sticky=combo.stick)
-    tk.Label(a3, text='Step 3: Locate wrist position.',
-             font=(default_font, default_font_size)).grid(row=0, column=0, sticky=tk.W)
-
-    return a3
+    sub_title = tk.Label(a3, text='Step 3: Locate wrist position.', font=(default_font, default_font_size))
+    sub_title.grid(row=0, column=0, sticky=tk.W)
+    a3_manager = sm.ScreenManager(a3, sub_title, a3_step_options[1], a3_step_options[0], entry_box)
+    return a3_manager
