@@ -4,9 +4,11 @@ import ScreenManager as sm
 
 
 def create_page(master):
+    answer = tk.StringVar()
     option_type = tk.StringVar()
     default_font = 'Arial'
     text_font_size = 12
+    entry_width = 30
     default_font_size = 18
     title_font_size = 22
     b1 = ttk.Frame(master, width=1000, height=750)
@@ -20,6 +22,8 @@ def create_page(master):
     ttk.Label(b1, text='Explain your adjustment selection. '
                        'Reference the SPECIFIC part of the body.',
               font=(default_font, text_font_size)).grid(row=3, column=1, sticky=tk.NW)
+    entry_box = tk.Entry(b1, width=entry_width, textvariable=answer)
+    entry_box.grid(row=3, column=1, sticky=tk.EW)
     ttk.Label(b1, text='Select the necessary adjustment.',
               font=(default_font, text_font_size)).grid(row=2, column=1, sticky=tk.NW)
     b1_step_images = [sm.ImageWidget(b1, './step9b-rula-images/rula-step9b-1.png', 'B', 0, 1, tk.BOTTOM, tk.NSEW),
@@ -35,8 +39,9 @@ def create_page(master):
     for img_wig in b1_step_images:
         img_wig.create_image()
         img_wig.label.grid(row=img_wig.row, column=img_wig.column, sticky=img_wig.stick)
-    ttk.Label(b1, text='Step 9: Locate Neck Position.',
-              font=(default_font, default_font_size)).grid(row=0, column=0, sticky=tk.S)
+    sub_title = ttk.Label(b1, text='Step 9: Locate Neck Position.', font=(default_font, default_font_size))
+    sub_title.grid(row=0, column=0, sticky=tk.S)
     ttk.Label(b1, text='B. NECK, TRUNK, AND LEG ANALYSIS',
               font=(default_font, title_font_size)).grid(row=0, column=0, sticky=tk.NSEW)
-    return b1
+    b1_manager = sm.ScreenManager(b1, sub_title, b1_step_images[1], b1_step_images[0], entry_box)
+    return b1_manager

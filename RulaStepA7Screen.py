@@ -19,15 +19,17 @@ def create_page(master):
     a7.rowconfigure(2, weight=2)
     a7.rowconfigure(3, weight=2)
     a7.rowconfigure(4, weight=2)
-    tk.Entry(a7, width=entry_width, textvariable=answer).grid(row=3, column=1, sticky=tk.EW)
+    entry_box = tk.Entry(a7, width=entry_width, textvariable=answer)
+    entry_box.grid(row=3, column=1, sticky=tk.EW)
     tk.Label(a7, text='A. ARM & WRIST ANALYSIS',
              font=(default_font, title_font_size)).grid(row=0, column=0, sticky=tk.NW)
-    tk.Label(a7, text='Step 7: Add Force / Load.',
-             font=(default_font, default_font_size)).grid(row=0, column=0, sticky=tk.W)
+    sub_title = tk.Label(a7, text='Step 7: Add Force / Load.', font=(default_font, default_font_size))
+    sub_title.grid(row=0, column=0, sticky=tk.W)
     a7_step_options = sm.ComboBoxWidget(a7, option_type,
                                         ['If load < 4.4 lbs (intermittent): (+0)',
                                          'If load 4.4 to 22 lbs (intermittent): (+1)',
                                          'If load 4.4 to 22 lbs (static or repeated): (+2)',
                                          'If more than 22lbs OR repeated or shocks: (+3)'], 2, 1, 40, tk.SW)
     a7_step_options.button.grid(row=a7_step_options.row, column=a7_step_options.column, sticky=a7_step_options.stick)
-    return a7
+    a7_manager = sm.ScreenManager(a7, sub_title, None, a7_step_options, entry_box)
+    return a7_manager

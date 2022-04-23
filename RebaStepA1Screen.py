@@ -24,26 +24,26 @@ def create_page(master):
               font=(default_font, text_font_size)).grid(row=3, column=1, sticky=tk.NW)
     ttk.Label(a1, text='Select the necessary adjustment.',
               font=(default_font, text_font_size)).grid(row=2, column=1, sticky=tk.NW)
-    ttk.Entry(a1, width=entry_width, textvariable=answer).grid(row=3, column=1, sticky=tk.EW)
-    ttk.Label(a1, text='A. ARM & WRIST ANALYSIS',
+    entry_box = ttk.Entry(a1, width=entry_width, textvariable=answer)
+    entry_box.grid(row=3, column=1, sticky=tk.EW)
+    ttk.Label(a1, text='A. NECK, TRUNK, AND LEG ANALYSIS',
               font=(default_font, title_font_size)).grid(row=0, column=0, sticky=tk.NSEW)
-    a1_step_images = [sm.ImageWidget(a1, './step1a-rula -images/rula-step1a-1.png', 'B', 0, 1, tk.BOTTOM, tk.NSEW),
-                      sm.ImageWidget(a1, './step1a-rula -images/rula-step1a-2.png', 'C', 0, 1, tk.BOTTOM, tk.E),
-                      sm.ImageWidget(a1, './step1a-rula -images/rula-step1a-3.png', 'A', 0, 1, tk.BOTTOM, tk.W),
-                      sm.ImageWidget(a1, './step1a-rula -images/rula-step1a-4.png', 'D', 1, 1, tk.BOTTOM, tk.NSEW),
-                      sm.ImageWidget(a1, './step1a-rula -images/rula-step1a-5.png', 'E', 1, 1, tk.BOTTOM, tk.E)]
+    a1_step_images = [sm.ImageWidget(a1, './step1a-reba-images/reba-step1a-1.png', 'B', 0, 1, tk.BOTTOM, tk.NSEW),
+                      sm.ImageWidget(a1, './step1a-reba-images/reba-step1a-2.png', 'C', 0, 1, tk.BOTTOM, tk.E),
+                      sm.ImageWidget(a1, './step1a-reba-images/reba-step1a-3.png', 'A', 0, 1, tk.BOTTOM, tk.W)]
     for img_wig in a1_step_images:
         img_wig.create_image()
         img_wig.label.grid(row=img_wig.row, column=img_wig.column, sticky=img_wig.stick)
     a1_step_options = [sm.ComboBoxWidget(a1, option_type,
-                                         ['Shoulder raised? (+1)', 'Upper arm abducted? (+1)',
-                                          'Arm supported? (i.e. person leaning?) (-1)'], 2, 1, 40, tk.SW),
-                       sm.ComboBoxWidget(a1, option_type, ['A', 'B', 'C', 'D', 'E'], 2, 1, 40, tk.W)]
+                                         ['If neck is twisted: (+1)', 'If neck is side bending: (+1)'], 2, 1, 40,
+                                         tk.SW),
+                       sm.ComboBoxWidget(a1, option_type, ['A', 'B', 'C'], 2, 1, 40, tk.W)]
     for combo in a1_step_options:
         combo.button.grid(row=combo.row, column=combo.column, sticky=combo.stick)
-    ttk.Label(a1, text='Step 1: Locate upper arm position.',
-              font=(default_font, default_font_size)).grid(row=0, column=0, sticky=tk.S)
-    return a1
+    sub_title = ttk.Label(a1, text='Step 1: Locate Neck Position.', font=(default_font, default_font_size))
+    sub_title.grid(row=0, column=0, sticky=tk.S)
+    a1_manager = sm.ScreenManager(a1, sub_title, a1_step_options[1], a1_step_options[0], entry_box)
+    return a1_manager
 
 ## add margins to both ends of frame
 ## make tk.Entry two/three lines (height)

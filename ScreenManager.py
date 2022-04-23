@@ -13,38 +13,24 @@ fileDir = os.path.dirname(os.path.realpath(__file__))
 
 # images = list of ImageWidget objects
 class ScreenManager:
-    def __init__(self, master, title, sub_title, imgs, selects, descriptions, entries, mine):
+    def __init__(self, master, sub_title, image_selects, adjustments, text_box):
         self.master = master
-        self.title = title
         self.sub_title = sub_title
-        self.my_image = mine
-        self.images = imgs
-        self.adjustment_checks = selects
-        self.instr_items = descriptions
-        self.entry = entries
+        self.images = image_selects
+        self.adjustment_checks = adjustments
+        self.user_entry = text_box
 
-    def clear_screen(self):
-        for w in self.master.winfo_children():
-            w.grid_remove()
+    def get_tab_master(self):
+        return self.master
 
-    def display_page(self):
+    def get_user_entry(self):
+        return self.user_entry.get()
 
-        self.title.label.grid(row=self.title.row, column=self.title.column, sticky=self.title.stick)
-        self.sub_title.label.grid(row=self.sub_title.row, column=self.sub_title.column, sticky=self.sub_title.stick)
-        self.entry.wid.grid(row=self.entry.row, column=self.entry.column, sticky=self.entry.stick)
+    def get_adjustment_checks(self):
+        return self.adjustment_checks.current(0)
 
-        for img in self.images:
-            img.create_image()
-            img.label.grid(row=img.row, column=img.column, sticky=img.stick)
-
-        for adj in self.adjustment_checks:
-            adj.button.grid(row=adj.row, column=adj.column, sticky=adj.stick, pady=20)
-
-        for d in self.instr_items:
-            d.label.grid(row=d.row, column=d.column, sticky=d.stick, pady=20)
-
-        # self.my_image.recreate_image()
-        # self.my_image.label.grid(row=self.my_image.row, column=self.my_image.column, sticky=self.my_image.stick)
+    def get_image_selection(self):
+        return self.images.current(0)
 
 
 class ComboBoxWidget:
