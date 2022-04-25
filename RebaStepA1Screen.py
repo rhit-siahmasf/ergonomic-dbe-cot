@@ -8,8 +8,9 @@ def create_page(master):
     answer = tk.StringVar()
     default_font = 'Arial'
     text_font_size = 12
-    default_font_size = 18
-    title_font_size = 22
+    num_lines = 3
+    default_font_size = 16
+    title_font_size = 18
     entry_width = 30
     a1 = ttk.Frame(master, width=1000, height=750)
     a1.columnconfigure(0, weight=4)
@@ -24,13 +25,14 @@ def create_page(master):
               font=(default_font, text_font_size)).grid(row=3, column=1, sticky=tk.NW)
     ttk.Label(a1, text='Select the necessary adjustment.',
               font=(default_font, text_font_size)).grid(row=2, column=1, sticky=tk.NW)
-    entry_box = ttk.Entry(a1, width=entry_width, textvariable=answer)
-    entry_box.grid(row=3, column=1, sticky=tk.EW)
+    entry_box = tk.Text(a1, width=entry_width, height=num_lines)
+    entry_box.grid(row=3, column=1, sticky=tk.W)
     ttk.Label(a1, text='A. NECK, TRUNK, AND LEG ANALYSIS',
               font=(default_font, title_font_size)).grid(row=0, column=0, sticky=tk.NSEW)
     a1_step_images = [sm.ImageWidget(a1, './step1a-reba-images/reba-step1a-1.png', 'B', 0, 1, tk.BOTTOM, tk.NSEW),
                       sm.ImageWidget(a1, './step1a-reba-images/reba-step1a-2.png', 'C', 0, 1, tk.BOTTOM, tk.E),
                       sm.ImageWidget(a1, './step1a-reba-images/reba-step1a-3.png', 'A', 0, 1, tk.BOTTOM, tk.W)]
+    ## pass images into screenmanager, have *.Main files call create_image()
     for img_wig in a1_step_images:
         img_wig.create_image()
         img_wig.label.grid(row=img_wig.row, column=img_wig.column, sticky=img_wig.stick)

@@ -4,13 +4,14 @@ import ScreenManager as sm
 
 
 def create_page(master):
-    answer = tk.StringVar()
     option_type = tk.StringVar()
+    answer = tk.StringVar()
     default_font = 'Arial'
     text_font_size = 12
+    num_lines = 3
+    default_font_size = 16
+    title_font_size = 18
     entry_width = 30
-    default_font_size = 18
-    title_font_size = 22
     b1 = ttk.Frame(master, width=1000, height=750)
     b1.columnconfigure(0, weight=4)
     b1.columnconfigure(1, weight=2)
@@ -22,7 +23,7 @@ def create_page(master):
     ttk.Label(b1, text='Explain your adjustment selection. '
                        'Reference the SPECIFIC part of the body.',
               font=(default_font, text_font_size)).grid(row=3, column=1, sticky=tk.NW)
-    entry_box = tk.Entry(b1, width=entry_width, textvariable=answer)
+    entry_box = tk.Text(b1, width=entry_width, height=num_lines)
     entry_box.grid(row=3, column=1, sticky=tk.EW)
     ttk.Label(b1, text='Select the necessary adjustment.',
               font=(default_font, text_font_size)).grid(row=2, column=1, sticky=tk.NW)
