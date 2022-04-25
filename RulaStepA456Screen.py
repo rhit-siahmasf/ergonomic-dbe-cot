@@ -5,9 +5,13 @@ import ScreenManager as sm
 
 def create_page(master):
     option_type = tk.StringVar()
+    answer = tk.StringVar()
     default_font = 'Arial'
-    default_font_size = 18
-    title_font_size = 22
+    text_font_size = 12
+    num_lines = 3
+    default_font_size = 16
+    title_font_size = 18
+    entry_width = 30
     a456 = ttk.Frame(master)
     a456.columnconfigure(0, weight=4)
     a456.columnconfigure(1, weight=2)

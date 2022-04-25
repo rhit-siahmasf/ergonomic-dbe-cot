@@ -7,8 +7,10 @@ def create_page(master):
     option_type = tk.StringVar()
     answer = tk.StringVar()
     default_font = 'Arial'
-    default_font_size = 18
-    title_font_size = 22
+    text_font_size = 12
+    num_lines = 3
+    default_font_size = 16
+    title_font_size = 18
     entry_width = 30
     b6 = ttk.Frame(master)
     b6.columnconfigure(0, weight=4)
@@ -18,7 +20,7 @@ def create_page(master):
     b6.rowconfigure(2, weight=2)
     b6.rowconfigure(3, weight=2)
     b6.rowconfigure(4, weight=2)
-    entry_box = tk.Entry(b6, width=entry_width, textvariable=answer)
+    entry_box = tk.Text(b6, width=entry_width, height=num_lines)
     entry_box.grid(row=3, column=1, sticky=tk.EW)
     tk.Label(b6, text='B. NECK, TRUNK, AND LEG ANALYSIS',
              font=(default_font, title_font_size)).grid(row=0, column=0, sticky=tk.NW)

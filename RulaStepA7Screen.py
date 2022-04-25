@@ -8,8 +8,9 @@ def create_page(master):
     answer = tk.StringVar()
     default_font = 'Arial'
     text_font_size = 12
-    default_font_size = 18
-    title_font_size = 22
+    num_lines = 3
+    default_font_size = 16
+    title_font_size = 18
     entry_width = 30
     a7 = ttk.Frame(master)
     a7.columnconfigure(0, weight=4)
@@ -19,7 +20,7 @@ def create_page(master):
     a7.rowconfigure(2, weight=2)
     a7.rowconfigure(3, weight=2)
     a7.rowconfigure(4, weight=2)
-    entry_box = tk.Entry(a7, width=entry_width, textvariable=answer)
+    entry_box = tk.Text(a7, width=entry_width, height=num_lines)
     entry_box.grid(row=3, column=1, sticky=tk.EW)
     tk.Label(a7, text='A. ARM & WRIST ANALYSIS',
              font=(default_font, title_font_size)).grid(row=0, column=0, sticky=tk.NW)

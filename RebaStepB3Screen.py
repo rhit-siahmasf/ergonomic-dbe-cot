@@ -8,8 +8,9 @@ def create_page(master):
     answer = tk.StringVar()
     default_font = 'Arial'
     text_font_size = 12
-    default_font_size = 18
-    title_font_size = 22
+    num_lines = 3
+    default_font_size = 16
+    title_font_size = 18
     entry_width = 30
     b3 = ttk.Frame(master, width=1000, height=750)
     b3.columnconfigure(0, weight=4)
@@ -24,7 +25,7 @@ def create_page(master):
               font=(default_font, text_font_size)).grid(row=3, column=1, sticky=tk.NW)
     ttk.Label(b3, text='Select the necessary adjustment.',
               font=(default_font, text_font_size)).grid(row=2, column=1, sticky=tk.NW)
-    entry_box = ttk.Entry(b3, width=entry_width, textvariable=answer)
+    entry_box = tk.Text(b3, width=entry_width, height=num_lines)
     entry_box.grid(row=3, column=1, sticky=tk.EW)
     ttk.Label(b3, text='B. ARM & WRIST ANALYSIS',
               font=(default_font, title_font_size)).grid(row=0, column=0, sticky=tk.NSEW)

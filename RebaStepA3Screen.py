@@ -8,8 +8,9 @@ def create_page(master):
     answer = tk.StringVar()
     default_font = 'Arial'
     text_font_size = 12
-    default_font_size = 18
-    title_font_size = 22
+    num_lines = 3
+    default_font_size = 16
+    title_font_size = 18
     entry_width = 30
     a3 = ttk.Frame(master, width=1000, height=750)
     a3.columnconfigure(0, weight=4)
@@ -24,8 +25,8 @@ def create_page(master):
               font=(default_font, text_font_size)).grid(row=3, column=1, sticky=tk.NW)
     ttk.Label(a3, text='Select the necessary adjustment.',
               font=(default_font, text_font_size)).grid(row=2, column=1, sticky=tk.NW)
-    entry_box = ttk.Entry(a3, width=entry_width, textvariable=answer)
-    entry_box.grid(row=3, column=1, sticky=tk.EW)
+    entry_box = tk.Text(a3, width=entry_width, height=num_lines)
+    entry_box.grid(row=3, column=1, sticky=tk.W)
     ttk.Label(a3, text='A. NECK, TRUNK, AND LEG ANALYSIS',
               font=(default_font, title_font_size)).grid(row=0, column=0, sticky=tk.NSEW)
     a1_step_images = [sm.ImageWidget(a3, './step3a-reba-images/reba-step3a-1.png', 'B', 0, 1, tk.BOTTOM, tk.NSEW),

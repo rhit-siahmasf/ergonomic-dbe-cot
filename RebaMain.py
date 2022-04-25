@@ -67,7 +67,7 @@ tk.Button(screen_a3, text='BACK', bg='#8B2323',
                            tabControl.select(screen_a2)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
 tk.Button(screen_a45, text='NEXT', bg='#458B00',
           command=lambda: [tabControl.hide(screen_a45),
-                           tabControl.select(screen_a3)]).grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+                           tabControl.select(screen_b1)]).grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
 tk.Button(screen_a45, text='BACK', bg='#8B2323',
           command=lambda: [tabControl.hide(screen_a45),
                            tabControl.select(screen_a3)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
