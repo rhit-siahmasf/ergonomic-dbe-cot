@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-import ScreenManager as sm
 import os
 from PIL import ImageTk, Image
 

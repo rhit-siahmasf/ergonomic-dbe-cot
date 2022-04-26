@@ -1,9 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import ScreenManager as sm
-
 import StartUpScreen as sus
-import AssessmentSelectorScreen as select
 import ImageSelectorScreen as image_select
 import FinalScreen as fs
 
@@ -11,11 +9,7 @@ root = tk.Tk()
 root.title("RULA / REBA Assessment")
 tabControl = ttk.Notebook(root, width=1000, height=700)
 
-## create a ttk.Frame for each screen
-start_up_screen = sus.create_page(tabControl)
-selector_screen = select.create_page(tabControl)
-image_screen = image_select.create_page(tabControl)
-
+select = sm.ScreenManager('Select an option to continue.', None, None, None, ['RULA', 'REBA', 'Open Existing...'])
 a1 = sm.ScreenManager('A. ARM & WRIST ANALYSIS', 'Step 1: Locate upper arm position.',
                       ['./step1a-rula -images/rula-step1a-1.png', './step1a-rula -images/rula-step1a-2.png',
                        './step1a-rula -images/rula-step1a-3.png', './step1a-rula -images/rula-step1a-4.png',
@@ -54,6 +48,9 @@ b6 = sm.ScreenManager('B. NECK, TRUNK, AND LEG ANALYSIS', 'Step 14: Add Force / 
                        'If load 4.4 to 22 lbs (static or repeated): (+2)',
                        'If more than 22lbs OR repeated or shocks: (+3)'], None)
 
+start_up_screen = sus.create_page(tabControl)
+selector_screen = select.create_page(tabControl, False)
+image_screen = image_select.create_page(tabControl)
 screen_a1 = a1.create_page(tabControl, True)
 screen_a2 = a2.create_page(tabControl, True)
 screen_a3 = a3.create_page(tabControl, True)
