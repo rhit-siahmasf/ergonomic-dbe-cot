@@ -41,7 +41,7 @@ def create_page(master):
         combo.button.grid(row=combo.row, column=combo.column, sticky=combo.stick)
     sub_title = ttk.Label(a3, text='Step 3: Legs', font=(default_font, default_font_size))
     sub_title.grid(row=0, column=0, sticky=tk.S)
-    a3_manager = sm.ScreenManager(a3, sub_title, a1_step_options[0], None, entry_box)
+    a3_manager = sm.ScreenManager(a3, sub_title, a1_step_images, a1_step_options[0], None, entry_box)
     return a3_manager
 
 ## add margins to both ends of frame
