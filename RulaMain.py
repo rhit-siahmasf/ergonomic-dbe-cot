@@ -5,8 +5,6 @@ import ScreenManager as sm
 import StartUpScreen as sus
 import AssessmentSelectorScreen as select
 import ImageSelectorScreen as image_select
-
-import RulaStepB6Screen as b6
 import FinalScreen as fs
 
 root = tk.Tk()
