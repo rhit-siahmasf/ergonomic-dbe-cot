@@ -108,13 +108,16 @@ class ScreenManager:
         return self.master
 
     def get_user_entry(self):
-        return self.entry_box.get()
+        return self.entry_box.get('1.0', 'end')
 
     def get_adjustment_checks(self):
-        return self.adjustment_checks.current(0)
+        return self.adjustment_checks.get()
 
     def get_image_selection(self):
-        return self.image_selects.current(0)
+        return self.image_selects.get()
+
+    def get_subtitle(self):
+        return self.sub_title
 
 
 class ImageWidget:

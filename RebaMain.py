@@ -71,44 +71,63 @@ tk.Button(selector_screen, text='NEXT', bg='#458B00',
           command=lambda: [tabControl.hide(selector_screen),
                            tabControl.select(screen_a1)]).grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
 tk.Button(screen_a1, text='NEXT', bg='#458B00',
-          command=lambda: [tabControl.hide(screen_a1),
-                           tabControl.select(screen_a2)]).grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+          command=lambda: [get_all_info(a1), tabControl.hide(screen_a1), tabControl.select(screen_a2)])\
+    .grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
 tk.Button(screen_a1, text='BACK', bg='#8B2323',
           command=lambda: [tabControl.hide(screen_a1),
                            tabControl.select(selector_screen)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
 tk.Button(screen_a2, text='NEXT', bg='#458B00',
-          command=lambda: [tabControl.hide(screen_a2),
-                           tabControl.select(screen_a3)]).grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+          command=lambda: [get_all_info(a2), tabControl.hide(screen_a2), tabControl.select(screen_a3)])\
+    .grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
 tk.Button(screen_a2, text='BACK', bg='#8B2323',
           command=lambda: [tabControl.hide(screen_a2),
                            tabControl.select(screen_a1)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
 tk.Button(screen_a3, text='NEXT', bg='#458B00',
-          command=lambda: [tabControl.hide(screen_a3),
-                           tabControl.select(screen_a45)]).grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+          command=lambda: [get_all_info(a3), tabControl.hide(screen_a3), tabControl.select(screen_a45)])\
+    .grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
 tk.Button(screen_a3, text='BACK', bg='#8B2323',
           command=lambda: [tabControl.hide(screen_a3),
                            tabControl.select(screen_a2)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
 tk.Button(screen_a45, text='NEXT', bg='#458B00',
-          command=lambda: [tabControl.hide(screen_a45),
-                           tabControl.select(screen_b1)]).grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+          command=lambda: [get_all_info(a45), tabControl.hide(screen_a45), tabControl.select(screen_b1)])\
+    .grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
 tk.Button(screen_a45, text='BACK', bg='#8B2323',
           command=lambda: [tabControl.hide(screen_a45),
                            tabControl.select(screen_a3)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
 tk.Button(screen_b1, text='NEXT', bg='#458B00',
-          command=lambda: [tabControl.hide(screen_b1),
-                           tabControl.select(screen_b2)]).grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+          command=lambda: [get_all_info(b1), tabControl.hide(screen_b1), tabControl.select(screen_b2)])\
+    .grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
 tk.Button(screen_b1, text='BACK', bg='#8B2323',
           command=lambda: [tabControl.hide(screen_b1),
                            tabControl.select(screen_a45)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
 tk.Button(screen_b2, text='NEXT', bg='#458B00',
-          command=lambda: [tabControl.hide(screen_b2),
-                           tabControl.select(screen_b3)]).grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+          command=lambda: [get_all_info(b2), tabControl.hide(screen_b2), tabControl.select(screen_b3)])\
+    .grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
 tk.Button(screen_b2, text='BACK', bg='#8B2323',
           command=lambda: [tabControl.hide(screen_b2),
                            tabControl.select(screen_b1)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
 tk.Button(screen_b3, text='BACK', bg='#8B2323',
           command=lambda: [tabControl.hide(screen_b3),
                            tabControl.select(screen_b2)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
+
+
+def get_all_info(screen_manager):
+    get_curr_img(screen_manager)
+    get_curr_adj(screen_manager)
+    get_text_entry(screen_manager)
+
+
+def get_curr_img(screen_manager):
+    print(screen_manager.get_subtitle() + " " + screen_manager.get_image_selection())
+
+
+def get_curr_adj(screen_manager):
+    print(screen_manager.get_subtitle() + " " + screen_manager.get_adjustment_checks())
+
+
+def get_text_entry(screen_manager):
+    print(screen_manager.get_subtitle() + " " + screen_manager.get_user_entry())
+
 
 tabControl.pack()
 root.mainloop()
