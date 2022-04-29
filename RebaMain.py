@@ -10,15 +10,10 @@ tabControl = ttk.Notebook(root, width=1000, height=700)
 
 select = sm.ScreenManager('Select an option to continue.', None, None, None, ['RULA', 'REBA', 'Open Existing...'])
 a1 = sm.ScreenManager('A. NECK, TRUNK, AND LEG ANALYSIS', 'Step 1: Locate Neck Position.',
-                      ['./step1a-reba-images/reba-step1a-1.png', './step1a-reba-images/reba-step1a-2.png',
-                       './step1a-reba-images/reba-step1a-3.png'], ['A', 'B', 'C'],
                       [['step1a-reba-images', 'reba-step1a-1.png'], ['step1a-reba-images', 'reba-step1a-2.png'],
                        ['step1a-reba-images', 'reba-step1a-3.png']], ['A', 'B', 'C'],
                       ['If neck is twisted: (+1)', 'If neck is side bending: (+1)'])
 a2 = sm.ScreenManager('A. NECK, TRUNK, AND LEG ANALYSIS', 'Step 2: Locate trunk position.',
-                      ['./step2a-reba-images/reba-step2a-1.png', './step2a-reba-images/reba-step2a-2.png',
-                       './step2a-reba-images/reba-step2a-3.png', './step2a-reba-images/reba-step2a-4.png',
-                       './step2a-reba-images/reba-step2a-5.png'], ['A', 'B', 'C', 'D', 'E'],
                       [['step2a-reba-images', 'reba-step2a-1.png'], ['step2a-reba-images', 'reba-step2a-2.png'],
                        ['step2a-reba-images', 'reba-step2a-3.png'], ['step2a-reba-images', 'reba-step2a-4.png'],
                        ['step2a-reba-images', 'reba-step2a-5.png']], ['A', 'B', 'C', 'D', 'E'],
@@ -35,10 +30,6 @@ b1 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 7: Locate Upper Arm Posit
                       [['step7b-reba-images', 'reba-step7b-1.png'], ['step7b-reba-images', 'reba-step7b-2.png'],
                        ['step7b-reba-images', 'reba-step7b-3.png'], ['step7b-reba-images', 'reba-step7b-4.png'],
                        ['step7b-reba-images', 'reba-step7b-5.png']], ['A', 'B', 'C', 'D', 'E'],
-b1 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 7: Locate Upper Arm Position.',
-                      ['./step7b-reba-images/reba-step7b-1.png', './step7b-reba-images/reba-step7b-2.png',
-                       './step7b-reba-images/reba-step7b-3.png', './step7b-reba-images/reba-step7b-4.png',
-                       './step7b-reba-images/reba-step7b-5.png'], ['A', 'B', 'C', 'D', 'E'],
                       ['If shoulder raised: (+1)', 'If upper arm is abducted: (+1)',
                        'If arm is supported or person is leaning: (-1)'])
 b2 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 8: Locate Lower Arm Position.',
@@ -48,9 +39,6 @@ b2 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 8: Locate Lower Arm Posit
 b3 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 9: Locate Wrist Position.',
                       [['step8b-reba-images', 'reba-step8b-1.png'], ['step8b-reba-images', 'reba-step8b-2.png']],
                       ['A', 'B'], ['If wrist is bent from midline or twisted (+1)'])
-b3 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 9: Locate Wrist Position.',
-                      ['./step8b-reba-images/reba-step8b-1.png', './step8b-reba-images/reba-step8b-2.png'], ['A', 'B'],
-                      ['If wrist is bent from midline or twisted (+1)'])
 b45 = sm.ScreenManager('B. ARM & WRIST ANALYSIS',
                        ['Step 10: Look Up Posture Score in Table B:', 'Step 11: Add Coupling Score'],
                        None, None, ['Well fitting handle and mid-range power grip (good +0)',
@@ -63,7 +51,7 @@ b6 = sm.ScreenManager('B.ARM & WRIST ANALYSIS', 'Step 13: Activity Score', None,
                        'Action causes rapid large range changes in posture or unstable base (+1)'])
 
 # create a ttk.Frame for each screen
-selector_screen = select.create_page(tabControl)
+selector_screen = select.create_page(tabControl, True)
 start_up_screen = sus.create_page(tabControl)
 selector_screen = select.create_page(tabControl, False)
 image_screen = image_select.create_page(tabControl)
@@ -155,14 +143,14 @@ tk.Button(screen_b2, text='BACK', bg='#8B2323',
           command=lambda: [tabControl.hide(screen_b2),
                            tabControl.select(screen_b1)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
 tk.Button(screen_b3, text='NEXT', bg='#458B00',
-          command=lambda: [tabControl.hide(screen_b3),
-                           tabControl.select(screen_b45)]).grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+          command=lambda: [get_all_info(b3), tabControl.hide(screen_b3), tabControl.select(screen_b45)])\
+    .grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
 tk.Button(screen_b3, text='BACK', bg='#8B2323',
           command=lambda: [tabControl.hide(screen_b3),
                            tabControl.select(screen_b2)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
 tk.Button(screen_b45, text='NEXT', bg='#458B00',
-          command=lambda: [tabControl.hide(screen_b45),
-                           tabControl.select(screen_b6)]).grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+          command=lambda: [get_all_info(b45), tabControl.hide(screen_b45), tabControl.select(screen_b6)])\
+    .grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
 tk.Button(screen_b45, text='BACK', bg='#8B2323',
           command=lambda: [tabControl.hide(screen_b45),
                            tabControl.select(screen_b6)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
