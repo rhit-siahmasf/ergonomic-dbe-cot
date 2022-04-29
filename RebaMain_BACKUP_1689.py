@@ -10,15 +10,10 @@ tabControl = ttk.Notebook(root, width=1000, height=700)
 
 select = sm.ScreenManager('Select an option to continue.', None, None, None, ['RULA', 'REBA', 'Open Existing...'])
 a1 = sm.ScreenManager('A. NECK, TRUNK, AND LEG ANALYSIS', 'Step 1: Locate Neck Position.',
-                      ['./step1a-reba-images/reba-step1a-1.png', './step1a-reba-images/reba-step1a-2.png',
-                       './step1a-reba-images/reba-step1a-3.png'], ['A', 'B', 'C'],
                       [['step1a-reba-images', 'reba-step1a-1.png'], ['step1a-reba-images', 'reba-step1a-2.png'],
                        ['step1a-reba-images', 'reba-step1a-3.png']], ['A', 'B', 'C'],
                       ['If neck is twisted: (+1)', 'If neck is side bending: (+1)'])
 a2 = sm.ScreenManager('A. NECK, TRUNK, AND LEG ANALYSIS', 'Step 2: Locate trunk position.',
-                      ['./step2a-reba-images/reba-step2a-1.png', './step2a-reba-images/reba-step2a-2.png',
-                       './step2a-reba-images/reba-step2a-3.png', './step2a-reba-images/reba-step2a-4.png',
-                       './step2a-reba-images/reba-step2a-5.png'], ['A', 'B', 'C', 'D', 'E'],
                       [['step2a-reba-images', 'reba-step2a-1.png'], ['step2a-reba-images', 'reba-step2a-2.png'],
                        ['step2a-reba-images', 'reba-step2a-3.png'], ['step2a-reba-images', 'reba-step2a-4.png'],
                        ['step2a-reba-images', 'reba-step2a-5.png']], ['A', 'B', 'C', 'D', 'E'],
@@ -32,13 +27,15 @@ a45 = sm.ScreenManager('A. NECK, TRUNK, AND LEG ANALYSIS',
                        ['If load < 11lbs: (+0)', 'If load 11 to 22lbs: (+1)',
                         'If load > 22lbs: (+2)', 'If shock or rapid build up of force: (+1)'])
 b1 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 7: Locate Upper Arm Position.',
+<<<<<<< HEAD
                       [['step7b-reba-images', 'reba-step7b-1.png'], ['step7b-reba-images', 'reba-step7b-2.png'],
                        ['step7b-reba-images', 'reba-step7b-3.png'], ['step7b-reba-images', 'reba-step7b-4.png'],
                        ['step7b-reba-images', 'reba-step7b-5.png']], ['A', 'B', 'C', 'D', 'E'],
-b1 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 7: Locate Upper Arm Position.',
+=======
                       ['./step7b-reba-images/reba-step7b-1.png', './step7b-reba-images/reba-step7b-2.png',
                        './step7b-reba-images/reba-step7b-3.png', './step7b-reba-images/reba-step7b-4.png',
                        './step7b-reba-images/reba-step7b-5.png'], ['A', 'B', 'C', 'D', 'E'],
+>>>>>>> 6fbf87c15e85b91cdb1b0471928021874ec31966
                       ['If shoulder raised: (+1)', 'If upper arm is abducted: (+1)',
                        'If arm is supported or person is leaning: (-1)'])
 b2 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 8: Locate Lower Arm Position.',
@@ -46,9 +43,10 @@ b2 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 8: Locate Lower Arm Posit
                        ['step1a-reba-images', 'reba-step1a-3.png']], ['A', 'B', 'C'],
                       ['If neck is twisted: (+1)', 'If neck is side bending: (+1)'])
 b3 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 9: Locate Wrist Position.',
+<<<<<<< HEAD
                       [['step8b-reba-images', 'reba-step8b-1.png'], ['step8b-reba-images', 'reba-step8b-2.png']],
                       ['A', 'B'], ['If wrist is bent from midline or twisted (+1)'])
-b3 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 9: Locate Wrist Position.',
+=======
                       ['./step8b-reba-images/reba-step8b-1.png', './step8b-reba-images/reba-step8b-2.png'], ['A', 'B'],
                       ['If wrist is bent from midline or twisted (+1)'])
 b45 = sm.ScreenManager('B. ARM & WRIST ANALYSIS',
@@ -61,9 +59,9 @@ b6 = sm.ScreenManager('B.ARM & WRIST ANALYSIS', 'Step 13: Activity Score', None,
                       ['One or more body parts are held for longer than one ; static (+1)',
                        'Repeated small range actions; more than 4x per minutes (+1)',
                        'Action causes rapid large range changes in posture or unstable base (+1)'])
+>>>>>>> 6fbf87c15e85b91cdb1b0471928021874ec31966
 
 # create a ttk.Frame for each screen
-selector_screen = select.create_page(tabControl)
 start_up_screen = sus.create_page(tabControl)
 selector_screen = select.create_page(tabControl, False)
 image_screen = image_select.create_page(tabControl)
