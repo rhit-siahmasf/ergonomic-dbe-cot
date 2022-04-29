@@ -6,6 +6,7 @@ import tkinter as tk
 from tkinter import ttk
 from PIL import ImageTk, Image
 
+
 # images = list of ImageWidget objects
 
 
@@ -76,27 +77,28 @@ class ScreenManager:
 
         return self.master
 
-            # images
-            # if bool(self.images) and bool(self.image_selects):
-            #     index = 0
-            #     row = 0
-            #     order = 0
-            #     stickies = [tk.E, tk.NSEW, tk.W]
-            #     for img_wid in self.images:
-            #         temp_i = ImageWidget(self.master, img_wid, self.image_selects[index])
-            #         #           IDEA FOR IMAGE CORRECTION OF DISPLAY
-            #         # pass images into screen manager, have *.Main files call create_image()
-            #         temp_i.create_image()
-            #         temp_i.label.grid(row=row, column=1, sticky=stickies[order])
-            #         if index > 1:
-            #             row = 1
-            #         else:
-            #             row = 0
-            #         if order > 1:
-            #             order = 0
-            #         else:
-            #             order += 1
-            #         index += 1
+        # images
+        # if bool(self.images) and bool(self.image_selects):
+        #     index = 0
+        #     row = 0
+        #     order = 0
+        #     stickies = [tk.E, tk.NSEW, tk.W]
+        #     for img_wid in self.images:
+        #         temp_i = ImageWidget(self.master, img_wid, self.image_selects[index])
+        #         #           IDEA FOR IMAGE CORRECTION OF DISPLAY
+        #         # pass images into screen manager, have *.Main files call create_image()
+        #         temp_i.create_image()
+        #         temp_i.label.grid(row=row, column=1, sticky=stickies[order])
+        #         if index > 1:
+        #             row = 1
+        #         else:
+        #             row = 0
+        #         if order > 1:
+        #             order = 0
+        #         else:
+        #             order += 1
+        #         index += 1
+
     def regular_page(self):
         ttk.Label(self.master, text='Explain your adjustment selection. Reference the SPECIFIC part of the body.',
                   font=(ScreenManager.default_font, ScreenManager.text_font_size)).grid(row=3, column=1,
@@ -175,7 +177,7 @@ class ImageWidget:
         self.path = img
         self.txt = label
         self.master = master
-        #self.curr_path = self.get_my_path()
+        # self.curr_path = self.get_my_path()
 
     def get_my_path(self):
         try:
@@ -183,7 +185,7 @@ class ImageWidget:
         except NameError:
             filename = inspect.getsourcefile()
         cm_path = os.path.realpath(filename)
-        sp_path = functools.reduce(lambda x, f: f(x), [os.path.dirname]*1, cm_path)
+        sp_path = functools.reduce(lambda x, f: f(x), [os.path.dirname] * 1, cm_path)
         return os.path.join(sp_path, self.path[0], self.path[1])
 
     def create_image(self):
@@ -197,9 +199,3 @@ class ImageWidget:
         pic = pic.resize((200, 200), Image.ANTIALIAS)
         self.image = ImageTk.PhotoImage(pic)
         self.label = tk.Label(self.master, image=self.image)
-
-
-
-
-
-
