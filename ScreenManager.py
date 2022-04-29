@@ -7,6 +7,8 @@ fileDir = os.path.dirname(os.path.realpath(__file__))
 
 
 # images = list of ImageWidget objects
+
+
 class ScreenManager:
     default_font = 'Arial'
     text_font_size = 14
@@ -42,17 +44,18 @@ class ScreenManager:
         # screen manager items
         if bool(self.title):
             tk.Label(self.master, text=self.title,
-                     font=(ScreenManager.default_font, ScreenManager.title_font_size))\
+                     font=(ScreenManager.default_font, ScreenManager.title_font_size)) \
                 .grid(row=0, column=0, sticky=tk.NSEW)
 
         if bool(self.sub_title) and type(self.sub_title) == list:
             row = 0
             for sub in self.sub_title:
-                tk.Label(self.master, text=sub, font=(ScreenManager.default_font, ScreenManager.default_font_size))\
+                tk.Label(self.master, text=sub, font=(ScreenManager.default_font, ScreenManager.default_font_size)) \
                     .grid(row=row, column=0, sticky=tk.S, padx=25)
                 row += 1
         else:
-            tk.Label(self.master, text=self.sub_title, font=(ScreenManager.default_font, ScreenManager.default_font_size))\
+            tk.Label(self.master, text=self.sub_title,
+                     font=(ScreenManager.default_font, ScreenManager.default_font_size)) \
                 .grid(row=0, column=0, sticky=tk.S)
 
         if is_regular_page:
@@ -133,4 +136,3 @@ class ImageWidget:
         pic = pic.resize((200, 200), Image.ANTIALIAS)
         self.image = ImageTk.PhotoImage(pic)
         self.label = tk.Label(self.master, image=self.image)
-
