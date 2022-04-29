@@ -11,18 +11,18 @@ tabControl = ttk.Notebook(root, width=1000, height=700)
 
 select = sm.ScreenManager('Select an option to continue.', None, None, None, ['RULA', 'REBA', 'Open Existing...'])
 a1 = sm.ScreenManager('A. ARM & WRIST ANALYSIS', 'Step 1: Locate upper arm position.',
-                      ['./step1a-rula -images/rula-step1a-1.png', './step1a-rula -images/rula-step1a-2.png',
-                       './step1a-rula -images/rula-step1a-3.png', './step1a-rula -images/rula-step1a-4.png',
-                       './step1a-rula -images/rula-step1a-5.png'], ['A', 'B', 'C', 'D', 'E'],
+                      [['step1a-rula -images', 'rula-step1a-1.png'], ['step1a-rula -images', 'rula-step1a-2.png'],
+                       ['step1a-rula -images', 'rula-step1a-3.png'], ['step1a-rula -images', 'rula-step1a-4.png'],
+                       ['step1a-rula -images', 'rula-step1a-5.png']], ['A', 'B', 'C', 'D', 'E'],
                       ['Shoulder raised? (+1)', 'Upper arm abducted? (+1)',
                        'Arm supported? (i.e. person leaning?) (-1)'])
 a2 = sm.ScreenManager('A. ARM & WRIST ANALYSIS', 'Step 2: Locate lower arm position.',
-                      ['./step2a-rula-images/rula-step2a-1.png', './step2a-rula-images/rula-step2a-2.png',
-                       './step2a-rula-images/rula-step2a-3.png'], ['A', 'B', 'C'],
+                      [['step2a-rula-images', 'rula-step2a-1.png'], ['step2a-rula-images', 'rula-step2a-2.png'],
+                       ['step2a-rula-images', 'rula-step2a-3.png']], ['A', 'B', 'C'],
                       ['Adjust if arm is working across midline or outside of body: (+1)'])
 a3 = sm.ScreenManager('A. ARM & WRIST ANALYSIS', 'Step 3: Locate wrist position.',
-                      ['./step3a-rula-images/rula-step3a-1.png', './step3a-rula-images/rula-step3a-2.png',
-                       './step3a-rula-images/rula-step3a-3.png'], ['A', 'B', 'C'], None)
+                      [['step3a-rula-images', 'rula-step3a-1.png'], ['step3a-rula-images', 'rula-step3a-2.png'],
+                       ['step3a-rula-images', 'rula-step3a-3.png']], ['A', 'B', 'C'], None)
 a456 = sm.ScreenManager('A. ARM & WRIST ANALYSIS',
                         ['Step 4: Wrist twist.', 'Step 5: Score from table A', 'Step 6: Muscle Use'], None,
                         ['If wrist is twisted in mid-range: (+1)', 'If wrist is at or near end of range: (+2)'],
@@ -32,12 +32,12 @@ a7 = sm.ScreenManager('A. ARM & WRIST ANALYSIS', 'Step 7: Add Force / Load.', No
                        'If load 4.4 to 22 lbs (static or repeated): (+2)',
                        'If more than 22lbs OR repeated or shocks: (+3)'], None)
 b1 = sm.ScreenManager('B. NECK, TRUNK, AND LEG ANALYSIS', 'Step 9: Locate Neck Position.',
-                      ['./step9b-rula-images/rula-step9b-1.png', './step9b-rula-images/rula-step9b-2.png',
-                       './step9b-rula-images/rula-step9b-3.png', './step9b-rula-images/rula-step9b-4.png'],
+                      [['step9b-rula-images', 'rula-step9b-1.png'], ['step9b-rula-images', 'rula-step9b-2.png'],
+                       ['step9b-rula-images', 'rula-step9b-3.png'], ['step9b-rula-images', 'rula-step9b-4.png']],
                       ['A', 'B', 'C', 'D'], ['Adjust if neck is twisted: (+1)', 'Adjust if neck is side bending: (+1)'])
 b2 = sm.ScreenManager('B. NECK, TRUNK, AND LEG ANALYSIS', 'Step 10: Locate Trunk Position.',
-                      ['./step10b-rula-images/rula-step10b-1.png', './step10b-rula-images/rula-step10b-2.png',
-                       './step10b-rula-images/rula-step10b-3.png', './step10b-rula-images/rula-step10b-4.png'],
+                      [['step10b-rula-images', 'rula-step10b-1.png'], ['step10b-rula-images', 'rula-step10b-2.png'],
+                       ['step10b-rula-images', 'rula-step10b-3.png'], ['step10b-rula-images', 'rula-step10b-4.png']],
                       ['A', 'B', 'C', 'D'], ['Adjust if trunk is twisted: (+1)', 'Adjust if trunk is side bending: (+1)'])
 b345 = sm.ScreenManager('B. NECK, TRUNK, AND LEG ANALYSIS',
                         ['Step 11: Legs.', 'Step 12: Posture Score from Table.', 'Step 13: Add Muscle Score.'],
