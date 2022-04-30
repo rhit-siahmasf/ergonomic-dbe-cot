@@ -72,7 +72,7 @@ class ScreenManager:
 
         if is_regular_page:
             self.regular_page()
-        else:
+        elif self.adjustment_checks is not None:
             self.special_page()
 
         return self.master
