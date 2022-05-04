@@ -78,26 +78,13 @@ class ScreenManager:
         return self.master
 
         # images
-        # if bool(self.images) and bool(self.image_selects):
-        #     index = 0
-        #     row = 0
-        #     order = 0
-        #     stickies = [tk.E, tk.NSEW, tk.W]
-        #     for img_wid in self.images:
-        #         temp_i = ImageWidget(self.master, img_wid, self.image_selects[index])
-        #         #           IDEA FOR IMAGE CORRECTION OF DISPLAY
-        #         # pass images into screen manager, have *.Main files call create_image()
-        #         temp_i.create_image()
-        #         temp_i.label.grid(row=row, column=1, sticky=stickies[order])
-        #         if index > 1:
-        #             row = 1
-        #         else:
-        #             row = 0
-        #         if order > 1:
-        #             order = 0
-        #         else:
-        #             order += 1
-        #         index += 1
+        if bool(self.images) and bool(self.image_selects):
+            for img_wid in self.images:
+                temp_i = ImageWidget(self.master, img_wid, self.image_selects[index])
+                #           IDEA FOR IMAGE CORRECTION OF DISPLAY
+                # pass images into screen manager, have *.Main files call create_image()
+                temp_i.create_image()
+                temp_i.label.grid(row=row, column=1, sticky=stickies[order])
 
     def regular_page(self):
         ttk.Label(self.master, text='Explain your adjustment selection. Reference the SPECIFIC part of the body.',
