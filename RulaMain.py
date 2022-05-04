@@ -147,3 +147,4 @@ def get_curr_adj(screen_manager):
 
 def get_text_entry(screen_manager):
     print(screen_manager.get_subtitle() + " " + screen_manager.get_user_entry())
+

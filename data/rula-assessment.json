@@ -1,0 +1,128 @@
+{
+  "A. Arm and Wrist Analysis ": [{
+    "Step 1": {
+      "title": "Step 1: Locate Upper Arm Position:",
+      "images": ["/rula-images/A1.png", "/rula-images/A1-2.png"],
+      "paragraph": [
+        "Step 1a: Adjust...",
+        "If shoulder is raised: +1",
+        "If upper arm is abducted: +1",
+        "If arm is supported or person is leaning: -1"
+      ]
+    },
+    "Step 2": {
+      "title": "Step 2: Locate Lower Arm Position:",
+      "images": ["rula-images/A2.png"],
+      "paragraph": [
+        "Step 2a: Adjust...",
+        "If either arm is working across midline or out to side of body: Add +1"
+      ]
+    },
+    "Step 3": {
+      "title":"Step 3: Locate Wrist Position:",
+      "images": ["/rula-images/A3.png"],
+      "paragraph": [
+        "Step 3a: Adjust...",
+        "If wrist is bent from midline: Add +1"
+      ]
+    },
+    "Step 4": {
+      "title": "Step 4: Wrist Twist:",
+      "images": [],
+      "paragraph": [
+        "If wrist is twisted in mid-range: +1",
+        "If wrist is at or near end of range: +2"
+      ]
+    },
+    "Step 5": {
+      "title": "Step 5: Look-up Posture Score in Table A:",
+      "images": [],
+      "paragraph": ["Using values from steps 1-4 above, locate score in Table A"]
+    },
+    "Step 6": {
+      "title": "Step 6: Add Muscle Use Score",
+      "images": [],
+      "paragraph": [
+        "If posture mainly static (i.e. held>10 minutes)",
+        "Or if action repeated occurs 4X per minute: +1"
+      ]
+    },
+    "Step 7": {
+      "title": "Step 7: Add Force/Load Score:",
+      "images": [],
+      "paragraph": [
+        "If load < .4.4 lbs (intermittent): +0",
+        "If load 4.4 to 22 lbs (intermittent): +1",
+        "If load 4.4 to 22 lbs (static or repeated): +2",
+        "If more than 22 lbs or repeated or shocks: +3,"
+      ]
+    },
+    "Step 8": {
+      "title": "Step 8: Find Row in Table C",
+      "images": [],
+      "paragraph": [
+        "Add values from steps 5-7 to obtain",
+        "Wrist and Arm Score. Find row in Table C."
+      ]
+    }
+  }],
+  "B. Neck, Trunk and Leg Analysis": [{
+    "Step 9": {
+      "title": "Step 9: Locate Neck Position:",
+      "images": ["/rula-images/B1.png", "/rula-images/B1-2.png"],
+      "paragraph": [
+        "Step 9a: Adjust...",
+        "If neck is twisted: +1",
+        "If neck is side bending: +1"
+      ]
+    },
+    "Step 10": {
+      "title": "Step 10: Locate Trunk Position:",
+      "images": ["/rula-images/B2.png", "/rula-images/B2-2.png"],
+      "paragraph": [
+        "Step 10a: Adjust...",
+        "If trunk is twisted: +1",
+        "If trunk is side bending: +1"
+      ]
+    },
+    "Step 11": {
+      "title": "Step 11: Legs:",
+      "images": [],
+      "paragraph": [
+        "If legs and feet are supported: +1",
+        "If not: +2"
+      ]
+    },
+    "Step 12": {
+      "title": "Step 12: Look-up Posture Score in Table B:",
+      "images": [],
+      "paragraph": ["Using values from steps 9-11 above locate score in Table B"]
+    },
+    "Step 13": {
+      "title": "Step 13: Add Muscle Use Score",
+      "images": [],
+      "paragraph": [
+        "If posture mainly static (i.e. held>10 minutes)",
+        "Or if action repeated occurs 4X per minute: +1"
+      ]
+    },
+    "Step 14": {
+      "title": "Step 14: Add Force/Load Score",
+      "images": [],
+      "paragraph": [
+        "If load < .4.4 lbs (intermittent): +0",
+        "If load 4.4 to 22 lbs (intermittent): +1",
+        "If load 4.4 to 22 lbs (static or repeated): +2",
+        "If more than 22 lbs or repeated or shocks: +3"
+      ]
+    },
+    "Step 15": {
+      "title": "Step 15: Find Column in Table C",
+      "images": [],
+      "paragraph": [
+        "Add values from steps 12-14 to obtain",
+        "Neck, Trunk and Leg Score. Find Column in Table C"
+      ]
+    }
+  }]
+}

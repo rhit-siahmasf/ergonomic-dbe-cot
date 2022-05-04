@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-from fpdf import FPDF
-import ScreenManager as sm
+from bs4 import BeautifulSoup as BS
+import json
 
 
 def create_page(master):
@@ -31,3 +31,16 @@ def popup_check():
     no_btn = tk.Button(pop, text='NO', bg='red', command=pop.destroy)
     no_btn.grid(row=1, column=1, sticky=tk.W)
 
+
+def create_assessment_report(images, adjustments, text_boxes):
+    with open('./data/reba-assessment.json') as f:
+        data = json.load(f)
+
+    with open('templates/reba-assessment-report.html') as h:
+        soup = BS(h, 'html.parser')
+        hot_soup = soup.prettify()
+
+    print(hot_soup)
+
+
+create_assessment_report(0, 0, 0)
