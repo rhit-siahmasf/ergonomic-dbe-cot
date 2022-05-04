@@ -1,8 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-
-from reportlab.lib.pagesizes import *
-from reportlab.pdfgen import canvas
+from bs4 import BeautifulSoup as BS
+import json
 
 
 def create_page(master):
@@ -34,23 +33,14 @@ def popup_check():
 
 
 def create_assessment_report(images, adjustments, text_boxes):
-    page = canvas.Canvas("Reba Assessment Report.pdf", pagesize=(A4[1], A4[0]))
-    page.setFont('Times-Roman', 12)
-    spaces = 0
-    x_cord = 30
-    f = open("reba-output.txt", "r")
-    for line in f:
-        if line == '\n':
-            spaces += 1
-        elif spaces > 33:
-            x_cord = 380
-            spaces = 0
-            page.drawString(380, 500 - (spaces*10), line)
-        else:
-            page.drawString(x_cord, 500 - (spaces * 10), line)
-            spaces += 1
-    page.save()
+    with open('./data/reba-assessment.json') as f:
+        data = json.load(f)
+
+    with open('templates/reba-assessment-report.html') as h:
+        soup = BS(h, 'html.parser')
+        hot_soup = soup.prettify()
+
+    print(hot_soup)
 
 
 create_assessment_report(0, 0, 0)
-
