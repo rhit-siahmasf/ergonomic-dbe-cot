@@ -43,4 +43,4 @@ def create_assessment_report(images, adjustments, text_boxes):
     print(hot_soup)
 
 
-create_assessment_report(0, 0, 0)
+# create_assessment_report(0, 0, 0)

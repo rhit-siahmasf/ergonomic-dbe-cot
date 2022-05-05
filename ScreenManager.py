@@ -1,7 +1,4 @@
-import functools
 import os
-import sys
-import inspect
 import tkinter as tk
 from tkinter import ttk
 from PIL import ImageTk, Image
@@ -18,7 +15,7 @@ class ScreenManager:
     entry_width = 30
     num_lines = 3
     default_height = 750
-    default_width = 1000
+    default_width = 1100
 
     def __init__(self, title, sub_title, imgs, image_selects, adjustments):
         self.title = title
@@ -30,18 +27,8 @@ class ScreenManager:
         self.entry_box = None
         self.master = None
 
-    def special_page(self):
-        if bool(self.adjustment_checks):
-            temp = self.adjustment_checks
-            self.adjustment_checks = ttk.Combobox(self.master, width=80, values=temp, state="readonly")
-
-        if not bool(self.sub_title):
-            self.adjustment_checks.grid(row=1, column=0, sticky=tk.N)
-        elif bool(self.sub_title):
-            self.adjustment_checks.grid(row=2, column=0, sticky=tk.N, pady=20)
-
     def create_page(self, master, is_regular_page):
-        self.master = ttk.Frame(master, width=1000, height=750)
+        self.master = ttk.Frame(master, width=ScreenManager.default_width, height=ScreenManager.default_height)
 
         # row / column configurations
         self.master.columnconfigure(0, weight=4)
@@ -77,28 +64,6 @@ class ScreenManager:
 
         return self.master
 
-        # images
-        # if bool(self.images) and bool(self.image_selects):
-        #     index = 0
-        #     row = 0
-        #     order = 0
-        #     stickies = [tk.E, tk.NSEW, tk.W]
-        #     for img_wid in self.images:
-        #         temp_i = ImageWidget(self.master, img_wid, self.image_selects[index])
-        #         #           IDEA FOR IMAGE CORRECTION OF DISPLAY
-        #         # pass images into screen manager, have *.Main files call create_image()
-        #         temp_i.create_image()
-        #         temp_i.label.grid(row=row, column=1, sticky=stickies[order])
-        #         if index > 1:
-        #             row = 1
-        #         else:
-        #             row = 0
-        #         if order > 1:
-        #             order = 0
-        #         else:
-        #             order += 1
-        #         index += 1
-
     def regular_page(self):
         ttk.Label(self.master, text='Explain your adjustment selection. Reference the SPECIFIC part of the body.',
                   font=(ScreenManager.default_font, ScreenManager.text_font_size)).grid(row=3, column=1,
@@ -117,30 +82,40 @@ class ScreenManager:
 
         # images
         if bool(self.images) and bool(self.image_selects):
-            index = 0
-            row = 0
-            order = 0
-            stickies = [tk.E, tk.NSEW, tk.W]
+            fileDir = os.path.dirname(os.path.realpath(__file__))
+            count = 0
             for img_wid in self.images:
-                temp_i = ImageWidget(self.master, img_wid, self.image_selects[index])
-                #           IDEA FOR IMAGE CORRECTION OF DISPLAY
-                # pass images into screen manager, have *.Main files call create_image()
-                temp_i.create_image()
-                temp_i.label.grid(row=row, column=1, sticky=stickies[order])
-                if index > 1:
-                    row = 1
+                absolute = os.path.join(fileDir, img_wid)
+                pic = Image.open(absolute)
+                pic = pic.resize((270, 120), Image.ANTIALIAS)
+                pic = ImageTk.PhotoImage(pic)
+                panel = tk.Label(self.master, image=pic)
+                panel.image = pic
+                if count == 0:
+                    panel.grid(row=0, column=1, sticky=tk.W, ipadx=75)
                 else:
-                    row = 0
-                if order > 1:
-                    order = 0
-                else:
-                    order += 1
-                index += 1
+                    panel.grid(row=0, column=1, sticky=tk.E)
+                count += 1
 
         if bool(self.image_selects):
             temp = self.image_selects
             self.image_selects = ttk.Combobox(self.master, width=40, values=temp, state="readonly")
             self.image_selects.grid(row=2, column=1, sticky=tk.W)
+
+    def special_page(self):
+        if bool(self.adjustment_checks):
+            temp = self.adjustment_checks
+            self.adjustment_checks = ttk.Combobox(self.master, width=80, values=temp, state="readonly")
+
+        if bool(self.image_selects):
+            temp = self.image_selects
+            self.image_selects = ttk.Combobox(self.master, width=40, values=temp, state="readonly")
+            self.image_selects.grid(row=1, column=0, sticky=tk.N)
+
+        if not bool(self.sub_title):
+            self.adjustment_checks.grid(row=1, column=0, sticky=tk.N)
+        elif bool(self.sub_title):
+            self.adjustment_checks.grid(row=2, column=0, sticky=tk.N, pady=20)
 
     def get_tab_master(self):
         return self.master
@@ -169,33 +144,3 @@ class ScreenManager:
         else:
             return ""
 
-
-class ImageWidget:
-    def __init__(self, master, img, label):
-        self.label = None
-        self.image = None
-        self.path = img
-        self.txt = label
-        self.master = master
-        # self.curr_path = self.get_my_path()
-
-    def get_my_path(self):
-        try:
-            filename = __file__
-        except NameError:
-            filename = inspect.getsourcefile()
-        cm_path = os.path.realpath(filename)
-        sp_path = functools.reduce(lambda x, f: f(x), [os.path.dirname] * 1, cm_path)
-        return os.path.join(sp_path, self.path[0], self.path[1])
-
-    def create_image(self):
-        # pic = Image.open(self.curr_path)
-        # pic = pic.resize((150, 150), Image.ANTIALIAS)
-        # self.image = ImageTk.PhotoImage(pic)
-        self.label = tk.Label(self.master, text=self.txt, image=self.image, compound=tk.BOTTOM)
-
-    def recreate_image(self):
-        pic = Image.open(self.path)
-        pic = pic.resize((200, 200), Image.ANTIALIAS)
-        self.image = ImageTk.PhotoImage(pic)
-        self.label = tk.Label(self.master, image=self.image)
