@@ -112,7 +112,7 @@ class ScreenManager:
             self.image_selects = ttk.Combobox(self.master, width=40, values=temp, state="readonly")
             self.image_selects.grid(row=1, column=0, sticky=tk.N)
 
-        if not bool(self.sub_title):
+        if not bool(self.sub_title) and bool(self.adjustment_checks):
             self.adjustment_checks.grid(row=1, column=0, sticky=tk.N)
         elif bool(self.sub_title):
             self.adjustment_checks.grid(row=2, column=0, sticky=tk.N, pady=20)
