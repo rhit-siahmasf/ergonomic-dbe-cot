@@ -6,7 +6,6 @@ from PIL import ImageTk, Image
 
 # images = list of ImageWidget objects
 
-
 class ScreenManager:
     default_font = 'Arial'
     text_font_size = 14

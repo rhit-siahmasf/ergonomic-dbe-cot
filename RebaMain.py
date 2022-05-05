@@ -1,9 +1,13 @@
+import os
 import tkinter as tk
-from tkinter import ttk
 import ScreenManager as sm
+from PIL import ImageTk, Image
 
 
-def start_reba_assessment(tabControl, selector_screen, information):
+def start_reba_assessment(tabControl, selector_screen, information, easel):
+
+    screens = []
+
     a1 = sm.ScreenManager('A. NECK, TRUNK, AND LEG ANALYSIS', 'Step 1: Locate Neck Position.',
                           ['reba-images\\A1.png'], ['A', 'B', 'C'],
                           ['If neck is twisted: (+1)', 'If neck is side bending: (+1)'])
@@ -35,6 +39,16 @@ def start_reba_assessment(tabControl, selector_screen, information):
                           ['One or more body parts are held for longer than one ; static (+1)',
                            'Repeated small range actions; more than 4x per minutes (+1)',
                            'Action causes rapid large range changes in posture or unstable base (+1)'])
+
+    screens.append(a1)
+    screens.append(a2)
+    screens.append(a3)
+    screens.append(a45)
+    screens.append(b1)
+    screens.append(b2)
+    screens.append(b3)
+    screens.append(b45)
+    screens.append(b6)
 
     # create a ttk.Frame for each screen
     screen_a1 = a1.create_page(tabControl, True)
@@ -116,6 +130,11 @@ def start_reba_assessment(tabControl, selector_screen, information):
     tk.Button(screen_b45, text='BACK', bg='#8B2323',
               command=lambda: [tabControl.hide(screen_b45),
                                tabControl.select(screen_b6)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
+
+    for scream in screens:
+        u_photo = tk.Label(scream.get_tab_master(), image=easel)
+        u_photo.image = easel
+        u_photo.grid(row=3, column=0, sticky=tk.W, padx=40)
 
 
 def get_all_info(screen_manager):
