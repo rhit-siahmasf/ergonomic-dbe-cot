@@ -1,7 +1,10 @@
-import os
 import tkinter as tk
 import ScreenManager as sm
-from PIL import ImageTk, Image
+import FinalScreen as fs
+
+text_boxes = []
+adjustment_selections = []
+image_selections = []
 
 
 def start_reba_assessment(tabControl, selector_screen, information, easel):
@@ -60,6 +63,7 @@ def start_reba_assessment(tabControl, selector_screen, information, easel):
     screen_b3 = b3.create_page(tabControl, True)
     screen_b45 = b45.create_page(tabControl, False)
     screen_b6 = b6.create_page(tabControl, False)
+    final = fs.create_page(tabControl)
 
     # add each ttk.Frame to the Notebook
     tabControl.add(screen_a1, text='Step A1')
@@ -71,6 +75,7 @@ def start_reba_assessment(tabControl, selector_screen, information, easel):
     tabControl.add(screen_b3, text='Step B3')
     tabControl.add(screen_b45, text='Step B4 & B5')
     tabControl.add(screen_b6, text='Step B6')
+    tabControl.add(final, text='Final Screen')
 
     tabControl.hide(selector_screen)
     tabControl.hide(screen_a2)
@@ -81,6 +86,7 @@ def start_reba_assessment(tabControl, selector_screen, information, easel):
     tabControl.hide(screen_b3)
     tabControl.hide(screen_b45)
     tabControl.hide(screen_b6)
+    tabControl.hide(final)
 
     tk.Button(screen_a1, text='NEXT', bg='#458B00',
               command=lambda: [get_all_info(a1), tabControl.hide(screen_a1), tabControl.select(screen_a2)])\
@@ -130,6 +136,15 @@ def start_reba_assessment(tabControl, selector_screen, information, easel):
     tk.Button(screen_b45, text='BACK', bg='#8B2323',
               command=lambda: [tabControl.hide(screen_b45),
                                tabControl.select(screen_b6)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
+    tk.Button(screen_b6, text='NEXT', bg='#458B00',
+              command=lambda: [get_all_info(b6), tabControl.hide(screen_b6), tabControl.select(final)]) \
+        .grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+    tk.Button(screen_b6, text='BACK', bg='#8B2323',
+              command=lambda: [tabControl.hide(screen_b6),
+                               tabControl.select(screen_b45)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
+    tk.Button(final, text='Save as PDF', bg='#A7B0AF',
+              command=lambda: fs.create_assessment_report(image_selections, adjustment_selections, text_boxes)) \
+        .grid(row=1, column=0, sticky=tk.W, padx=15, ipadx=15)
 
     for scream in screens:
         u_photo = tk.Label(scream.get_tab_master(), image=easel)
@@ -144,13 +159,20 @@ def get_all_info(screen_manager):
 
 
 def get_curr_img(screen_manager):
+    image_selections.append(screen_manager.get_image_selection())
     print(screen_manager.get_subtitle() + " " + screen_manager.get_image_selection())
 
 
 def get_curr_adj(screen_manager):
+    adjustment_selections.append(screen_manager.get_adjustment_checks())
     print(screen_manager.get_subtitle() + " " + screen_manager.get_adjustment_checks())
 
 
 def get_text_entry(screen_manager):
+    text_boxes.append(screen_manager.get_user_entry())
     print(screen_manager.get_subtitle() + " " + screen_manager.get_user_entry())
+
+
+def get_completed_info():
+    return [image_selections, adjustment_selections, text_boxes]
 

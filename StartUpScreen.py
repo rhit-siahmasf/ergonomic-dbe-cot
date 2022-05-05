@@ -7,9 +7,8 @@ fileDir = os.path.dirname(os.path.realpath(__file__))
 
 
 def create_page(master):
-    student_name = tk.StringVar()
-    task_name = tk.StringVar()
-    date_of_observation = tk.StringVar()
+    global name_entry, task_entry, date
+
     login = ttk.Frame(master, width=1100, height=750)
     login.columnconfigure(0, weight=4)
     login.columnconfigure(1, weight=2)
@@ -19,12 +18,14 @@ def create_page(master):
     login.rowconfigure(3, weight=2)
     login.rowconfigure(4, weight=2)
     tk.Label(login, text='Name of Reviewer: ', font=('Arial', 18)).grid(row=1, column=0, sticky=tk.NW)
-    tk.Entry(login, textvariable=student_name).grid(row=1, column=0, sticky=tk.N)
+    name_entry = tk.Text(login, width=30, height=3)
+    name_entry.grid(row=1, column=0, sticky=tk.N)
     tk.Label(login, text='Task Name: ', font=('Arial', 18)).grid(row=2, column=0, sticky=tk.NW)
-    tk.Entry(login, textvariable=task_name).grid(row=2, column=0, sticky=tk.N)
+    task_entry = tk.Text(login, width=30, height=3)
+    task_entry.grid(row=2, column=0, sticky=tk.N)
     tk.Label(login, text='Date of Assessment: ', font=('Arial', 18)).grid(row=3, column=0, sticky=tk.NW)
-    date = tk.Entry(login, textvariable=date_of_observation)
-    date.insert(0, 'mm/dd/yyyy')
+    date = tk.Text(login, width=30, height=3)
+    date.insert('1.0', 'mm/dd/yyyy')
     date.grid(row=3, column=0, sticky=tk.N)
 
     built = Image.open(os.path.join(fileDir, 'other-images\\depart-of-built.png'))
@@ -50,4 +51,11 @@ def create_page(master):
     rose_btn.grid(row=3, column=1, sticky=tk.N)
 
     return login
+
+
+def get_user_info():
+    info = [name_entry.get('1.0', 'end'),
+            task_entry.get('1.0', 'end'),
+            date.get('1.0', 'end')]
+    return info
 

@@ -1,7 +1,8 @@
-import ScreenManager as sm
-import StartUpScreen as sus
 import RebaMain as rm
 import RulaMain as rum
+import ScreenManager as sm
+import StartUpScreen as sus
+import SelectorScreen as img
 import tkinter as tk
 from tkinter import ttk, filedialog
 from PIL import ImageTk, Image
@@ -14,8 +15,8 @@ tabControl = ttk.Notebook(root, width=1100, height=750)
 select = sm.ScreenManager('Select an option to continue.', None, None, None, ['RULA', 'REBA', 'Open Existing...'])
 
 start_screen = sus.create_page(tabControl)
-img_screen = img.create_page(tabControl)
 screen = select.create_page(tabControl, False)
+img_screen = img.create_page(tabControl)
 
 # adding to Notebook (tab containers)
 tabControl.add(start_screen, text='REBA / RULA Assessment Screen')
@@ -27,13 +28,13 @@ tabControl.hide(img_screen)
 
 
 def upload_image():
-    global img
+    global photo
     filename = filedialog.askopenfilename()
-    img = Image.open(filename)
-    img = img.resize((225, 225), Image.ANTIALIAS)
-    img = ImageTk.PhotoImage(img)
-    easel = tk.Label(img_screen, image=img)
-    easel.image = img
+    photo = Image.open(filename)
+    photo = photo.resize((225, 225), Image.ANTIALIAS)
+    photo = ImageTk.PhotoImage(photo)
+    easel = tk.Label(img_screen, image=photo)
+    easel.image = photo
     easel.grid(row=2, column=0, sticky=tk.W, padx=85)
 
 
@@ -57,11 +58,12 @@ tk.Button(img_screen, text='Upload', bg='#000fff000',
 
 
 def get_assessment_selection():
+    user_info = sus.get_user_info()
     information = select.get_adjustment_checks()
     if information == 'REBA':
-        rm.start_reba_assessment(tabControl, img_screen, information, img)
+        rm.start_reba_assessment(tabControl, img_screen, user_info, photo)
     elif information == 'RULA':
-        rum.start_rula_assessment(tabControl, img_screen, information, img)
+        rum.start_rula_assessment(tabControl, img_screen, user_info, photo)
     else:
         return "Cannot currently upload previous assessments"
 

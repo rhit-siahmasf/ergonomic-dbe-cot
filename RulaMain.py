@@ -1,11 +1,14 @@
-import os
 import tkinter as tk
 import FinalScreen as fs
 import ScreenManager as sm
-from PIL import ImageTk, Image
+
+text_boxes = []
+adjustment_selections = []
+image_selections = []
 
 
-def start_rula_assessment(tabControl, selector_screen, information, easel):
+def start_rula_assessment(tabControl, selector_screen, user_info, easel):
+
     screens = []
 
     a1 = sm.ScreenManager('A. ARM & WRIST ANALYSIS', 'Step 1: Locate upper arm position.',
@@ -138,6 +141,12 @@ def start_rula_assessment(tabControl, selector_screen, information, easel):
     tk.Button(screen_b6, text='BACK', bg='#8B2323',
               command=lambda: [tabControl.hide(screen_b6),
                                tabControl.select(screen_b345)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
+    tk.Button(screen_b6, text='NEXT', bg='#458B00',
+              command=lambda: [get_all_info(b6), tabControl.hide(screen_b6), tabControl.select(screen_final)]).grid(
+        row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+    tk.Button(screen_final, text='Save as PDF', bg='#A7B0AF',
+              command=fs.create_assessment_report(user_info, image_selections, adjustment_selections, text_boxes))\
+        .grid(row=1, column=0, sticky=tk.W, padx=15, ipadx=15)
 
     for scream in screens:
         u_photo = tk.Label(scream.get_tab_master(), image=easel)
@@ -152,12 +161,15 @@ def get_all_info(screen_manager):
 
 
 def get_curr_img(screen_manager):
+    image_selections.append(screen_manager.get_image_selection())
     print(screen_manager.get_subtitle() + " " + screen_manager.get_image_selection())
 
 
 def get_curr_adj(screen_manager):
+    adjustment_selections.append(screen_manager.get_adjustment_checks())
     print(screen_manager.get_subtitle() + " " + screen_manager.get_adjustment_checks())
 
 
 def get_text_entry(screen_manager):
+    text_boxes.append(screen_manager.get_user_entry())
     print(screen_manager.get_subtitle() + " " + screen_manager.get_user_entry())
