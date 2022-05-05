@@ -8,7 +8,7 @@ from PIL import ImageTk, Image
 
 root = tk.Tk()
 root.title("RULA / REBA Assessment")
-tabControl = ttk.Notebook(root, width=1000, height=700)
+tabControl = ttk.Notebook(root, width=1100, height=750)
 
 
 # creating pages
