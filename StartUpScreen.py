@@ -31,16 +31,19 @@ def create_page(master):
     built = built.resize((140, 100), Image.ANTIALIAS)
     final_pic = ImageTk.PhotoImage(built)
     built_btn = tk.Label(login, image=final_pic)
+    built_btn.image = final_pic
 
     coll = Image.open(os.path.join(fileDir, 'other-images\\College-of-tech.png'))
     coll = coll.resize((140, 100), Image.ANTIALIAS)
     final_pic2 = ImageTk.PhotoImage(coll)
     coll_btn = tk.Label(login, image=final_pic2)
+    coll_btn.image = final_pic2
 
     rose = Image.open(os.path.join(fileDir, 'other-images\\rose.png'))
     rose = rose.resize((85, 110), Image.ANTIALIAS)
     final_pic3 = ImageTk.PhotoImage(rose)
     rose_btn = tk.Label(login, image=final_pic3)
+    rose_btn.image = final_pic3
 
     built_btn.grid(row=1, column=1, sticky=tk.N)
     coll_btn.grid(row=2, column=1, sticky=tk.N)
