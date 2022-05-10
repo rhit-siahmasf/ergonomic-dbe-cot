@@ -12,26 +12,26 @@ def start_reba_assessment(tabControl, selector_screen, information, easel):
     screens = []
 
     a1 = sm.ScreenManager('A. NECK, TRUNK, AND LEG ANALYSIS', 'Step 1: Locate Neck Position.',
-                          ['reba-images\\A1.png'], ['A', 'B', 'C'],
+                          ['image_1'], ['A', 'B', 'C'],
                           ['If neck is twisted: (+1)', 'If neck is side bending: (+1)'])
     a2 = sm.ScreenManager('A. NECK, TRUNK, AND LEG ANALYSIS', 'Step 2: Locate trunk position.',
-                          ['reba-images\\A2.png', 'reba-images\\A2-2.png'], ['A', 'B', 'C', 'D', 'E'],
+                          ['image_2', 'image_3'], ['A', 'B', 'C', 'D', 'E'],
                           ['If trunk is twisted: (+1)', 'If trunk is side bending: (+1)'])
     a3 = sm.ScreenManager('A. NECK, TRUNK, AND LEG ANALYSIS', 'Step 3: Legs',
-                          ['reba-images\\A3.png', 'reba-images\\A3-2.png'], ['A', 'B', 'C', 'D'], None)
+                          ['image_4', 'image_5'], ['A', 'B', 'C', 'D'], None)
     a45 = sm.ScreenManager('A. NECK, TRUNK, AND LEG ANALYSIS',
                            ['Step 4: Posture Score in Table A.', 'Step 5: Add Force/Load Score'], None, None,
                            ['If load < 11lbs: (+0)', 'If load 11 to 22lbs: (+1)',
                             'If load > 22lbs: (+2)', 'If shock or rapid build up of force: (+1)'])
     b1 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 7: Locate Upper Arm Position.',
-                          ['reba-images\\B1.png', 'reba-images\\B1-2.png'], ['A', 'B', 'C', 'D', 'E'],
+                          ['image_6', 'image_7'], ['A', 'B', 'C', 'D', 'E'],
                           ['If shoulder raised: (+1)', 'If upper arm is abducted: (+1)',
                            'If arm is supported or person is leaning: (-1)'])
     b2 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 8: Locate Lower Arm Position.',
-                          ['reba-images\\B2.png'], ['A', 'B', 'C'],
+                          ['image_8'], ['A', 'B', 'C'],
                           ['If neck is twisted: (+1)', 'If neck is side bending: (+1)'])
     b3 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 9: Locate Wrist Position.',
-                          ['reba-images\\B3.png'], ['A', 'B'], ['If wrist is bent from midline or twisted (+1)'])
+                          ['image_9'], ['A', 'B'], ['If wrist is bent from midline or twisted (+1)'])
     b45 = sm.ScreenManager('B. ARM & WRIST ANALYSIS',
                            ['Step 10: Look Up Posture Score in Table B:', 'Step 11: Add Coupling Score'],
                            None, None, ['Well fitting handle and mid-range power grip (good +0)',
