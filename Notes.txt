@@ -3,6 +3,16 @@
 # make tk.Entry two/three lines (height)
 # change compound image text bold & size
 
+## change "Select adjustment.." to "Select the appropriate <insert_step_name_here>"
+## Show user at the end of the assessment their inputs, tables, etc.
+## ensure images & ['A', 'B',...] are correct
+## ensure that all dropdowns have a selected value; for optional adjustments, add a "NONE" option
+## add to popup to "Open Existing Assessment..."
+## image should be full width, full height
+
+
+## reference python module with base64 encoding code, reference module in code
+
 Step456 - RULA: ComboxWidgets not displayed properly
 
 2:

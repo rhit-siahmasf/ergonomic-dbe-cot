@@ -31,7 +31,7 @@ def upload_image():
     global photo
     filename = filedialog.askopenfilename()
     photo = Image.open(filename)
-    photo = photo.resize((225, 225), Image.ANTIALIAS)
+    photo = photo.resize((320, 320), Image.ANTIALIAS)
     photo = ImageTk.PhotoImage(photo)
     easel = tk.Label(img_screen, image=photo)
     easel.image = photo
