@@ -29,8 +29,21 @@ def popup_check():
     no_btn = tk.Button(pop, text='NO', bg='red', command=pop.destroy)
     no_btn.grid(row=1, column=1, sticky=tk.W)
 
+# [user_input, image_selections, adjustment_selections, text_boxes]
 
-def create_assessment_report(user_info, images, adjustments, text_boxes):
+
+def create_assessment_report(all_user_info):
+    user_input = all_user_info[0]
+    image_selections = all_user_info[1]
+    adjustment_selections = all_user_info[2]
+    text_boxes = all_user_info[3]
+
+    name = user_input[0]
+    task_name = user_input[1]
+    date = user_input[2]
+
+
+
     with open('./data/reba-assessment.json') as f:
         data = json.load(f)
 
@@ -42,10 +55,6 @@ def create_assessment_report(user_info, images, adjustments, text_boxes):
 
     print(hot_soup)
 
-    print(user_info)
-    print(images)
-    print(adjustments)
-    print(text_boxes)
-
+    print(all_user_info)
 
 # create_assessment_report(0, 0, 0)
