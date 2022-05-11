@@ -12,36 +12,36 @@ def start_reba_assessment(tabControl, selector_screen, information, easel):
     screens = []
 
     a1 = sm.ScreenManager('A. NECK, TRUNK, AND LEG ANALYSIS', 'Step 1: Locate Neck Position.',
-                          ['image_1'], ['A', 'B', 'C'],
-                          ['If neck is twisted: (+1)', 'If neck is side bending: (+1)'])
+                          ['image_1'], ['A: +1', 'B: +2', 'C: +2'],
+                          ['If neck is twisted: +1', 'If neck is side bending: +1', 'None: +0'])
     a2 = sm.ScreenManager('A. NECK, TRUNK, AND LEG ANALYSIS', 'Step 2: Locate trunk position.',
-                          ['image_2', 'image_3'], ['A', 'B', 'C', 'D', 'E'],
-                          ['If trunk is twisted: (+1)', 'If trunk is side bending: (+1)'])
+                          ['image_2', 'image_3'], ['A: +1', 'B: +2', 'C: +2', 'D: +3', 'E: +4'],
+                          ['If trunk is twisted: +1', 'If trunk is side bending: +1', 'None: +0'])
     a3 = sm.ScreenManager('A. NECK, TRUNK, AND LEG ANALYSIS', 'Step 3: Legs',
-                          ['image_4', 'image_5'], ['A', 'B', 'C', 'D'], None)
+                          ['image_4', 'image_5'], ['A: +1', 'B: +1'], ['Adjust 30-60: +1', '>60: +2', 'None: +0'])
     a45 = sm.ScreenManager('A. NECK, TRUNK, AND LEG ANALYSIS',
                            ['Step 4: Posture Score in Table A.', 'Step 5: Add Force/Load Score'], None, None,
-                           ['If load < 11lbs: (+0)', 'If load 11 to 22lbs: (+1)',
-                            'If load > 22lbs: (+2)', 'If shock or rapid build up of force: (+1)'])
+                           ['If load less than 11lbs: +0', 'If load 11 to 22lbs: +1',
+                            'If load greater than 22lbs: +2', 'If shock or rapid build up of force: +1'])
     b1 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 7: Locate Upper Arm Position.',
-                          ['image_6', 'image_7'], ['A', 'B', 'C', 'D', 'E'],
-                          ['If shoulder raised: (+1)', 'If upper arm is abducted: (+1)',
-                           'If arm is supported or person is leaning: (-1)'])
+                          ['image_6', 'image_7'], ['A: +1', 'B: +2', 'C: +2', 'D: +3', 'E: +4'],
+                          ['If shoulder raised: +1', 'If upper arm is abducted: +1',
+                           'If arm is supported or person is leaning: -1', 'None: +0'])
     b2 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 8: Locate Lower Arm Position.',
-                          ['image_8'], ['A', 'B', 'C'],
-                          ['If neck is twisted: (+1)', 'If neck is side bending: (+1)'])
+                          ['image_8'], ['A', 'B', 'C'], None)
     b3 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 9: Locate Wrist Position.',
-                          ['image_9'], ['A', 'B'], ['If wrist is bent from midline or twisted (+1)'])
+                          ['image_9'], ['A: +1', 'B: +2'], ['If wrist is bent from midline or twisted: +1', 'None: +0'])
     b45 = sm.ScreenManager('B. ARM & WRIST ANALYSIS',
                            ['Step 10: Look Up Posture Score in Table B:', 'Step 11: Add Coupling Score'],
-                           None, None, ['Well fitting handle and mid-range power grip (good +0)',
+                           None, None, ['Well fitting handle and mid-range power grip (good): +0',
                                         'Acceptable but not ideal hand hold or coupling acceptable with another'
-                                        ' body part (fair +1)', 'Hand hold not acceptable but possible (poor +2)',
-                                        'No handles, awkward, unsage with any body part (unacceptable +3)'])
+                                        ' body part (fair): +1', 'Hand hold not acceptable but possible (poor): +2',
+                                        'No handles, awkward, unsage with any body part (unacceptable): +3'])
     b6 = sm.ScreenManager('B.ARM & WRIST ANALYSIS', 'Step 13: Activity Score', None, None,
-                          ['One or more body parts are held for longer than one ; static (+1)',
-                           'Repeated small range actions; more than 4x per minutes (+1)',
-                           'Action causes rapid large range changes in posture or unstable base (+1)'])
+                          ['One or more body parts are held for longer than one static: +1',
+                           'Repeated small range actions; more than four times per minutes: +1',
+                           'Action causes rapid large range changes in posture or unstable base: +1',
+                           'None: +0'])
 
     screens.append(a1)
     screens.append(a2)

@@ -12,37 +12,40 @@ def start_rula_assessment(tabControl, selector_screen, user_info, easel):
     screens = []
 
     a1 = sm.ScreenManager('A. ARM & WRIST ANALYSIS', 'Step 1: Locate upper arm position.',
-                          ['image_10', 'image_11'], ['A', 'B', 'C', 'D', 'E'],
-                          ['Shoulder raised? (+1)', 'Upper arm abducted? (+1)',
-                           'Arm supported? (i.e. person leaning?) (-1)'])
+                          ['image_10', 'image_11'], ['A: +1', 'B: +2', 'C: +2', 'D: +3', 'E: +4'],
+                          ['Shoulder raised?: +1', 'Upper arm abducted?: +1',
+                           'Arm supported? (i.e. person leaning?): -1', 'None: +0'])
     a2 = sm.ScreenManager('A. ARM & WRIST ANALYSIS', 'Step 2: Locate lower arm position.',
-                          ['image_12'], ['A', 'B', 'C'],
-                          ['Adjust if arm is working across midline or outside of body: (+1)'])
+                          ['image_12'], ['A: +1', 'B: +2'],
+                          ['Adjust if arm is working across midline or outside of body: +1', 'None: +0'])
     a3 = sm.ScreenManager('A. ARM & WRIST ANALYSIS', 'Step 3: Locate wrist position.',
-                          ['image_13'], ['A', 'B', 'C'], None)
+                          ['image_13'], ['A: +1', 'B: +2', 'C: +3'], ['If wrist is bent from midline: +1', 'None: +0'])
     a456 = sm.ScreenManager('A. ARM & WRIST ANALYSIS',
                             ['Step 4: Wrist twist.', 'Step 5: Score from table A', 'Step 6: Muscle Use'], None,
-                            ['If wrist is twisted in mid-range: (+1)', 'If wrist is at or near end of range: (+2)'],
-                            ['Action repeated occurs 4x/minute? OR is posture mainly static (i.e held >10 '
-                                'minutes)? (+1)'])
+                            ['If wrist is twisted in mid-range: +1', 'If wrist is at or near end of range: +2',
+                             'None: +0'],
+                            ['Action repeated occurs 4x/minute? OR is posture mainly static (i.e held longer than ten '
+                                'minutes)?: +1', 'None: +0'])
     a7 = sm.ScreenManager('A. ARM & WRIST ANALYSIS', 'Step 7: Add Force / Load.', None,
-                          ['If load < 4.4 lbs (intermittent): (+0)', 'If load 4.4 to 22 lbs (intermittent): (+1)',
-                           'If load 4.4 to 22 lbs (static or repeated): (+2)',
-                           'If more than 22lbs OR repeated or shocks: (+3)'], None)
+                          ['If load less than 4.4 lbs (intermittent): +0', 'If load 4.4 to 22 lbs (intermittent): +1',
+                           'If load 4.4 to 22 lbs (static or repeated): +2',
+                           'If more than 22lbs OR repeated or shocks: +3', 'None: +0'], None)
     b1 = sm.ScreenManager('B. NECK, TRUNK, AND LEG ANALYSIS', 'Step 9: Locate Neck Position.',
-                          ['image_14'], ['A', 'B', 'C', 'D'],
-                          ['Adjust if neck is twisted: (+1)', 'Adjust if neck is side bending: (+1)'])
+                          ['image_14'], ['A: +1', 'B: +2', 'C: +3', 'D: +4'],
+                          ['Adjust if neck is twisted: +1', 'Adjust if neck is side bending: +1', 'None: +0'])
     b2 = sm.ScreenManager('B. NECK, TRUNK, AND LEG ANALYSIS', 'Step 10: Locate Trunk Position.',
-                          ['image_15', 'image_16'], ['A', 'B', 'C', 'D'],
-                          ['Adjust if trunk is twisted: (+1)', 'Adjust if trunk is side bending: (+1)'])
+                          ['image_15', 'image_16'], ['A: +1', 'B: +2', 'C: +3', 'D: +4'],
+                          ['Adjust if trunk is twisted: +1', 'Adjust if trunk is side bending: +1', 'None: +0'])
     b345 = sm.ScreenManager('B. NECK, TRUNK, AND LEG ANALYSIS',
                             ['Step 11: Legs.', 'Step 12: Posture Score from Table.', 'Step 13: Add Muscle Score.'],
-                            None, ['If legs and feet are supported: (+1)', 'If NOT supported: (+2)'],
-                            ['Action repeated occurs 4x/minute? OR is posture mainly static (i.e held >10 minutes)? (+1)'])
+                            None, ['If legs and feet are supported: +1', 'If NOT supported: +2', 'None: +0'],
+                            ['Action repeated occurs four times per minute? OR is posture mainly static'
+                             ' (i.e held longer than ten minutes)?: +1',
+                             'None: +0'])
     b6 = sm.ScreenManager('B. NECK, TRUNK, AND LEG ANALYSIS', 'Step 14: Add Force / Load Score', None,
-                          ['If load < 4.4 lbs (intermittent): (+0)', 'If load 4.4 to 22 lbs (intermittent): (+1)',
-                           'If load 4.4 to 22 lbs (static or repeated): (+2)',
-                           'If more than 22lbs OR repeated or shocks: (+3)'], None)
+                          ['If load < 4.4 lbs (intermittent): +0', 'If load 4.4 to 22 lbs (intermittent): +1',
+                           'If load 4.4 to 22 lbs (static or repeated): +2',
+                           'If more than 22lbs OR repeated or shocks: +3'], None)
 
     screens.append(a1)
     screens.append(a2)

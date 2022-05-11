@@ -6,7 +6,7 @@ import SelectorScreen as img
 import conversion as conv
 import tkinter as tk
 from tkinter import ttk, filedialog
-from PIL import ImageTk, Image
+from PIL import Image
 from io import BytesIO
 
 root = tk.Tk()
@@ -31,7 +31,6 @@ tabControl.hide(img_screen)
 
 def upload_image():
     global photo
-
     output = BytesIO()
     filename = filedialog.askopenfilename()
     photo = Image.open(filename)
@@ -72,7 +71,7 @@ def get_assessment_selection():
     elif information == 'RULA':
         rum.start_rula_assessment(tabControl, img_screen, user_info, photo)
     else:
-        return "Cannot currently upload previous assessments"
+        print("Cannot currently upload previous assessments")
 
 
 tabControl.pack()
