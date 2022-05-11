@@ -3,9 +3,11 @@ import RulaMain as rum
 import ScreenManager as sm
 import StartUpScreen as sus
 import SelectorScreen as img
+import conversion as conv
 import tkinter as tk
 from tkinter import ttk, filedialog
 from PIL import ImageTk, Image
+from io import BytesIO
 
 root = tk.Tk()
 root.title("RULA / REBA Assessment")
@@ -29,10 +31,15 @@ tabControl.hide(img_screen)
 
 def upload_image():
     global photo
+
+    output = BytesIO()
     filename = filedialog.askopenfilename()
     photo = Image.open(filename)
     photo = photo.resize((225, 225), Image.ANTIALIAS)
-    photo = ImageTk.PhotoImage(photo)
+    photo.save(output, format='PNG')
+    im_data = output.getvalue()
+    photo = conv.base64_encoder(im_data)
+    photo = tk.PhotoImage(data=photo)
     easel = tk.Label(img_screen, image=photo)
     easel.image = photo
     easel.grid(row=2, column=0, sticky=tk.W, padx=85)

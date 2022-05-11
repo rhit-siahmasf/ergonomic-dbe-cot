@@ -12,14 +12,14 @@ def start_rula_assessment(tabControl, selector_screen, user_info, easel):
     screens = []
 
     a1 = sm.ScreenManager('A. ARM & WRIST ANALYSIS', 'Step 1: Locate upper arm position.',
-                          ['rula-images\\A1.png', 'rula-images\\A1-2.png'], ['A', 'B', 'C', 'D', 'E'],
+                          ['image_10', 'image_11'], ['A', 'B', 'C', 'D', 'E'],
                           ['Shoulder raised? (+1)', 'Upper arm abducted? (+1)',
                            'Arm supported? (i.e. person leaning?) (-1)'])
     a2 = sm.ScreenManager('A. ARM & WRIST ANALYSIS', 'Step 2: Locate lower arm position.',
-                          ['rula-images\\A2.png'], ['A', 'B', 'C'],
+                          ['image_12'], ['A', 'B', 'C'],
                           ['Adjust if arm is working across midline or outside of body: (+1)'])
     a3 = sm.ScreenManager('A. ARM & WRIST ANALYSIS', 'Step 3: Locate wrist position.',
-                          ['rula-images\\A3.png'], ['A', 'B', 'C'], None)
+                          ['image_13'], ['A', 'B', 'C'], None)
     a456 = sm.ScreenManager('A. ARM & WRIST ANALYSIS',
                             ['Step 4: Wrist twist.', 'Step 5: Score from table A', 'Step 6: Muscle Use'], None,
                             ['If wrist is twisted in mid-range: (+1)', 'If wrist is at or near end of range: (+2)'],
@@ -30,10 +30,10 @@ def start_rula_assessment(tabControl, selector_screen, user_info, easel):
                            'If load 4.4 to 22 lbs (static or repeated): (+2)',
                            'If more than 22lbs OR repeated or shocks: (+3)'], None)
     b1 = sm.ScreenManager('B. NECK, TRUNK, AND LEG ANALYSIS', 'Step 9: Locate Neck Position.',
-                          ['rula-images\\B1.png', 'rula-images\\B1-2.png'], ['A', 'B', 'C', 'D'],
+                          ['image_14'], ['A', 'B', 'C', 'D'],
                           ['Adjust if neck is twisted: (+1)', 'Adjust if neck is side bending: (+1)'])
     b2 = sm.ScreenManager('B. NECK, TRUNK, AND LEG ANALYSIS', 'Step 10: Locate Trunk Position.',
-                          ['rula-images\\B2.png', 'rula-images\\B2-2.png'], ['A', 'B', 'C', 'D'],
+                          ['image_15', 'image_16'], ['A', 'B', 'C', 'D'],
                           ['Adjust if trunk is twisted: (+1)', 'Adjust if trunk is side bending: (+1)'])
     b345 = sm.ScreenManager('B. NECK, TRUNK, AND LEG ANALYSIS',
                             ['Step 11: Legs.', 'Step 12: Posture Score from Table.', 'Step 13: Add Muscle Score.'],
