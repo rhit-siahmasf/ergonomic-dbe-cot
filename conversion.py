@@ -1,38 +1,25 @@
 import base64
 #
-# image_paths = [
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\reba-images\\A1.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\reba-images\\A2.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\reba-images\\A2-2.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\reba-images\\A3.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\reba-images\\A3-2.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\reba-images\\B1.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\reba-images\\B1-2.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\reba-images\\B2.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\reba-images\\B3.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\rula-images\\A1.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\rula-images\\A1-2.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\rula-images\\A2.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\rula-images\\A3.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\rula-images\\B1.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\rula-images\\B2.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\rula-images\\B2-2.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\other-images\\College-of-tech.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\other-images\\depart-of-built.png',
-#     'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\other-images\\rose.png'
-# ]
+image_paths = [
+    'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\table-images\\REBA-Table-A.png',
+    'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\table-images\\REBA-Table-B.png',
+    'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\table-images\\REBA-Table-C.png',
+    'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\table-images\\RULA-Table-A.png',
+    'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\table-images\\RULA-Table-B.png',
+    'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\table-images\\RULA-Table-C.png'
+]
 #
-# i = 0
-# for path in image_paths:
-#     with open(path, "rb") as image_file:
-#         i += 1
-#         encoded_string = base64.b64encode(image_file.read())
-#         file = open(
-#             'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\all-images\\image_%d' % i,
-#             "w")
-#         file.write(encoded_string.decode("utf-8"))
-#         file.close()
-#
+i = 19
+for path in image_paths:
+    with open(path, "rb") as image_file:
+        i += 1
+        encoded_string = base64.b64encode(image_file.read())
+        file = open(
+            'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\all-images\\image_%d' % i,
+            "w")
+        file.write(encoded_string.decode("utf-8"))
+        file.close()
+
 # scones = {}
 # for i in range(1, 17, 1):
 #     file_name = 'C:\\Users\\siahmasf\\Documents\\Quarters\\Spring 2022\\Ergonomics Project (CSSE371)\\ergonomic-dbe-cot\\all-images\\image_%d' % i

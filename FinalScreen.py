@@ -33,21 +33,15 @@ def popup_check():
 
 
 def create_assessment_report(all_user_info):
-    user_input = all_user_info[0]
-    image_selections = all_user_info[1]
-    adjustment_selections = all_user_info[2]
-    text_boxes = all_user_info[3]
+    # user_input = all_user_info[0]
+    # image_selections = all_user_info[1]
+    # adjustment_selections = all_user_info[2]
+    # text_boxes = all_user_info[3]
+    #
+    # name = user_input[0]
+    # task_name = user_input[1]
+    # date = user_input[2]
 
-    name = user_input[0]
-    task_name = user_input[1]
-    date = user_input[2]
-
-
-
-    with open('./data/reba-assessment.json') as f:
-        data = json.load(f)
-
-    print(data)
 
     with open('templates/reba-assessment-report.html') as h:
         soup = BS(h, 'html.parser')
@@ -55,6 +49,4 @@ def create_assessment_report(all_user_info):
 
     print(hot_soup)
 
-    print(all_user_info)
-
-# create_assessment_report(0, 0, 0)
+create_assessment_report(0)
