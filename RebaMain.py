@@ -28,7 +28,7 @@ def start_reba_assessment(tabControl, selector_screen, information, easel):
                           ['If shoulder raised: +1', 'If upper arm is abducted: +1',
                            'If arm is supported or person is leaning: -1', 'None: +0'])
     b2 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 8: Locate Lower Arm Position.',
-                          ['image_8'], ['A', 'B', 'C'], None)
+                          ['image_8'], ['A: +1', 'B: +2'], None)
     b3 = sm.ScreenManager('B. ARM & WRIST ANALYSIS', 'Step 9: Locate Wrist Position.',
                           ['image_9'], ['A: +1', 'B: +2'], ['If wrist is bent from midline or twisted: +1', 'None: +0'])
     b45 = sm.ScreenManager('B. ARM & WRIST ANALYSIS',
@@ -160,17 +160,14 @@ def get_all_info(screen_manager):
 
 def get_curr_img(screen_manager):
     image_selections.append(screen_manager.get_image_selection())
-    print(screen_manager.get_subtitle() + " " + screen_manager.get_image_selection())
 
 
 def get_curr_adj(screen_manager):
     adjustment_selections.append(screen_manager.get_adjustment_checks())
-    print(screen_manager.get_subtitle() + " " + screen_manager.get_adjustment_checks())
 
 
 def get_text_entry(screen_manager):
     text_boxes.append(screen_manager.get_user_entry())
-    print(screen_manager.get_subtitle() + " " + screen_manager.get_user_entry())
 
 
 def get_completed_info(user_input):

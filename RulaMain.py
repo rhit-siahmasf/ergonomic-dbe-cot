@@ -7,7 +7,7 @@ adjustment_selections = []
 image_selections = []
 
 
-def start_rula_assessment(tabControl, selector_screen, user_info, easel):
+def start_rula_assessment(tabControl, selector_screen, information, easel):
 
     screens = []
 
@@ -38,7 +38,7 @@ def start_rula_assessment(tabControl, selector_screen, user_info, easel):
                           ['Adjust if trunk is twisted: +1', 'Adjust if trunk is side bending: +1', 'None: +0'])
     b345 = sm.ScreenManager('B. NECK, TRUNK, AND LEG ANALYSIS',
                             ['Step 11: Legs.', 'Step 12: Posture Score from Table.', 'Step 13: Add Muscle Score.'],
-                            None, ['If legs and feet are supported: +1', 'If NOT supported: +2', 'None: +0'],
+                            None, ['If legs and feet are supported: +1', 'If NOT supported: +2'],
                             ['Action repeated occurs four times per minute? OR is posture mainly static'
                              ' (i.e held longer than ten minutes)?: +1',
                              'None: +0'])
@@ -148,7 +148,7 @@ def start_rula_assessment(tabControl, selector_screen, user_info, easel):
               command=lambda: [get_all_info(b6), tabControl.hide(screen_b6), tabControl.select(screen_final)]).grid(
         row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
     tk.Button(screen_final, text='Save as PDF', bg='#A7B0AF',
-              command=fs.create_rula_assessment_report(user_info, image_selections, adjustment_selections, text_boxes))\
+              command=lambda: fs.create_rula_assessment_report(get_completed_info(information)))\
         .grid(row=1, column=0, sticky=tk.W, padx=15, ipadx=15)
 
     for scream in screens:
@@ -165,14 +165,15 @@ def get_all_info(screen_manager):
 
 def get_curr_img(screen_manager):
     image_selections.append(screen_manager.get_image_selection())
-    print(screen_manager.get_subtitle() + " " + screen_manager.get_image_selection())
 
 
 def get_curr_adj(screen_manager):
     adjustment_selections.append(screen_manager.get_adjustment_checks())
-    print(screen_manager.get_subtitle() + " " + screen_manager.get_adjustment_checks())
 
 
 def get_text_entry(screen_manager):
     text_boxes.append(screen_manager.get_user_entry())
-    print(screen_manager.get_subtitle() + " " + screen_manager.get_user_entry())
+
+
+def get_completed_info(user_input):
+    return [user_input, image_selections, adjustment_selections, text_boxes]
