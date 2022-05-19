@@ -143,7 +143,7 @@ def start_reba_assessment(tabControl, selector_screen, information, easel):
               command=lambda: [tabControl.hide(screen_b6),
                                tabControl.select(screen_b45)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
     tk.Button(final, text='Save as PDF', bg='#A7B0AF',
-              command=lambda: fs.create_assessment_report(get_completed_info(information))) \
+              command=lambda: fs.create_reba_assessment_report(get_completed_info(information))) \
         .grid(row=1, column=0, sticky=tk.W, padx=15, ipadx=15)
 
     for scream in screens:
