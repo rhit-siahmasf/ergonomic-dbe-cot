@@ -141,7 +141,7 @@ def create_reba_assessment_report(all_user_info):
         ans1_val = image_selections[0] + adjustment_selections[0]
         ans2_val = image_selections[1] + adjustment_selections[1]
         ans3_val = image_selections[2] + adjustment_selections[2]
-        ans4_val = reba_tables.get_tableA_score(ans1_val, ans2_val, ans3_val)
+        ans4_val = reba_tables.get_tableA_score(ans1_val, ans2_val, ans3_val, 0)
         ans5_val = adjustment_selections[3]
         ans6_val = ans4_val + ans5_val
         ans7_val = image_selections[3] + adjustment_selections[4]
@@ -149,7 +149,7 @@ def create_reba_assessment_report(all_user_info):
         ans9_val = image_selections[5] + adjustment_selections[5]
         ans10_val = reba_tables.get_tableB_score(ans8_val, ans7_val, ans9_val)
         ans11_val = adjustment_selections[6]
-        ans12_val = ans10_val + ans11
+        ans12_val = ans10_val + ans11_val
         table_c_val = reba_tables.get_tableC_score(ans6_val, ans12_val)
         active_val = adjustment_selections[7]
         final_val = table_c_val + active_val

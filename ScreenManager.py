@@ -146,18 +146,19 @@ class ScreenManager:
             if my_val != 'REBA' and my_val != 'RULA':
                 my_val = re.sub('\\D', '', my_val)
                 my_val = my_val[len(my_val) - 1]
+                return int(my_val)
             return my_val
         else:
-            return ""
+            return 0
 
     def get_image_selection(self):
         if self.image_selects is not None:
             my_val = self.image_selects.get()
             my_val = re.sub('\\D', '', my_val)
             my_val = my_val[len(my_val) - 1]
-            return my_val
+            return int(my_val)
         else:
-            return ""
+            return 0
 
     def get_subtitle(self):
         if self.sub_title is not None and type(self.sub_title) is not list:
