@@ -148,7 +148,7 @@ def start_rula_assessment(tabControl, selector_screen, user_info, easel):
               command=lambda: [get_all_info(b6), tabControl.hide(screen_b6), tabControl.select(screen_final)]).grid(
         row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
     tk.Button(screen_final, text='Save as PDF', bg='#A7B0AF',
-              command=fs.create_assessment_report(user_info, image_selections, adjustment_selections, text_boxes))\
+              command=fs.create_rula_assessment_report(user_info, image_selections, adjustment_selections, text_boxes))\
         .grid(row=1, column=0, sticky=tk.W, padx=15, ipadx=15)
 
     for scream in screens:
