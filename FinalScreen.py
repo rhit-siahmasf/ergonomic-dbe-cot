@@ -29,24 +29,33 @@ def popup_check():
     no_btn = tk.Button(pop, text='NO', bg='red', command=pop.destroy)
     no_btn.grid(row=1, column=1, sticky=tk.W)
 
+
 # [user_input, image_selections, adjustment_selections, text_boxes]
 
 
 def create_assessment_report(all_user_info):
-    # user_input = all_user_info[0]
-    # image_selections = all_user_info[1]
-    # adjustment_selections = all_user_info[2]
+    user_input = all_user_info[0]
+    image_selections = all_user_info[1]
+    adjustment_selections = all_user_info[2]
     # text_boxes = all_user_info[3]
     #
-    # name = user_input[0]
-    # task_name = user_input[1]
-    # date = user_input[2]
-
+    name = user_input[0]
+    task_name = user_input[1]
+    date = user_input[2]
 
     with open('templates/reba-assessment-report.html') as h:
         soup = BS(h, 'html.parser')
-        hot_soup = soup.prettify()
 
-    print(hot_soup)
+        # User Input
+        info = soup.find(id="revInfo")
+        info.append(name + "    " + task_name + "    " + date)
+        for i in range(1, len(image_selections)+1):
+            curr_answer = 'answer' + str(i)
+            summand = image_selections[i-1] + adjustment_selections[i-1]
+            ans = soup.find(id=curr_answer)
+            ans.string = str(summand)
+        with open('templates/reba-assessment-report.html', "w") as t:
+            t.write(soup.prettify())
 
-create_assessment_report(0)
+
+create_assessment_report([["Saayeh", "myTask", "09/09/2022"], [2, 3, 4], [5, 6, 7]])
