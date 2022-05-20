@@ -8,7 +8,6 @@ image_selections = []
 
 
 def start_rula_assessment(tabControl, selector_screen, information, easel):
-
     screens = []
 
     a1 = sm.ScreenManager('A. ARM & WRIST ANALYSIS', 'Step 1: Locate upper arm position.',
@@ -25,7 +24,7 @@ def start_rula_assessment(tabControl, selector_screen, information, easel):
                             ['If wrist is twisted in mid-range: +1', 'If wrist is at or near end of range: +2',
                              'None: +0'],
                             ['Action repeated occurs 4x/minute? OR is posture mainly static (i.e held longer than ten '
-                                'minutes)?: +1', 'None: +0'])
+                             'minutes)?: +1', 'None: +0'])
     a7 = sm.ScreenManager('A. ARM & WRIST ANALYSIS', 'Step 7: Add Force / Load.', None,
                           ['If load less than 4.4 lbs (intermittent): +0', 'If load 4.4 to 22 lbs (intermittent): +1',
                            'If load 4.4 to 22 lbs (static or repeated): +2',
@@ -95,66 +94,93 @@ def start_rula_assessment(tabControl, selector_screen, information, easel):
     # All next and back buttons hide AND select a screen based on the label of the button
     tk.Button(screen_a1, text='BACK', bg='#8B2323',
               command=lambda: [tabControl.hide(screen_a1),
-                               tabControl.select(selector_screen)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
-    tk.Button(screen_a1, text='NEXT', bg='#458B00',
-              command=lambda: [get_all_info(a1), tabControl.hide(screen_a1), tabControl.select(screen_a2)]) \
-        .grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+                               tabControl.select(selector_screen)]).grid(row=4, column=0, sticky=tk.E, padx=15,
+                                                                         ipadx=15)
+    next_a1 = tk.Button(screen_a1, state=tk.DISABLED, text='NEXT', bg='#458B00',
+                        command=lambda: [get_all_info(a1), tabControl.hide(screen_a1), tabControl.select(screen_a2)])
+    next_a1.grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
     tk.Button(screen_a2, text='BACK', bg='#8B2323',
               command=lambda: [tabControl.hide(screen_a2),
                                tabControl.select(screen_a1)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
-    tk.Button(screen_a2, text='NEXT', bg='#458B00',
-              command=lambda: [get_all_info(a2), tabControl.hide(screen_a2), tabControl.select(screen_a3)]) \
-        .grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+    next_a2 = tk.Button(screen_a2, state=tk.DISABLED, text='NEXT', bg='#458B00',
+                        command=lambda: [get_all_info(a2), tabControl.hide(screen_a2), tabControl.select(screen_a3)])
+    next_a2.grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
     tk.Button(screen_a3, text='BACK', bg='#8B2323',
               command=lambda: [tabControl.hide(screen_a3),
                                tabControl.select(screen_a2)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
-    tk.Button(screen_a3, text='NEXT', bg='#458B00',
-              command=lambda: [get_all_info(a3), tabControl.hide(screen_a3), tabControl.select(screen_a456)]) \
-        .grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+    next_a3 = tk.Button(screen_a3, state=tk.DISABLED, text='NEXT', bg='#458B00',
+                        command=lambda: [get_all_info(a3), tabControl.hide(screen_a3), tabControl.select(screen_a456)])
+    next_a3.grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
     tk.Button(screen_a456, text='BACK', bg='#8B2323',
               command=lambda: [tabControl.hide(screen_a456),
                                tabControl.select(screen_a3)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
-    tk.Button(screen_a456, text='NEXT', bg='#458B00',
-              command=lambda: [get_all_info(a456), tabControl.hide(screen_a456), tabControl.select(screen_a7)]) \
-        .grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+    next_a456 = tk.Button(screen_a456, state=tk.DISABLED, text='NEXT', bg='#458B00',
+                          command=lambda: [get_all_info(a456), tabControl.hide(screen_a456),
+                                           tabControl.select(screen_a7)])
+    next_a456.grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
     tk.Button(screen_a7, text='BACK', bg='#8B2323',
               command=lambda: [tabControl.hide(screen_a7),
                                tabControl.select(screen_a456)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
-    tk.Button(screen_a7, text='NEXT', bg='#458B00',
-              command=lambda: [get_all_info(a7), tabControl.hide(screen_a7), tabControl.select(screen_b1)]) \
-        .grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+    next_a7 = tk.Button(screen_a7, state=tk.DISABLED, text='NEXT', bg='#458B00',
+                        command=lambda: [get_all_info(a7), tabControl.hide(screen_a7), tabControl.select(screen_b1)])
+    next_a7.grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
     tk.Button(screen_b1, text='BACK', bg='#8B2323',
               command=lambda: [tabControl.hide(screen_b1),
                                tabControl.select(screen_a7)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
-    tk.Button(screen_b1, text='NEXT', bg='#458B00',
-              command=lambda: [get_all_info(b1), tabControl.hide(screen_b1), tabControl.select(screen_b2)]) \
-        .grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+    next_b1 = tk.Button(screen_b1, state=tk.DISABLED, text='NEXT', bg='#458B00',
+                        command=lambda: [get_all_info(b1), tabControl.hide(screen_b1), tabControl.select(screen_b2)])
+    next_b1.grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
     tk.Button(screen_b2, text='BACK', bg='#8B2323',
               command=lambda: [tabControl.hide(screen_b2),
                                tabControl.select(screen_b1)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
-    tk.Button(screen_b2, text='NEXT', bg='#458B00',
-              command=lambda: [get_all_info(b2), tabControl.hide(screen_b2), tabControl.select(screen_b345)]) \
-        .grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+    next_b2 = tk.Button(screen_b2, state=tk.DISABLED, text='NEXT', bg='#458B00',
+                        command=lambda: [get_all_info(b2), tabControl.hide(screen_b2), tabControl.select(screen_b345)])
+    next_b2.grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
     tk.Button(screen_b345, text='BACK', bg='#8B2323',
               command=lambda: [tabControl.hide(screen_b345),
                                tabControl.select(screen_b2)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
-    tk.Button(screen_b345, text='NEXT', bg='#458B00',
-              command=lambda: [get_all_info(b345), tabControl.hide(screen_b345), tabControl.select(screen_b6)]).grid(
-        row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+    next_b345 = tk.Button(screen_b345, state=tk.DISABLED, text='NEXT', bg='#458B00',
+                          command=lambda: [get_all_info(b345), tabControl.hide(screen_b345),
+                                           tabControl.select(screen_b6)])
+    next_b345.grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
     tk.Button(screen_b6, text='BACK', bg='#8B2323',
               command=lambda: [tabControl.hide(screen_b6),
                                tabControl.select(screen_b345)]).grid(row=4, column=0, sticky=tk.E, padx=15, ipadx=15)
-    tk.Button(screen_b6, text='NEXT', bg='#458B00',
-              command=lambda: [get_all_info(b6), tabControl.hide(screen_b6), tabControl.select(screen_final)]).grid(
-        row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
+    next_b6 = tk.Button(screen_b6, state=tk.DISABLED, text='NEXT', bg='#458B00',
+                        command=lambda: [get_all_info(b6), tabControl.hide(screen_b6), tabControl.select(screen_final)])
+    next_b6.grid(row=4, column=1, sticky=tk.W, padx=15, ipadx=15)
     tk.Button(screen_final, text='Save as PDF', bg='#A7B0AF',
               command=lambda: fs.create_rula_assessment_report(get_completed_info(information)))\
         .grid(row=1, column=0, sticky=tk.W, padx=15, ipadx=15)
+
+    tk.Button(screen_a1, text='Save Answer', bg='#0675BB', command=lambda: enable_next(next_a1, a1))\
+        .grid(row=4, column=1, sticky=tk.S, padx=15, ipadx=15)
+    tk.Button(screen_a2, text='Save Answer', bg='#0675BB', command=lambda: enable_next(next_a2, a2)) \
+        .grid(row=4, column=1, sticky=tk.S, padx=15, ipadx=15)
+    tk.Button(screen_a3, text='Save Answer', bg='#0675BB', command=lambda: enable_next(next_a3, a3)) \
+        .grid(row=4, column=1, sticky=tk.S, padx=15, ipadx=15)
+    tk.Button(screen_a456, text='Save Answer', bg='#0675BB', command=lambda: enable_next(next_a456, a456)) \
+        .grid(row=4, column=1, sticky=tk.S, padx=15, ipadx=15)
+    tk.Button(screen_b1, text='Save Answer', bg='#0675BB', command=lambda: enable_next(next_b1, b1)) \
+        .grid(row=4, column=1, sticky=tk.S, padx=15, ipadx=15)
+    tk.Button(screen_b2, text='Save Answer', bg='#0675BB', command=lambda: enable_next(next_b2, b2)) \
+        .grid(row=4, column=1, sticky=tk.S, padx=15, ipadx=15)
+    tk.Button(screen_b345, text='Save Answer', bg='#0675BB', command=lambda: enable_next(next_b345, b345)) \
+        .grid(row=4, column=1, sticky=tk.S, padx=15, ipadx=15)
+    tk.Button(screen_b6, text='Save Answer', bg='#0675BB', command=lambda: enable_next(next_b6, b6)) \
+        .grid(row=4, column=1, sticky=tk.S, padx=15, ipadx=15)
 
     for scream in screens:
         u_photo = tk.Label(scream.get_tab_master(), image=easel)
         u_photo.image = easel
         u_photo.grid(row=3, column=0, sticky=tk.W, padx=40)
+
+
+def enable_next(btn, screen_manager):
+    if btn['state'] != tk.NORMAL and screen_manager.check_completion():
+        btn['state'] = tk.NORMAL
+    else:
+        btn['state'] = tk.DISABLED
 
 
 def get_all_info(screen_manager):

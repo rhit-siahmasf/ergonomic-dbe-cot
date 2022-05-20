@@ -69,17 +69,17 @@ def create_rula_assessment_report(all_user_info):
         ans1_val = image_selections[0] + adjustment_selections[0]
         ans2_val = image_selections[1] + adjustment_selections[1]
         ans3_val = image_selections[2] + adjustment_selections[2]
-        ans4_val = adjustment_selections[3]
+        ans4_val = image_selections[3]
         ans5_val = rula_tables.get_tableA_score(ans3_val, ans1_val, ans2_val, ans4_val)
-        ans6_val = adjustment_selections[4]
-        ans7_val = adjustment_selections[5]
+        ans6_val = adjustment_selections[3]
+        ans7_val = adjustment_selections[4]
         ans8_val = ans5_val + ans6_val + ans7_val
-        ans9_val = image_selections[6] + adjustment_selections[6]
-        ans10_val = image_selections[7] + adjustment_selections[7]
-        ans11_val = adjustment_selections[8]
+        ans9_val = image_selections[4] + adjustment_selections[5]
+        ans10_val = image_selections[5] + adjustment_selections[6]
+        ans11_val = image_selections[6]
         ans12_val = rula_tables.get_tableB_score(ans10_val, ans9_val, ans11_val)
-        ans13_val = adjustment_selections[9]
-        ans14_val = adjustment_selections[10]
+        ans13_val = adjustment_selections[7]
+        ans14_val = adjustment_selections[8]
         ans15_val = ans12_val + ans13_val + ans14_val
         final_val = rula_tables.get_tableC_score(ans15_val, ans8_val)
 
@@ -100,7 +100,10 @@ def create_rula_assessment_report(all_user_info):
         ans15.string = str(ans15_val)
         final_score.string = str(final_val)
 
-        with open('templates/rula-assessment-report.html', "w") as t:
+        name = name.replace("\n", "")
+        task_name = task_name.replace("\n", "")
+        date = date.replace("\n", "")
+        with open(name+task_name+date+"-rula-report-.html", "x") as t:
             t.write(soup.prettify())
 
 
@@ -170,5 +173,8 @@ def create_reba_assessment_report(all_user_info):
         activity_score.string = str(active_val)
         final_score.string = str(final_val)
 
-        with open('templates/reba-assessment-report.html', "w") as t:
+        name = name.replace("\n", "")
+        task_name = task_name.replace("\n", "")
+        date = date.replace("\n", "")
+        with open(name+task_name+date+"-reba-report-.html", "x") as t:
             t.write(soup.prettify())
