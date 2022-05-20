@@ -100,7 +100,10 @@ def create_rula_assessment_report(all_user_info):
         ans15.string = str(ans15_val)
         final_score.string = str(final_val)
 
-        with open('templates/rula-assessment-report'+name+'.html', "x") as t:
+        name = name.replace("\n", "")
+        task_name = task_name.replace("\n", "")
+        date = date.replace("\n", "")
+        with open(name+task_name+date+"-rula-report-.html", "x") as t:
             t.write(soup.prettify())
 
 
@@ -170,5 +173,8 @@ def create_reba_assessment_report(all_user_info):
         activity_score.string = str(active_val)
         final_score.string = str(final_val)
 
-        with open('templates/reba-assessment-report-'+name+'.html', "x") as t:
+        name = name.replace("\n", "")
+        task_name = task_name.replace("\n", "")
+        date = date.replace("\n", "")
+        with open(name+task_name+date+"-reba-report-.html", "x") as t:
             t.write(soup.prettify())
