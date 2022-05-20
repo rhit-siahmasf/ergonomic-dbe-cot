@@ -167,7 +167,7 @@ def start_rula_assessment(tabControl, selector_screen, information, easel):
         .grid(row=4, column=1, sticky=tk.S, padx=15, ipadx=15)
     tk.Button(screen_b345, text='Save Answer', bg='#0675BB', command=lambda: enable_next(next_b345, b345)) \
         .grid(row=4, column=1, sticky=tk.S, padx=15, ipadx=15)
-    tk.Button(screen_b345, text='Save Answer', bg='#0675BB', command=lambda: enable_next(next_b6, b6)) \
+    tk.Button(screen_b6, text='Save Answer', bg='#0675BB', command=lambda: enable_next(next_b6, b6)) \
         .grid(row=4, column=1, sticky=tk.S, padx=15, ipadx=15)
 
     for scream in screens:
