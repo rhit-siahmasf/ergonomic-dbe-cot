@@ -165,3 +165,12 @@ class ScreenManager:
             return self.sub_title
         else:
             return ""
+
+    def check_completion(self):
+        if (self.adjustment_checks is not None) and (self.image_selects is not None):
+            return self.image_selects.get() and self.adjustment_checks.get()
+        elif self.adjustment_checks is not None:
+            return self.adjustment_checks.get()
+        else:
+            return self.image_selects.get()
+
