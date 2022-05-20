@@ -177,3 +177,4 @@ def get_text_entry(screen_manager):
 
 def get_completed_info(user_input):
     return [user_input, image_selections, adjustment_selections, text_boxes]
+
