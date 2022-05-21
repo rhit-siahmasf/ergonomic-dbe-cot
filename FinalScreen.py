@@ -14,10 +14,14 @@ def create_page(master):
     final.rowconfigure(0, weight=2)
     final.rowconfigure(1, weight=2)
     final.rowconfigure(2, weight=2)
-    tk.Button(final, text='Restart', bg='#8B2323', command=None).grid(row=2, column=0, sticky=tk.W, padx=15, ipadx=15)
+    tk.Button(final, text='Restart', bg='#8B2323', command=restart).grid(row=2, column=0, sticky=tk.W, padx=15, ipadx=15)
     tk.Button(final, text='EXIT', bg='#8B2323',
               command=popup_check).grid(row=2, column=2, sticky=tk.E, padx=15, ipadx=15)
     return final
+
+
+def restart():
+    import HomeMain
 
 
 def popup_check():
@@ -103,6 +107,7 @@ def create_rula_assessment_report(all_user_info):
         name = name.replace("\n", "")
         task_name = task_name.replace("\n", "")
         date = date.replace("\n", "")
+        date = date.replace("/", "")
         with open(name+task_name+date+"-rula-report-.html", "x") as t:
             t.write(soup.prettify())
 
@@ -176,5 +181,6 @@ def create_reba_assessment_report(all_user_info):
         name = name.replace("\n", "")
         task_name = task_name.replace("\n", "")
         date = date.replace("\n", "")
+        date = date.replace("/", "")
         with open(name+task_name+date+"-reba-report-.html", "x") as t:
             t.write(soup.prettify())

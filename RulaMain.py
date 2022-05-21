@@ -161,6 +161,8 @@ def start_rula_assessment(tabControl, selector_screen, information, easel):
         .grid(row=3, column=1, sticky=tk.E, padx=200, ipadx=15)
     tk.Button(screen_a456, text='Save Answer', bg='#0675BB', command=lambda: enable_next(next_a456, a456)) \
         .grid(row=3, column=1, sticky=tk.E, padx=200, ipadx=15)
+    tk.Button(screen_a7, text='Save Answer', bg='#0675BB', command=lambda: enable_next(next_a7, a7)) \
+        .grid(row=3, column=1, sticky=tk.E, padx=200, ipadx=15)
     tk.Button(screen_b1, text='Save Answer', bg='#0675BB', command=lambda: enable_next(next_b1, b1)) \
         .grid(row=3, column=1, sticky=tk.E, padx=200, ipadx=15)
     tk.Button(screen_b2, text='Save Answer', bg='#0675BB', command=lambda: enable_next(next_b2, b2)) \
