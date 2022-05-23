@@ -1,8 +1,9 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, filedialog
 from bs4 import BeautifulSoup as BS
 import UserInputManager as us
-import json
+import os, sys
+import pkgutil
 
 
 def create_page(master):
@@ -14,14 +15,10 @@ def create_page(master):
     final.rowconfigure(0, weight=2)
     final.rowconfigure(1, weight=2)
     final.rowconfigure(2, weight=2)
-    tk.Button(final, text='Restart', bg='#8B2323', command=restart).grid(row=2, column=0, sticky=tk.W, padx=15, ipadx=15)
+    tk.Button(final, text='Restart', bg='#8B2323', command=None).grid(row=2, column=0, sticky=tk.W, padx=15, ipadx=15)
     tk.Button(final, text='EXIT', bg='#8B2323',
               command=popup_check).grid(row=2, column=2, sticky=tk.E, padx=15, ipadx=15)
     return final
-
-
-def restart():
-    import HomeMain
 
 
 def popup_check():
@@ -46,8 +43,13 @@ def create_rula_assessment_report(all_user_info):
     date = user_input[2]
 
     rula_tables = us.RulaTableManager()
+    if getattr(sys, 'frozen', False):
+        bundle_dir = sys._MEIPASS
+    else:
+        bundle_dir = os.path.dirname(os.path.abspath(__file__))
+    file_dir = os.path.join(bundle_dir, 'templates/rula-assessment-report.html')
 
-    with open('templates/rula-assessment-report.html') as h:
+    with open(file_dir) as h:
         soup = BS(h, 'html.parser')
 
         # User Input
@@ -104,11 +106,8 @@ def create_rula_assessment_report(all_user_info):
         ans15.string = str(ans15_val)
         final_score.string = str(final_val)
 
-        name = name.replace("\n", "")
-        task_name = task_name.replace("\n", "")
-        date = date.replace("\n", "")
-        date = date.replace("/", "")
-        with open(name+task_name+date+"-rula-report-.html", "x") as t:
+        file = filedialog.asksaveasfile(mode='w', filetypes=[("HTML File", "*.html")])
+        with open(file.name, 'w') as t:
             t.write(soup.prettify())
 
 
@@ -123,8 +122,13 @@ def create_reba_assessment_report(all_user_info):
     date = user_input[2]
 
     reba_tables = us.RebaTableManager()
+    if getattr(sys, 'frozen', False):
+        bundle_dir = sys._MEIPASS
+    else:
+        bundle_dir = os.path.dirname(os.path.abspath(__file__))
+    file_dir = os.path.join(bundle_dir, 'templates/rula-assessment-report.html')
 
-    with open('templates/reba-assessment-report.html') as h:
+    with open(file_dir) as h:
         soup = BS(h, 'html.parser')
 
         # User Input
@@ -177,10 +181,6 @@ def create_reba_assessment_report(all_user_info):
         table_c_score.string = str(table_c_val)
         activity_score.string = str(active_val)
         final_score.string = str(final_val)
-
-        name = name.replace("\n", "")
-        task_name = task_name.replace("\n", "")
-        date = date.replace("\n", "")
-        date = date.replace("/", "")
-        with open(name+task_name+date+"-reba-report-.html", "x") as t:
+        file = filedialog.asksaveasfile(mode='w', filetypes=[("HTML File", ".html")])
+        with open(file.name, 'w') as t:
             t.write(soup.prettify())
