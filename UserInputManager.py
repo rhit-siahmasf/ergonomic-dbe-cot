@@ -1,6 +1,9 @@
+import os
+import sys
+
 import pandas as pd
 from abc import ABC, abstractmethod
-import os
+import pkgutil
 
 
 class TableManager(ABC):
@@ -44,16 +47,19 @@ class RebaTableManager(TableManager):
         return computed_value
 
     def create_table(self, table):
-        real_path = os.path.dirname(os.path.realpath(__file__))
+        if getattr(sys, 'frozen', False):
+            bundle_dir = sys._MEIPASS
+        else:
+            bundle_dir = os.path.dirname(os.path.abspath(__file__))
         match table:
             case 1:
-                file_dir = os.path.join(real_path, 'tables/REBA-TableA.json')
+                file_dir = os.path.join(bundle_dir, 'tables/REBA-TableA.json')
                 return pd.read_json(file_dir)
             case 2:
-                file_dir = os.path.join(real_path, 'tables/REBA-TableB.json')
+                file_dir = os.path.join(bundle_dir, 'REBA-TableB.json')
                 return pd.read_json(file_dir)
             case 3:
-                file_dir = os.path.join(real_path, 'tables/REBA-TableC.json')
+                file_dir = os.path.join(bundle_dir, 'REBA-TableC.json')
                 return pd.read_json(file_dir)
             case default:
                 return
@@ -86,16 +92,17 @@ class RulaTableManager(TableManager):
         return computed_value
 
     def create_table(self, table):
-        real_path = os.path.dirname(os.path.realpath(__file__))
+        if getattr(sys, 'frozen', False):
+            bundle_dir = sys._MEIPASS
+        else:
+            bundle_dir = os.path.dirname(os.path.abspath(__file__))
         match table:
             case 1:
-                file_dir = os.path.join(real_path, 'tables/RULA-TableA.json')
+                file_dir = os.path.join(bundle_dir, 'tables/RULA-TableA.json')
                 return pd.read_json(file_dir)
             case 2:
-                file_dir = os.path.join(real_path, 'tables/RULA-TableB.json')
+                file_dir = os.path.join(bundle_dir, 'tables/RULA-TableB.json')
                 return pd.read_json(file_dir)
             case 3:
-                file_dir = os.path.join(real_path, 'tables/RULA-TableC.json')
+                file_dir = os.path.join(bundle_dir, 'tables/RULA-TableC.json')
                 return pd.read_json(file_dir, orient='records')
-            case default:
-                return
